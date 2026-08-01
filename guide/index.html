@@ -1,832 +1,1091 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240412400"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-18240412400');
-    </script>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO Meta Tags (Updated with Account 3 Connection & Wi-Fi Keywords) -->
-    <title>Fix Printer Connection Error & Wi-Fi Disconnects | Live Tech Help</title>
-    <meta name="description" content="Resolve printer connection error, computer cannot connect to printer, printer won't connect to wifi, and Wi-Fi disconnection issues quickly with live chat assistance for HP, Canon, Epson, and Brother printers." />
-    <meta name="keywords" content="printer connection error, cannot connect to printer, computer cannot connect to printer, printer won't connect to wifi, printer disconnected from wifi, printer setup assistance, install printer drivers, wifi printer setup, printer offline fix" />
+    <title>The Complete Guide to Peripheral Setup, Network Protocols &amp; Driver Architecture — PCConnectHub</title>
+    <meta name="description" content="A comprehensive technical manual by PCConnectHub covering wireless and wired peripheral setup, PCL and PostScript driver configuration across Windows 11 and macOS, network routing, Wi-Fi diagnostics, USB connectivity, and complete printer troubleshooting." />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.pcconnecthub.com/guide" />
 
-    <link rel="preload" as="image" href="/images/h-logo.png" />
-    <link rel="preload" as="image" href="/images/b-logo.png" />
-    <link rel="preload" as="image" href="/images/E-Logo.png" />
-    <link rel="preload" as="image" href="/images/C-Logo.png" />
-
-    <script src="/lucide.min.js" defer></script>
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Complete Guide to Peripheral Setup, Network Protocols &amp; Driver Architecture" />
+    <meta property="og:description" content="A comprehensive technical manual covering wireless and wired peripheral setup, PCL and PostScript driver configuration, network routing, Wi-Fi diagnostics, USB connectivity, and complete printer troubleshooting." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.pcconnecthub.com/guide" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <style>
-      /* ─── RESET & UNIVERSAL LAYOUT STYLES ───────────────────────────────────── */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family:
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          "Helvetica Neue",
-          Arial,
-          sans-serif;
-        background-color: #ffffff;
-        color: #374151;
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      .font-sans {
-        font-family: ui-sans-serif, system-ui, sans-serif;
-      }
-      .font-mono {
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-      }
-
-      .max-w-7xl {
-        max-width: 80rem;
-        margin: 0 auto;
-        width: 100%;
-      }
-      .max-w-6xl {
-        max-width: 75rem;
-        margin: 0 auto;
-        width: 100%;
-      }
-      .max-w-5xl {
-        max-width: 64rem;
-        margin: 0 auto;
-        width: 100%;
-      }
-
-      /* ─── HERO ARCHITECTURE ─────────────────────────────────────────────────── */
-      .section-hero-title {
-        text-align: center;
-        padding: 2rem 1.5rem 1.5rem 1.5rem;
-        background-color: #ffffff;
-      }
-
-      .main-title {
-        font-size: 2.25rem;
-        font-weight: 800;
-        color: #111827;
-        letter-spacing: -0.03em;
-        margin-bottom: 0.5rem;
-      }
-
-      /* ─── BRAND SECTION (RESPONSIVE GRID) ──────────────────────────────────── */
-      .brand-section {
-        padding: 1rem 1.5rem 2rem;
-        background: #fff;
-      }
-
-      .brand-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        width: 100%;
-      }
-
-      .brand-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 22px;
-        background: #fff;
-        border: 2px solid #dbe3ec;
-        border-radius: 18px;
-        min-height: 220px;
-        padding: 25px;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.35s ease;
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
-        animation: cardPulse 2.8s infinite;
-      }
-
-      .brand-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: #0085ff;
-        transform: scaleX(0.35);
-        transition: 0.3s;
-      }
-
-      .brand-card:hover {
-        transform: translateY(-8px);
-        border-color: #0085ff;
-        background: #f8fbff;
-        box-shadow: 0 20px 45px rgba(0, 133, 255, 0.18);
-      }
-
-      .brand-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .brand-logo {
-        width: 100%;
-        max-width: 160px;
-        max-height: 80px;
-        object-fit: contain;
-        animation: logoFloat 2.8s infinite;
-      }
-
-      .brand-card:hover .brand-logo {
-        transform: scale(1.08);
-      }
-
-      .brand-btn {
-        border: none;
-        outline: none;
-        background: linear-gradient(135deg, #0085ff, #005eff);
-        color: #fff;
-        font-size: 15px;
-        font-weight: 700;
-        padding: 11px 22px;
-        border-radius: 999px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        cursor: pointer;
-        box-shadow: 0 10px 25px rgba(0, 133, 255, 0.35);
-        transition: 0.3s;
-        animation: btnPulse 2s infinite;
-      }
-
-      .brand-btn span {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        background: #fff;
-        color: #0085ff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 15px;
-        font-weight: bold;
-        animation: arrowMove 1.2s infinite;
-      }
-
-      /* Animations */
-      @keyframes logoFloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-      }
-
-      @keyframes cardPulse {
-        0%, 100% { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06); }
-        50% { box-shadow: 0 15px 35px rgba(0, 133, 255, 0.15); }
-      }
-
-      @keyframes btnPulse {
-        0%, 100% { box-shadow: 0 10px 25px rgba(0, 133, 255, 0.35); }
-        50% { box-shadow: 0 15px 35px rgba(0, 133, 255, 0.55); }
-      }
-
-      @keyframes arrowMove {
-        0%, 100% { transform: translateX(0); }
-        50% { transform: translateX(4px); }
-      }
-
-      /* ─── GREY ASSISTANCE BANNER ───────────────────────────────────────────── */
-      .grey-accent-block {
-        background-color: #f3f4f6;
-        padding: 3rem 1.5rem;
-        text-align: center;
-        border-top: 1px solid #e5e7eb;
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .grey-title {
-        font-size: 1.75rem;
-        font-weight: 800;
-        color: #111827;
-        margin-bottom: 0.5rem;
-      }
-
-      .grey-subtitle {
-        font-size: 1rem;
-        color: #4b5563;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-      }
-
-      .floating-chat-container {
-        display: inline-flex;
-        align-items: center;
-        background-color: #ffffff;
-        border: 1px solid #d1d5db;
-        border-radius: 0.5rem;
-        padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-        gap: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      }
-
-      .chat-label-side {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1.05rem;
-        font-weight: 700;
-        color: #111827;
-      }
-
-      .pill-chat-now-btn {
-        background: linear-gradient(135deg, #0085ff, #0066d6);
-        color: #fff;
-        border: none;
-        border-radius: 999px;
-        padding: 0.75rem 1.75rem;
-        font-size: 0.95rem;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 8px 20px rgba(0, 133, 255, 0.35);
-        animation: chatBounce 2.2s infinite;
-        transition: 0.3s;
-      }
-
-      .pill-chat-now-btn:hover { transform: scale(1.05); }
-
-      @keyframes chatBounce {
-        0%, 100% { transform: translateY(0); }
-        8% { transform: translateY(-8px); }
-        16% { transform: translateY(4px); }
-        24% { transform: translateY(-2px); }
-        32% { transform: translateY(2px); }
-      }
-
-      /* ─── DRIVER FORM PANEL ────────────────────────────────────────────────── */
-      .form-section {
-        padding: 3.5rem 1.5rem;
-        background-color: #ffffff;
-      }
-
-      .form-title-wrap {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-
-      .form-title-main {
-        font-size: 1.65rem;
-        font-weight: 800;
-        color: #111827;
-      }
-
-      .panel-card-container {
-        background-color: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 0.75rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-      }
-
-      .panel-blue-header {
-        background-color: #0085ff;
-        color: #ffffff;
-        padding: 1rem 1.5rem;
-        font-size: 1.15rem;
-        font-weight: 700;
-      }
-
-      .panel-body-grid-form {
-        padding: 2rem 1.5rem;
-      }
-
-      .form-inline-row {
-        display: flex;
-        flex-direction: row;
-        gap: 1.25rem;
-        align-items: flex-end;
-        width: 100%;
-      }
-
-      @media (max-width: 768px) {
-        .form-inline-row {
-          flex-direction: column;
-          align-items: stretch;
+        /* ─── CSS VARIABLES & ROOT THEME ─────────────────────────────────────── */
+        :root {
+            --bg-main: #f1f5f9;
+            --bg-canvas: #ffffff;
+            --card-bg: #ffffff;
+            --accent-blue: #1e40af;
+            --accent-light: #3b82f6;
+            --accent-dark: #1e3a8a;
+            --text-main: #0b1120;
+            --text-body: #1e293b;
+            --text-muted: #475569;
+            --border-color: #d1d9e6;
+            --code-bg: #0b1120;
+            --code-text: #f1f5f9;
+            --banner-bg: #e8edf5;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.07);
+            --radius: 0.75rem;
+            --transition: 0.25s ease;
         }
-      }
 
-      .input-field-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        flex: 1;
-      }
-
-      .field-label {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: #111827;
-      }
-
-      .field-element-input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 1px solid #d1d5db;
-        border-radius: 0.375rem;
-        font-size: 0.95rem;
-        font-weight: 500;
-        outline: none;
-      }
-
-      .action-find-btn {
-        flex: 0.8;
-        background: linear-gradient(135deg, #0085ff, #0066d6);
-        color: #ffffff;
-        border: none;
-        padding: 0.75rem 1rem;
-        font-size: 0.95rem;
-        font-weight: 700;
-        border-radius: 0.375rem;
-        cursor: pointer;
-        height: 46px;
-        box-shadow: 0 4px 12px rgba(0, 133, 255, 0.3);
-      }
-
-      .instructional-subtext-wrap {
-        text-align: center;
-        margin-top: 1.5rem;
-      }
-      .instruction-primary {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #1f2937;
-        margin-bottom: 0.25rem;
-      }
-      .instruction-secondary {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #6b7280;
-      }
-
-      /* ─── UTILITIES GRID ─────────────────────────────────────────────────── */
-      .utilities-section {
-        padding: 3rem 1.5rem;
-        background-color: #f9fafb;
-      }
-
-      .utilities-main-title {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #111827;
-        margin-bottom: 2rem;
-      }
-
-      .utilities-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.5rem;
-        width: 100%;
-      }
-
-      .utility-card {
-        border-radius: 0.75rem;
-        padding: 2.25rem 1.5rem;
-        text-align: center;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      }
-
-      .skin-blue { background-color: #0085ff; }
-      .skin-charcoal-dark { background-color: #1f2937; }
-      .skin-charcoal-light { background-color: #374151; }
-
-      /* ─── SEO TEXT COLUMNS ──────────────────────────────────────────────── */
-      .analysis-text-section {
-        background-color: #ffffff;
-        padding: 4rem 1.5rem;
-        border-top: 1px solid #e5e7eb;
-      }
-
-      .analysis-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 3rem;
-        width: 100%;
-      }
-
-      .analysis-col h2 {
-        font-size: 1.35rem;
-        font-weight: 800;
-        color: #111827;
-        margin-bottom: 1rem;
-      }
-      .analysis-col p {
-        font-size: 0.95rem;
-        color: #4b5563;
-        line-height: 1.7;
-        text-align: left;
-      }
-
-      /* ─── FOOTER ──────────────────────────────────────────────────────────── */
-      footer {
-        background-color: #111827;
-        color: #9ca3af;
-        padding: 2.5rem 1.5rem;
-        border-top: 1px solid #1f2937;
-      }
-
-      .footer-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-      }
-
-      .footer-copyright {
-        color: #ffffff;
-        font-size: 0.95rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
-
-      .footer-disclaimer {
-        font-size: 0.75rem;
-        color: #9ca3af;
-        line-height: 1.6;
-        text-align: justify;
-        font-weight: 500;
-      }
-
-      /* ─── FIXED CLEAN SIDEBAR CONTACT (SHIFTED UP & NO SUPPORT WORD) ───────── */
-      .sticky-left-contact {
-        position: fixed;
-        left: 0;
-        bottom: 140px; /* Elevated position to avoid overlap */
-        background: linear-gradient(135deg, #0085ff, #0056d6);
-        color: #fff;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 12px 20px 12px 14px;
-        border-radius: 0 50px 50px 0;
-        box-shadow: 0 10px 30px rgba(0, 133, 255, 0.4);
-        z-index: 9999;
-        transition: all 0.3s ease;
-      }
-
-      .sticky-left-contact:hover {
-        transform: translateX(5px);
-        box-shadow: 0 15px 35px rgba(0, 133, 255, 0.6);
-      }
-
-      .call-icon {
-        width: 44px;
-        height: 44px;
-        background: #fff;
-        color: #0085ff;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-      }
-
-      .call-content {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .call-text {
-        font-size: 11px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .call-number {
-        font-size: 18px;
-        font-weight: 900;
-        line-height: 1.1;
-      }
-
-      @media (max-width: 640px) {
-        .sticky-left-contact {
-          bottom: 100px;
-          padding: 10px 16px 10px 10px;
+        /* ─── RESET & BASE ───────────────────────────────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .call-text { font-size: 10px; }
-        .call-number { font-size: 15px; }
-      }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ─── BANNER ──────────────────────────────────────────────────────────── */
+        .policy-banner {
+            background-color: var(--banner-bg);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+            letter-spacing: 0.2px;
+        }
+        .policy-banner strong {
+            color: var(--text-main);
+        }
+
+        /* ─── LAYOUT ──────────────────────────────────────────────────────────── */
+        .container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .article-grid {
+                grid-template-columns: 280px 1fr;
+            }
+        }
+
+        /* ─── HEADER ─────────────────────────────────────────────────────────── */
+        header {
+            background-color: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .site-logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .site-logo span {
+            color: var(--accent-blue);
+        }
+        .site-logo:hover {
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            transition: color var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0.75rem;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 1.5rem 24px;
+                border-bottom: 1px solid var(--border-color);
+                backdrop-filter: blur(14px);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        /* ─── ARTICLE HEADER ────────────────────────────────────────────────── */
+        .article-header {
+            background-color: var(--bg-canvas);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2.5rem 0 2rem;
+        }
+
+        .breadcrumbs {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-family: ui-monospace, monospace;
+            background: var(--bg-main);
+            padding: 4px 14px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: rgba(30, 64, 175, 0.08);
+            border: 1px solid rgba(30, 64, 175, 0.18);
+            color: var(--accent-blue);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.9rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+            letter-spacing: -0.6px;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .article-meta .dot {
+            opacity: 0.4;
+        }
+
+        @media (max-width: 640px) {
+            .article-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ─── SIDEBAR / TOC ──────────────────────────────────────────────────── */
+        .toc-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem 1.25rem;
+            position: sticky;
+            top: 6rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toc-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--bg-main);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            font-size: 0.88rem;
+        }
+        .toc-list a {
+            color: var(--text-body);
+            transition: color var(--transition);
+            display: block;
+            padding: 2px 0;
+        }
+        .toc-list a:hover {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .toc-list .sub {
+            padding-left: 1.25rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* ─── MAIN CONTENT ───────────────────────────────────────────────────── */
+        .content-body {
+            background: var(--bg-canvas);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2.5rem 2.5rem 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .content-body h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.3px;
+            border-bottom: 2px solid var(--bg-main);
+            padding-bottom: 0.5rem;
+        }
+        .content-body h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .content-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-top: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .content-body h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 1.25rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .content-body p {
+            margin-bottom: 1rem;
+            color: var(--text-body);
+            font-size: 1rem;
+        }
+
+        .content-body ul,
+        .content-body ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            color: var(--text-body);
+        }
+        .content-body li {
+            margin-bottom: 0.4rem;
+            font-size: 0.98rem;
+        }
+        .content-body li strong {
+            color: var(--text-main);
+        }
+
+        .content-body .code-box {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            margin: 1rem 0 1.25rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .content-body .callout {
+            padding: 1.1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .callout-info {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--accent-blue);
+            color: #1e3a8a;
+        }
+        .callout-warning {
+            background-color: #fffbeb;
+            border-left: 4px solid #d97706;
+            color: #78350f;
+        }
+        .callout-success {
+            background-color: #ecfdf5;
+            border-left: 4px solid #059669;
+            color: #064e3b;
+        }
+        .callout-danger {
+            background-color: #fef2f2;
+            border-left: 4px solid #dc2626;
+            color: #7f1d1d;
+        }
+
+        .content-body .data-table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-canvas);
+        }
+        .content-body table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .content-body th,
+        .content-body td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .content-body th {
+            background-color: var(--bg-main);
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .content-body tr:nth-child(even) {
+            background-color: var(--bg-main);
+        }
+
+        /* ─── BACK TO TOP ────────────────────────────────────────────────────── */
+        .back-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            cursor: pointer;
+            transition: color var(--transition);
+            border: none;
+            background: none;
+        }
+        .back-top:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        /* ─── FOOTER ─────────────────────────────────────────────────────────── */
+        footer {
+            background-color: var(--bg-main);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-brand h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-brand p {
+            max-width: 480px;
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: color var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.78rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-disclaimer strong {
+            color: var(--text-main);
+        }
+        .footer-copy {
+            margin-top: 0.75rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ─── UTILITIES ──────────────────────────────────────────────────────── */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        @media (max-width: 640px) {
+            .content-body {
+                padding: 1.5rem;
+            }
+            .article-header {
+                padding: 1.5rem 0;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .footer-grid {
+                gap: 1.5rem;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <!-- Floating Assistance Button (Positioned Higher, No 'Support' Word) -->
-    <a href="tel:6123149536" class="sticky-left-contact font-sans">
-      <div class="call-icon">
-        <i data-lucide="headset" style="width: 24px; height: 24px;"></i>
-      </div>
+</head>
+<body>
 
-      <div class="call-content">
-        <span class="call-text">FREE EXPERT HELP</span>
-        <span class="call-number">612-314-9536</span>
-      </div>
-    </a>
-
-    <!-- Hero Title -->
-    <div class="section-hero-title">
-      <div class="max-w-5xl">
-        <h1 class="main-title font-sans">Select Your Printer Model</h1>
-        <!-- Added Key Subheading for Quality Score -->
-        <p style="font-size: 1.1rem; color: #4b5563; font-weight: 600; margin-top: 0.5rem;">
-          Troubleshoot Printer Connection Errors &amp; Wi-Fi Disconnection Issues
-        </p>
-      </div>
+    <!-- ═══ POLICY BANNER ═══ -->
+    <div class="policy-banner" role="note">
+        <strong>OPEN EDUCATIONAL ARCHIVE:</strong> PCConnectHub operates purely as an independent, unmonetized technical encyclopedia. Commercial tech support, sales fulfillment, and third-party brand licensing are expressly excluded.
     </div>
 
-    <!-- Brand Cards Grid -->
-    <div class="brand-section">
-      <div class="max-w-5xl">
-        <div class="brand-grid">
-          <div class="brand-card" onclick="navigateToBrand('h')">
-            <img src="/images/h-logo.png" alt="HP Printer Connection Setup" class="brand-logo" />
-            <button class="brand-btn">Setup Now <span>➜</span></button>
-          </div>
-
-          <div class="brand-card" onclick="navigateToBrand('br')">
-            <img src="/images/b-logo.png" alt="Brother Printer Connection Setup" class="brand-logo" />
-            <button class="brand-btn">Setup Now <span>➜</span></button>
-          </div>
-
-          <div class="brand-card" onclick="navigateToBrand('ep')">
-            <img src="/images/E-Logo.png" alt="Epson Printer Connection Setup" class="brand-logo" />
-            <button class="brand-btn">Setup Now <span>➜</span></button>
-          </div>
-
-          <div class="brand-card" onclick="navigateToBrand('ca')">
-            <img src="/images/C-Logo.png" alt="Canon Printer Connection Setup" class="brand-logo" />
-            <button class="brand-btn">Setup Now <span>➜</span></button>
-          </div>
+    <!-- ═══ HEADER ═══ -->
+    <header role="banner">
+        <div class="container nav-wrapper">
+            <a href="/" class="site-logo" aria-label="PCConnectHub home">
+                <span>⌨</span> PCConnectHub
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+                <span aria-hidden="true">☰</span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="navigation">
+                <li><a href="/">Reference Core</a></li>
+                <li><a href="#unboxing">Unboxing</a></li>
+                <li><a href="#connectivity">Connectivity</a></li>
+                <li><a href="#drivers">Drivers</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#maintenance">Maintenance</a></li>
+            </ul>
         </div>
-      </div>
+    </header>
+
+    <!-- ═══ ARTICLE HEADER ═══ -->
+    <div class="article-header">
+        <div class="container">
+            <nav class="breadcrumbs" aria-label="Breadcrumb">Archive Root / Manuals / Complete Peripheral Setup Guide</nav>
+            <span class="category-badge">Comprehensive Technical Manual</span>
+            <h1 class="article-title">The Complete Guide to Peripheral Setup, Network Protocols &amp; Driver Architecture</h1>
+            <div class="article-meta">
+                <span>📅 Published: July 2026</span>
+                <span class="dot">•</span>
+                <span>⏱ Reading Time: 18 min</span>
+                <span class="dot">•</span>
+                <span>🖥 Updated for Windows 11 &amp; macOS Sonoma</span>
+                <span class="dot">•</span>
+                <span>📄 v2.3</span>
+            </div>
+        </div>
     </div>
 
-    <!-- Grey Accent Chat Section -->
-    <div class="grey-accent-block">
-      <div class="max-w-5xl">
-        <h2 class="grey-title font-sans">
-          Need Help For Printer &amp; Scanner
-        </h2>
+    <!-- ═══ MAIN LAYOUT ═══ -->
+    <div class="container">
+        <div class="article-grid">
 
-        <p class="grey-subtitle font-sans">
-          Online Configuration &amp; Live Chat Setup Assistance.
-        </p>
+            <!-- SIDEBAR: TABLE OF CONTENTS -->
+            <aside aria-label="Table of contents">
+                <div class="toc-card">
+                    <div class="toc-title">📖 Contents</div>
+                    <ul class="toc-list">
+                        <li><a href="#unboxing">1. Hardware Inspection &amp; Unboxing</a></li>
+                        <li><a href="#connectivity">2. Network Protocols &amp; Wi-Fi</a>
+                            <ul class="toc-list sub">
+                                <li><a href="#router-access">2.1 Access Router Admin Panel</a></li>
+                                <li><a href="#wifi-bands">2.2 2.4GHz vs 5GHz</a></li>
+                                <li><a href="#ethernet">2.3 Ethernet &amp; Static IP</a></li>
+                                <li><a href="#usb">2.4 USB &amp; Wi‑Fi Direct</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#drivers">3. Driver Architecture</a>
+                            <ul class="toc-list sub">
+                                <li><a href="#pcl-ps">3.1 PCL vs PostScript</a></li>
+                                <li><a href="#class-drivers">3.2 Class Drivers</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#os-setup">4. OS Installation</a>
+                            <ul class="toc-list sub">
+                                <li><a href="#win-setup">4.1 Windows 11</a></li>
+                                <li><a href="#mac-setup">4.2 macOS / AirPrint</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#troubleshooting">5. Troubleshooting</a>
+                            <ul class="toc-list sub">
+                                <li><a href="#offline">5.1 Printer Offline</a></li>
+                                <li><a href="#terminal-diagnostics">5.2 Terminal Diagnostics</a></li>
+                                <li><a href="#paper-jam">5.3 Paper Jams</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#maintenance">6. Maintenance &amp; Care</a></li>
+                        <li><a href="#security">7. Security Best Practices</a></li>
+                        <li><a href="#faq">8. FAQ</a></li>
+                    </ul>
+                </div>
+            </aside>
 
-        <div class="floating-chat-container">
-          <div class="chat-label-side font-sans">
-            <i data-lucide="message-square" style="width: 20px; height: 20px"></i>
-            Live Chat
-          </div>
+            <!-- ═══ MAIN CONTENT ═══ -->
+            <main class="content-body" role="main">
 
-          <button
-            type="button"
-            class="pill-chat-now-btn font-sans"
-            onclick="triggerLiveChatFallback()"
-          >
-            <i data-lucide="message-circle-more" style="width: 18px; height: 18px"></i>
-            Chat Now
-          </button>
+                <!-- ─── 1. UNBOXING ─── -->
+                <section id="unboxing">
+                    <h2>1. Initial Hardware Inspection &amp; Physical Preparation</h2>
+                    <p>
+                        Setting up a modern printing device—whether an inkjet photo printer or a high-volume office laser jet—requires strict adherence to hardware preparation steps. Mistakes made during initial unboxing frequently result in mechanical jams, degraded print quality, or early component failures.
+                    </p>
+
+                    <h3>Critical Physical Checklist</h3>
+                    <ul>
+                        <li><strong>Protective Tape Removal:</strong> Manufacturers use high‑visibility transit tape to secure printhead sleds and paper tray rollers. Missing a single piece inside the internal carriage path will trigger fatal door/carriage errors.</li>
+                        <li><strong>Cartridge Vent Seals:</strong> Inkjet cartridges feature a yellow or red protective pull‑tab that uncovers the atmospheric pressure relief vent. Failure to remove this tab creates a vacuum inside the chamber, preventing ink from flowing to the nozzle plate.</li>
+                        <li><strong>Toner Lock Release:</strong> Laser printer toner cartridges often utilize internal plastic sealing tapes. Pull these ribbons completely out horizontally before inserting the drum unit into the machine chassis.</li>
+                        <li><strong>Paper Tray Guides:</strong> Adjust the sliding paper guides firmly against the stack to prevent skewed feeds. Over‑tightening can cause paper curl and misfeeds.</li>
+                    </ul>
+
+                    <div class="callout callout-info">
+                        <strong>⏳ Technical Pro Tip:</strong> Always allow laser printers to sit at room temperature for at least 2 hours after unboxing if received in cold weather. Condensation on the optical mirror array can cause severe faded output or fuser unit damage.
+                    </div>
+                </section>
+
+                <!-- ─── 2. CONNECTIVITY ─── -->
+                <section id="connectivity">
+                    <h2>2. Connectivity Architecture: Wi‑Fi, Ethernet, USB &amp; Wi‑Fi Direct</h2>
+                    <p>
+                        Selecting the appropriate interface depends on physical proximity, security requirements, and the number of client workstations requesting print jobs across the local area network (LAN). Each method has distinct advantages and limitations.
+                    </p>
+
+                    <div class="data-table-wrapper">
+                        <table>
+                            <caption class="sr-only">Comparison of printer connectivity options</caption>
+                            <thead>
+                                <tr>
+                                    <th>Connection Type</th>
+                                    <th>Optimal Scenario</th>
+                                    <th>Latency</th>
+                                    <th>Key Advantage</th>
+                                    <th>Limitation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>USB 2.0 / 3.0</strong></td>
+                                    <td>Single workstation setup</td>
+                                    <td>&lt;1 ms</td>
+                                    <td>Immune to network drops or password changes</td>
+                                    <td>Limited to one host at a time</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ethernet (RJ‑45)</strong></td>
+                                    <td>Office environment / shared hub</td>
+                                    <td>&lt;5 ms</td>
+                                    <td>Maximum bandwidth &amp; dedicated IP stability</td>
+                                    <td>Requires physical cabling</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wi‑Fi (802.11n/ac)</strong></td>
+                                    <td>Multi‑device wireless homes</td>
+                                    <td>10–50 ms</td>
+                                    <td>No physical cable routing needed</td>
+                                    <td>Subject to interference and band steering</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wi‑Fi Direct</strong></td>
+                                    <td>Guest printing without router access</td>
+                                    <td>15–60 ms</td>
+                                    <td>Direct P2P wireless connection to printer</td>
+                                    <td>Not suitable for multi‑client queues</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ─── 2.1 ROUTER ACCESS ─── -->
+                    <h3 id="router-access">2.1 Accessing Your Router's Admin Panel (Browser &amp; Terminal)</h3>
+                    <p>
+                        To configure network settings, assign static IPs, or diagnose Wi‑Fi issues, you must access your router's web interface. Here is the step‑by‑step process:
+                    </p>
+                    <ol>
+                        <li><strong>Find your default gateway:</strong> This is your router's local IP address. Open a terminal (Command Prompt on Windows, Terminal on macOS/Linux) and enter:
+                            <div class="code-box">
+                                # Windows
+                                ipconfig | findstr /i "Default Gateway"
+
+                                # macOS / Linux
+                                route -n get default | grep gateway    # macOS
+                                ip route | grep default                # Linux
+                            </div>
+                            The output will show an IP like <code>192.168.1.1</code> or <code>10.0.0.1</code>.
+                        </li>
+                        <li><strong>Open your browser:</strong> Type this IP address into your browser's address bar and press Enter.</li>
+                        <li><strong>Login:</strong> Enter the router's admin credentials. Common defaults are <code>admin</code>/<code>admin</code> or <code>admin</code>/<code>password</code>. If these fail, check the sticker on your router. <span class="callout callout-danger" style="display:inline-block;padding:0.2rem 0.8rem;font-size:0.8rem;margin:0.2rem 0;">⚠️ Change these defaults immediately for security.</span>
+                        </li>
+                        <li><strong>Locate DHCP Client List:</strong> Navigate to <em>DHCP</em> or <em>Attached Devices</em>. This list shows every device on your network with its IP address, MAC address, and hostname. Identify your printer by its name or MAC address (found on the printer's network configuration page).</li>
+                    </ol>
+
+                    <h3 id="wifi-bands">2.2 Navigating Dual‑Band Wi‑Fi (2.4 GHz vs 5 GHz)</h3>
+                    <p>
+                        A major cause of initial network setup failure is router band steering. Many entry‑level wireless printers contain network interface cards (NICs) limited strictly to the <strong>2.4 GHz frequency</strong>. If your smartphone or computer is connected to the 5 GHz SSID of a dual‑band router, automatic discovery algorithms (such as mDNS or WS‑Discovery) may fail to locate the printer across different subnets.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> In your router's wireless settings, temporarily separate your SSIDs into distinct bands (e.g., <code>Network_2G</code> and <code>Network_5G</code>) during initial configuration. Alternatively, use WPS (Wi‑Fi Protected Setup) PIN method directly via the printer dashboard—this usually forces a 2.4 GHz connection.
+                    </p>
+                    <p>
+                        <strong>Wi‑Fi Signal Strength Check:</strong> Most router admin panels display the RSSI (Received Signal Strength Indicator) for each connected wireless device. A value above -70 dBm is acceptable; below -80 dBm often results in intermittent disconnections. Move the printer closer to the access point if the signal is weak.
+                    </p>
+
+                    <h3 id="ethernet">2.3 Ethernet &amp; Static IP Addresses (DHCP Reservation)</h3>
+                    <p>
+                        For business environments or shared offices, Ethernet offers the most reliable printing experience. To prevent IP address changes after a power outage, set a <strong>DHCP reservation</strong> (static IP) for your printer via the router's web interface.
+                    </p>
+                    <ol>
+                        <li>Find your printer's MAC address (printed on the device or in its network settings menu).</li>
+                        <li>In the router admin panel, go to <em>DHCP Reservation</em>, <em>Address Reservation</em>, or <em>Static DHCP</em>.</li>
+                        <li>Enter the MAC address and choose a fixed IP address outside the DHCP pool (e.g., if your pool is 192.168.1.100–200, use 192.168.1.50).</li>
+                        <li>Save and reboot both the router and the printer. The printer will now always receive the same IP.</li>
+                    </ol>
+                    <div class="callout callout-success">
+                        <strong>✅ Verification:</strong> After setup, use the terminal command <code>ping 192.168.1.50</code> (replace with your IP) to confirm the printer is reachable.
+                    </div>
+
+                    <h3 id="usb">2.4 USB &amp; Wi‑Fi Direct</h3>
+                    <p>
+                        USB remains the simplest and most reliable method for single‑user setups. On Windows, the operating system will automatically detect the printer and install a generic class driver. For advanced features (duplexing, stapling, color calibration), you may need to install the manufacturer's full driver package.
+                    </p>
+                    <p>
+                        Wi‑Fi Direct enables peer‑to‑peer printing without a wireless router. This is useful for temporary setups or when you're at a location without network access. However, Wi‑Fi Direct typically supports only one active client at a time and may require a PIN or push‑button pairing.
+                    </p>
+                </section>
+
+                <!-- ─── 3. DRIVERS ─── -->
+                <section id="drivers">
+                    <h2>3. Driver Architecture: Class Drivers vs. Manufacturer Software</h2>
+                    <p>
+                        Understanding the underlying driver technology ensures optimal rendering speed and access to advanced finishing options like duplexing, stapling, and color profile matching.
+                    </p>
+
+                    <h3 id="pcl-ps">3.1 PCL vs. PostScript Protocols</h3>
+                    <ul>
+                        <li>
+                            <strong>PCL (Printer Command Language):</strong> Developed by HP, PCL is the standard driver language for general office document processing. It relies on the client computer's CPU to process vector graphics before sending raw rasterized data to the device, making it fast and resource‑efficient. PCL 6 (also known as PCL XL) supports advanced features like compression and bidirectional communication.
+                        </li>
+                        <li>
+                            <strong>PostScript (PS):</strong> Developed by Adobe, PostScript is a device‑independent page description language favored by graphic designers and print shops. The printer's internal raster image processor (RIP) interprets the code, ensuring strict color accuracy across different operating systems. PostScript is essential for PDF‑native printing and color‑managed workflows.
+                        </li>
+                    </ul>
+
+                    <h3 id="class-drivers">3.2 Class Drivers vs. Manufacturer‑Specific Drivers</h3>
+                    <p>
+                        Operating systems include <strong>generic class drivers</strong> (e.g., Microsoft's IPP Class Driver, Apple's AirPrint) that support basic printing functionality without requiring vendor software. These are ideal for quick setup and standard documents. However, advanced features—such as booklet printing, watermarking, or custom paper sizes—often require the <strong>manufacturer's full driver package</strong>, which includes proprietary UI extensions and hardware‑specific optimizations.
+                    </p>
+
+                    <div class="callout callout-warning">
+                        <strong>⚠️ Important:</strong> Always download drivers directly from the manufacturer's official support portal. Third‑party "driver updater" websites frequently bundle adware or outdated packages that can introduce security vulnerabilities.
+                    </div>
+                </section>
+
+                <!-- ─── 4. OS SETUP ─── -->
+                <section id="os-setup">
+                    <h2>4. Operating System Installation Workflows</h2>
+
+                    <h3 id="win-setup">Windows 11 / 10 Configuration</h3>
+                    <ol>
+                        <li>Open <strong>Settings</strong> &gt; <strong>Bluetooth &amp; devices</strong> &gt; <strong>Printers &amp; scanners</strong>.</li>
+                        <li>Click <em>Add device</em>. If Windows fails to locate the networked unit automatically, click <strong>Add manually</strong>.</li>
+                        <li>Select <em>Add a printer using an IP address or hostname</em>.</li>
+                        <li>Enter the static IP assigned to the printer (e.g., <code>192.168.1.150</code>). Select <strong>Standard TCP/IP Port</strong>.</li>
+                        <li>Choose the explicit INF driver file provided by the manufacturer or allow Windows Update to retrieve the WHQL‑certified driver package.</li>
+                    </ol>
+                    <p>
+                        If the printer is connected via USB, Windows will typically auto‑detect it and install a class driver. For full functionality, run the manufacturer's installer executable after the device is detected.
+                    </p>
+
+                    <h3 id="mac-setup">macOS (AirPrint &amp; CUPS Engine)</h3>
+                    <p>
+                        macOS relies heavily on Apple AirPrint and the open‑source <strong>CUPS (Common Unix Printing System)</strong> framework. When adding a device under <em>System Settings &gt; Printers &amp; Scanners</em>, ensure the protocol selected matches the device's capability:
+                    </p>
+                    <ul>
+                        <li><strong>AirPrint:</strong> Driverless zero‑configuration standard for local networks. Ideal for standard documents and basic finishing.</li>
+                        <li><strong>IPPS / LPD:</strong> Recommended when configuring enterprise printers requiring secure accounting codes or custom page sizing. IPPS (Internet Printing Protocol over HTTPS) adds encryption and authentication.</li>
+                    </ul>
+                </section>
+
+                <!-- ─── 5. TROUBLESHOOTING ─── -->
+                <section id="troubleshooting">
+                    <h2>5. Troubleshooting Common Peripheral Errors</h2>
+
+                    <h3 id="offline">5.1 Resolving Persistent "Printer Offline" Errors</h3>
+                    <p>
+                        When an operating system reports a printer as "Offline" despite the physical device being powered on, the culprit is almost always a broken IP binding or a stalled spooler service.
+                    </p>
+
+                    <div class="callout callout-danger">
+                        <strong>⛔ Warning:</strong> Avoid repeatedly sending print jobs while a printer is in an offline state. Windows queues these jobs in the <code>system32\spool\PRINTERS</code> folder, which can cause severe memory leaks and delayed output bursts when connection is restored.
+                    </div>
+
+                    <h4>Step‑by‑Step Print Spooler Reset (Windows)</h4>
+                    <p>If print jobs remain stuck in queue, execute the following commands in an elevated Command Prompt:</p>
+                    <div class="code-box">net stop spooler
+                        del /Q /F /S "%systemroot%\System32\Spool\Printers\*.*"
+                        net start spooler
+                    </div>
+
+                    <h4>Assigning a Static IP Address (Revisited)</h4>
+                    <p>
+                        Dynamic Host Configuration Protocol (DHCP) automatically rotates IP addresses. Refer to <a href="#ethernet">Section 2.3</a> for instructions on setting a DHCP reservation via your router's admin panel.
+                    </p>
+
+                    <!-- ─── 5.2 TERMINAL DIAGNOSTICS ─── -->
+                    <h3 id="terminal-diagnostics">5.2 Advanced Network Diagnostics with Terminal / Command Prompt</h3>
+                    <p>
+                        Terminal commands are powerful tools for diagnosing connectivity issues at the packet level. Here is a practical toolkit:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong><code>ping</code> – Test basic connectivity:</strong><br/>
+                            <div class="code-box">ping 192.168.1.150   # Replace with your printer's IP
+                                ping -t 192.168.1.150   # Continuous ping (Windows) – use Ctrl+C to stop
+                            </div>
+                            A successful reply confirms the network path is intact. High latency (&gt;100ms) or packet loss indicates interference or congestion.
+                        </li>
+                        <li>
+                            <strong><code>arp -a</code> – Check IP‑to‑MAC mapping:</strong><br/>
+                            <div class="code-box"># Windows
+                                arp -a | findstr 192.168.1.150
+                                # macOS / Linux
+                                arp -a | grep 192.168.1.150
+                            </div>
+                            This verifies that your computer has the correct MAC address cached for the printer's IP. If the MAC is incorrect or missing, there may be a network switch or ARP poisoning issue.
+                        </li>
+                        <li>
+                            <strong><code>tracert</code> (Windows) / <code>traceroute</code> (macOS/Linux) – Trace the network path:</strong><br/>
+                            <div class="code-box">tracert 192.168.1.150   # Windows
+                                traceroute 192.168.1.150   # macOS/Linux
+                            </div>
+                            This shows each hop between your computer and the printer. If it stops at the router, the printer might be on a different VLAN or subnet.
+                        </li>
+                        <li>
+                            <strong><code>ipconfig /flushdns</code> – Flush DNS cache (Windows):</strong>
+                            If you are using a hostname to connect (e.g., <code>printer.local</code>), this clears stale DNS records that may be pointing to an old IP.
+                            <div class="code-box">ipconfig /flushdns</div>
+                        </li>
+                        <li>
+                            <strong><code>netstat -r</code> – View the routing table:</strong>
+                            This displays the network routes your computer uses. Ensure the default gateway matches your router's IP.
+                        </li>
+                    </ul>
+                    <div class="callout callout-info">
+                        <strong>📡 Pro Tip:</strong> If your printer supports SNMP, use the command <code>snmpwalk -v2c -c public 192.168.1.150 1.3.6.1.2.1.25.3</code> (Linux/macOS) to query printer status, paper levels, and toner percentages directly from the terminal.
+                    </div>
+
+                    <h3 id="paper-jam">5.3 Paper Jam Prevention &amp; Clearing</h3>
+                    <p>
+                        Paper jams are among the most common printer failures. They are often caused by:
+                    </p>
+                    <ul>
+                        <li>Overfilled paper trays (exceeding the maximum capacity mark).</li>
+                        <li>Moist or wrinkled paper that creates friction against the feed rollers.</li>
+                        <li>Foreign objects (sticky notes, paper clips) left inside the paper path.</li>
+                        <li>Worn feed rollers that have lost their grip.</li>
+                    </ul>
+                    <p>
+                        <strong>Clearing a Jam:</strong> Always turn off the printer and unplug it before attempting to remove jammed paper. Gently pull the paper in the direction of the paper path—never force it backward, as this can damage the fuser or transfer roller.
+                    </p>
+                </section>
+
+                <!-- ─── 6. MAINTENANCE ─── -->
+                <section id="maintenance">
+                    <h2>6. Long‑Term Maintenance &amp; Preventive Care</h2>
+                    <p>
+                        To avoid costly hardware replacements and maintain crisp output quality over time, implement these routine maintenance habits:
+                    </p>
+                    <ul>
+                        <li><strong>Prevent Nozzle Clogging:</strong> For inkjet models, run a test print or printhead nozzle check once every two weeks to prevent liquid ink from drying in the micro‑nozzles.</li>
+                        <li><strong>Clean Feed Rollers:</strong> Paper dust accumulates on rubber pickup rollers over time. Clean them gently using a lint‑free cloth lightly dampened with distilled water.</li>
+                        <li><strong>Firmware Updates:</strong> Periodically check the manufacturer's official support site for firmware revisions. Updates fix critical security vulnerabilities and improve Wi‑Fi stability.</li>
+                    </ul>
+                </section>
+
+                <!-- ─── 7. SECURITY ─── -->
+                <section id="security">
+                    <h2>7. Security Best Practices for Networked Peripherals</h2>
+                    <ul>
+                        <li><strong>Change Default Credentials:</strong> Many printers ship with a default admin password (e.g., <code>admin</code> / <code>admin</code>). Change this immediately.</li>
+                        <li><strong>Disable Unused Protocols:</strong> If you don't use FTP, Telnet, or SNMPv1/v2, disable them in the printer's web interface.</li>
+                        <li><strong>Enable IP‑Based Access Control:</strong> Restrict administrative access to specific IP subnets.</li>
+                        <li><strong>Use Secure Print (PIN Release):</strong> For sensitive documents, enable secure print, which requires a user‑entered PIN at the device.</li>
+                    </ul>
+                </section>
+
+                <!-- ─── 8. FAQ ─── -->
+                <section id="faq">
+                    <h2>8. Frequently Asked Questions</h2>
+
+                    <h3>Q: Why does my printer print blank pages even after installing new cartridges?</h3>
+                    <p>
+                        This is often caused by a clogged printhead (inkjet) or a failed transfer roller (laser). Run the printhead cleaning cycle from the maintenance menu.
+                    </p>
+
+                    <h3>Q: How do I find my printer's MAC address for DHCP reservation?</h3>
+                    <p>
+                        Most printers display the MAC address on the network configuration page, which can be printed directly from the device's menu. Alternatively, check the label on the bottom or back of the printer.
+                    </p>
+
+                    <h3>Q: Can I share a USB printer across multiple computers?</h3>
+                    <p>
+                        Yes, by connecting the USB printer to a host computer and enabling printer sharing in Windows or macOS. However, the host computer must remain powered on. For a more robust solution, use a network‑enabled print server.
+                    </p>
+                </section>
+
+                <!-- BACK TO TOP -->
+                <button class="back-top" id="backTop" aria-label="Back to top">↑ Back to Top</button>
+
+            </main>
         </div>
-      </div>
     </div>
 
-    <!-- Form Capture Panel -->
-    <section class="form-section" id="driver-capture-panel">
-      <div class="max-w-6xl">
-        <div class="form-title-wrap">
-          <h2 class="form-title-main font-sans">
-            Printer Setup &amp; Connection Assistance
-          </h2>
-        </div>
-
-        <div class="panel-card-container">
-          <div class="panel-blue-header font-sans">
-            Request Printer Setup &amp; Connection Help
-          </div>
-          <div class="panel-body-grid-form">
-            <form onsubmit="handlePortalFormSubmit(event)">
-              <div class="form-inline-row">
-                <div class="input-field-group">
-                  <label class="field-label font-sans" for="mainModelInput">Enter Model Number</label>
-                  <input
-                    type="text"
-                    id="mainModelInput"
-                    placeholder="e.g. OfficeJet 9125e"
-                    class="field-element-input"
-                    required
-                  />
+    <!-- ═══ FOOTER ═══ -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h4>PCConnectHub Archives</h4>
+                    <p>
+                        An independent open‑source educational repository dedicated to system administration, peripheral diagnostics, network protocol analysis, and driver configuration manuals.
+                    </p>
                 </div>
-
-                <div class="input-field-group">
-                  <label class="field-label font-sans" for="mainNameInput">Your Full Name</label>
-                  <input
-                    type="text"
-                    id="mainNameInput"
-                    placeholder="Full Name"
-                    class="field-element-input"
-                    required
-                  />
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="/">Reference Core</a></li>
+                        <li><a href="#unboxing">Hardware Guide</a></li>
+                        <li><a href="#connectivity">Networking Protocols</a></li>
+                        <li><a href="#drivers">Driver Management</a></li>
+                    </ul>
                 </div>
-
-                <div class="input-field-group">
-                  <label class="field-label font-sans" for="mainPhoneInput">Your Mobile Number</label>
-                  <input
-                    type="tel"
-                    id="mainPhoneInput"
-                    placeholder="+1 000 000 0000"
-                    class="field-element-input"
-                    required
-                  />
+                <div class="footer-links">
+                    <h4>Topics</h4>
+                    <ul>
+                        <li><a href="#troubleshooting">Offline Fixes</a></li>
+                        <li><a href="#os-setup">Windows 11 Setup</a></li>
+                        <li><a href="#os-setup">macOS / AirPrint</a></li>
+                        <li><a href="#security">Security Best Practices</a></li>
+                    </ul>
                 </div>
+            </div>
 
-                <button type="submit" class="action-find-btn font-sans">
-                  Get Assistance
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="footer-disclaimer">
+                <p>
+                    <strong>Educational Disclaimer:</strong> PCConnectHub is an independent, non‑affiliated educational publishing repository. All product names, trademarks, brand logos, and registered trade names mentioned throughout this technical manual are the property of their respective trademark holders. They are used here strictly for descriptive, identification, and educational reference purposes only. This web node does not offer commercial tech support services, phone assistance, or direct software downloads.
+                </p>
+                <p style="margin-top: 0.75rem;">
+                    <strong>No Endorsement:</strong> References to specific hardware, software, or protocols do not constitute an endorsement or recommendation by PCConnectHub. Users are advised to consult the manufacturer's official documentation for their specific device models.
+                </p>
+                <div class="footer-copy">&copy; 2026 PCConnectHub Open Source Knowledge Base. All rights reserved.</div>
+            </div>
         </div>
-
-        <div class="instructional-subtext-wrap">
-          <p class="instruction-primary font-sans">
-            How to find printer model number?
-          </p>
-          <p class="instruction-secondary font-sans">
-            The product name is prominently on the front or top layout of your device.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Utilities Options Grid -->
-    <section class="utilities-section">
-      <div class="max-w-6xl">
-        <h3 class="utilities-main-title font-sans">
-          More configuration options for this topic
-        </h3>
-
-        <div class="utilities-grid">
-          <div class="utility-card skin-blue">
-            <i data-lucide="disc" style="width: 32px; height: 32px;"></i>
-            <p class="font-sans" style="font-weight: 700;">Setup &amp; Connection Help</p>
-          </div>
-
-          <div class="utility-card skin-charcoal-dark">
-            <i data-lucide="wrench" style="width: 32px; height: 32px;"></i>
-            <p class="font-sans" style="font-weight: 700;">Solution Documentation</p>
-          </div>
-
-          <div class="utility-card skin-charcoal-light">
-            <i data-lucide="search" style="width: 32px; height: 32px;"></i>
-            <p class="font-sans" style="font-weight: 700;">System Utilities</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEO Content Grid (Enriched with PC & Wi-Fi Connection Keywords) -->
-    <section class="analysis-text-section">
-      <div class="max-w-6xl">
-        <div class="analysis-grid">
-          <div class="analysis-col">
-            <h2 class="font-sans">
-              Printer Setup Assistance &amp; Connection Help
-            </h2>
-            <p class="font-sans">
-              Our setup portal provides direct <strong>printer setup assistance</strong> and complete <strong>wireless setup assistance</strong> for all major hardware models. If your <strong>computer cannot connect to printer</strong> or displays a sudden <strong>printer connection error</strong> during initial installation, resetting network preferences and applying updated drivers ensures seamless operational sync across Windows and Mac operating systems.
-            </p>
-          </div>
-
-          <div class="analysis-col">
-            <h2 class="font-sans">
-              Fix Wi-Fi Disconnection &amp; PC Connection Errors
-            </h2>
-            <p class="font-sans">
-              When an active device encounters a situation where your <strong>printer won't connect to wifi</strong> or your <strong>printer disconnected from wifi</strong> network, verifying router settings and IP assignment is essential. Whether your device shows a <strong>cannot connect to printer</strong> prompt, wireless <strong>wifi printer setup</strong> failure, or system communication timeout, following verified diagnostic steps restores stable connectivity quickly.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="max-w-7xl footer-wrapper font-sans">
-        <div class="footer-left">
-          <p class="footer-copyright">
-            Printer Setup Hub | All Rights Reserved
-          </p>
-          <p class="footer-disclaimer">
-            Disclaimer: This website is an independent informational portal and
-            structural setup guide. All product names, logos, designs, and brand
-            trademarks displayed on this site are the property of their
-            respective owners. Their use here is strictly for illustrative
-            reference and navigational mapping purposes only, and does not imply
-            any affiliation, sponsorship, endorsement, or direct association
-            with any hardware manufacturer.
-          </p>
-        </div>
-      </div>
     </footer>
 
+    <!-- ═══ JAVASCRIPT ═══ -->
     <script>
-      function navigateToBrand(code) {
-        window.location.href = `/guide/printer.html?brand=${code}`;
-      }
+        (function() {
+            'use strict';
 
-      function triggerLiveChatFallback() {
-        if (window.jivo_api) {
-          window.jivo_api.open();
-        } else {
-          setTimeout(triggerLiveChatFallback, 500);
-        }
-      }
+            // ── Mobile nav toggle ──
+            const toggleBtn = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
 
-      // Telegram Form Submit
-      async function handlePortalFormSubmit(event) {
-        event.preventDefault();
+            if (toggleBtn && navLinks) {
+                toggleBtn.addEventListener('click', function() {
+                    const isOpen = navLinks.classList.toggle('open');
+                    toggleBtn.setAttribute('aria-expanded', isOpen);
+                });
 
-        const targetModel = document
-          .getElementById("mainModelInput")
-          .value.trim();
-        const targetName = document
-          .getElementById("mainNameInput")
-          .value.trim();
-        const targetPhone = document
-          .getElementById("mainPhoneInput")
-          .value.trim();
+                navLinks.querySelectorAll('a').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            navLinks.classList.remove('open');
+                            toggleBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+            }
 
-        const htmlMessagePayload = `
-🖨️ <b>New Printer Assistance Request</b>
+            // ── Back to Top smooth scroll ──
+            const backBtn = document.getElementById('backTop');
+            if (backBtn) {
+                backBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
 
-🔢 <b>Model Number:</b> ${targetModel}
-👤 <b>Full Name:</b> ${targetName}
-📞 <b>Mobile Number:</b> ${targetPhone}
-`.trim();
+            // ── Smooth anchor scroll ──
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.length > 1) {
+                        const targetEl = document.querySelector(targetId);
+                        if (targetEl) {
+                            e.preventDefault();
+                            const headerOffset = 80;
+                            const elementPosition = targetEl.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
 
-        try {
-          const response = await fetch("/api/telegram", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              text: htmlMessagePayload,
-            }),
-          });
+            // ── Active TOC highlight ──
+            const tocLinks = document.querySelectorAll('.toc-list a');
+            const sections = Array.from(tocLinks).map(function(link) {
+                const id = link.getAttribute('href');
+                if (id && id.startsWith('#')) {
+                    return document.querySelector(id);
+                }
+                return null;
+            }).filter(Boolean);
 
-          if (response.ok) {
-            alert("Request submitted successfully.");
-          } else {
-            alert("Failed to submit request.");
-          }
-        } catch (err) {
-          console.error(err);
-          alert("Network Error");
-        }
-      }
+            function updateActiveToc() {
+                if (!tocLinks.length || !sections.length) return;
+                const scrollPos = window.scrollY + 120;
+                let currentIndex = 0;
+                for (let i = 0; i < sections.length; i++) {
+                    const el = sections[i];
+                    if (el && el.offsetTop <= scrollPos) {
+                        currentIndex = i;
+                    }
+                }
+                tocLinks.forEach(function(link, idx) {
+                    link.style.color = (idx === currentIndex) ? 'var(--accent-blue)' : '';
+                    link.style.fontWeight = (idx === currentIndex) ? '600' : '';
+                });
+            }
 
-      // Render vector icons
-      document.addEventListener("DOMContentLoaded", function () {
-        if (typeof lucide !== "undefined") {
-          lucide.createIcons();
-        }
-      });
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) return;
+                scrollTimeout = requestAnimationFrame(function() {
+                    updateActiveToc();
+                    scrollTimeout = null;
+                });
+            });
+
+            window.addEventListener('load', function() {
+                updateActiveToc();
+            });
+
+        })();
     </script>
 
-    <!-- JivoChat Widget -->
-    <script src="//code.jivosite.com/widget/MH3DDPar3N" async></script>
-  </body>
+</body>
 </html>
