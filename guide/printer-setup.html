@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printer Setup &amp; Assistance</title>
+    <style>
+        /* Base Reset & Fonts */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Full Image Banner Styling */
+        .full-img-banner {
+            width: 100%;
+            display: block;
+        }
+
+        .full-img-banner a {
+            display: block;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .full-img-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #007db8;
+            color: #ffffff;
+            border: none;
+            padding: 10px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #005f8c;
+        }
+
+        /* Section 2: Printer Setup */
+        .setup-section {
+            padding: 50px 0 30px 0;
+        }
+
+        .setup-grid {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .setup-img {
+            flex: 1;
+        }
+
+        .setup-img img {
+            width: 100%;
+            border-radius: 6px;
+        }
+
+        .setup-text {
+            flex: 1;
+        }
+
+        .setup-text h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .setup-text p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .more-help {
+            margin-top: 25px;
+        }
+
+        .more-help h4 {
+            font-size: 15px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .more-help a {
+            color: #007db8;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        /* Quick Links Bar */
+        .quick-links {
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 25px 0;
+            margin-top: 40px;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .quick-link-item {
+            border-right: 1px solid #e0e0e0;
+            padding: 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quick-link-item:last-child {
+            border-right: none;
+        }
+
+        .quick-link-item img {
+            width: 60px;
+            margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        .quick-link-item a {
+            color: #007db8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .quick-link-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section 3: Solutions Header */
+        .solutions-header {
+            text-align: center;
+            padding: 40px 0 20px 0;
+        }
+
+        .solutions-header h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .solutions-header p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Section 4: 3-Column Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-card img {
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            min-height: 48px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        /* Section 5: Printer Identification */
+        .identify-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+            margin-top: 30px;
+        }
+
+        .identify-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .identify-left {
+            flex: 1;
+        }
+
+        .identify-icon-title {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .identify-icon-title img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .identify-icon-title h2 {
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .search-box {
+            margin-top: 20px;
+        }
+
+        .search-box label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .search-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .search-input-group input {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input-group input:focus {
+            border-color: #007db8;
+        }
+
+        .search-input-group button {
+            align-self: flex-start;
+        }
+
+        .identify-right {
+            flex: 1;
+            text-align: center;
+        }
+
+        .identify-right img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Section 6: Footer Image Banner */
+        .footer-banner {
+            margin-top: 40px;
+            width: 80%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+        }
+
+        /* Floating Help Chat Widget */
+        .help-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #007db8;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.2s ease;
+        }
+
+        .help-widget:hover {
+            transform: translateY(-3px);
+        }
+
+        .help-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+
+        .help-text span {
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        .help-text small {
+            font-size: 11px;
+            opacity: 0.85;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .setup-grid, .identify-grid {
+                flex-direction: column;
+            }
+
+            .quick-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 0;
+            }
+
+            .quick-link-item {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+
+            .quick-link-item:last-child {
+                border-bottom: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .identify-right {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO HEADER IMAGE (Redirects to smart-setup.html) -->
+    <header class="full-img-banner">
+        <a href="device-setup.html">
+            <img src="/image/Banner.png" alt="Hero Banner">
+        </a>
+    </header>
+
+    <!-- Printer Setup Section -->
+    <section class="setup-section">
+        <div class="container">
+            <div class="setup-grid">
+                <div class="setup-img">
+                    <img src="/image/Printer_feature.avif" alt="Setup Printer">
+                </div>
+                <div class="setup-text">
+                    <h2>How to setup your printer</h2>
+                    <p>Click Printer Setup for step by step guidance on how to setup, configure and register your printer.</p>
+                    <a href="#" class="btn-primary">Printer Setup</a>
+
+                    <div class="more-help">
+                        <h4>Additional Assistance</h4>
+                        <a href="#">Get Instant Assistance</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="quick-links">
+                <div class="quick-links-grid">
+                    <div class="quick-link-item">
+                        <img src="/image/software_drivers.svg" alt="Download Drivers Icon">
+                        <a href="#">Download Drivers &gt;</a>
+                    </div>
+                    <div class="quick-link-item">
+                        <img src="/image/check_warranty-01.svg" alt="Check Warranty Icon">
+                        <a href="#">Check warranty status &gt;</a>
+                    </div>
+                    <div class="quick-link-item">
+                        <img src="/image/support_agent-01.svg" alt="Contact Us Icon">
+                        <a href="#">Contact us &gt;</a>
+                    </div>
+                    <div class="quick-link-item">
+                        <img src="/image/virtual_assistant.svg" alt="Diagnose & Fix Icon">
+                        <a href="#">Diagnose &amp; Fix &gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Header Section -->
+    <section class="solutions-header">
+        <div class="container">
+            <h2>We Provide Solution’s for</h2>
+            <p>Storage | Software Download | Installation Issues | Network Connectivity Related Issues</p>
+        </div>
+    </section>
+
+    <!-- 3 Column Feature Cards -->
+    <section>
+        <div class="container">
+            <div class="features-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <img src="/image/window-11.png" alt="Windows 11">
+                    <h3>Get Instant Assistance for Laptop &amp; Desktop</h3>
+                    <p>If your laptop or desktop is not working properly due to an error then connect to one of our technicians at customer service number.</p>
+                    <a href="#" class="btn-primary">Install Setup App</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <img src="/image/scan-print-fix.png" alt="Fix Scan Print">
+                    <h3>How to print, scan and fax</h3>
+                    <p>Click Print Scan Fax for instructions on how to print, scan and fax with your printer using Windows or Mac OS.</p>
+                    <a href="#" class="btn-primary">Fix Scan/Print</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <img src="/image/printer-offline.png" alt="Printer Offline">
+                    <h3>Printer offline or print job stuck in queue?</h3>
+                    <p>Use this Windows automated tool to diagnose and fix printer problems such as printer offline and print jobs stuck in queue.</p>
+                    <a href="#" class="btn-primary">Fix your Printer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identify Printer Section -->
+    <section class="identify-section">
+        <div class="container">
+            <div class="identify-grid">
+                <div class="identify-left">
+                    <div class="identify-icon-title">
+                        <img src="/image/find-printer-icon.svg" alt="Find Printer Icon">
+                        <h2>Identify your printer for manuals and specific product information</h2>
+                    </div>
+                    <form class="search-box" id="printerForm">
+                        <label for="printer-input">Enter your serial number, product number or product name</label>
+                        <div class="search-input-group">
+                            <input type="text" id="printer-input" placeholder="Example: Wireless All-in-One printer" required>
+                            <button type="submit" class="btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="identify-right">
+                    <img src="/image/Deskjet.avif" alt="Printer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER IMAGE BANNER (Redirects to printer.html) -->
+    <footer class="footer-banner full-img-banner">
+        <img src="/image/slider-1.webp" alt="Instant Ink Banner">
+    </footer>
+
+</body>
+</html>

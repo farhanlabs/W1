@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printer Setup & Diagnostics</title>
+    <style>
+        /* Base Reset & Typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Hero Header Section */
+        .hero-section {
+            padding: 60px 0 40px 0;
+            background-color: #ffffff;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1.2;
+        }
+
+        .hero-text h1 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 18px;
+            line-height: 1.25;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: #555555;
+            max-width: 580px;
+        }
+
+        .hero-image {
+            flex: 0.8;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+
+        /* Form Main Container Section */
+        .form-section {
+            background-color: #f7f9fa;
+            padding: 50px 0;
+            border-top: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .form-grid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .form-left {
+            flex: 1.2;
+        }
+
+        /* Large Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 20px;
+            color: #222222;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 24px;
+            height: 24px;
+            accent-color: #007db8;
+            cursor: pointer;
+        }
+
+        /* Input Container & Dropdown */
+        .input-box-wrapper {
+            margin-top: 15px;
+            position: relative;
+            max-width: 520px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: #222222;
+            margin-bottom: 12px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 18px;
+            border: 2px solid #2563eb;
+            border-radius: 6px;
+            outline: none;
+            background-color: #ffffff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .search-input::placeholder {
+            font-size: 16px;
+            color: #777777;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Dynamic Suggestions Dropdown */
+        .suggestions-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border: 2px solid #2563eb;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 14px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #222222;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover, .suggestion-item.active {
+            background-color: #eff6ff;
+            color: #007db8;
+            font-weight: 700;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            margin-top: 25px;
+            background-color: #007db8;
+            color: #ffffff;
+            border: none;
+            padding: 14px 42px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #1d4ed8;
+        }
+
+        .form-right {
+            flex: 0.8;
+            text-align: center;
+        }
+
+        .form-right img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* Bottom Info Section */
+        .info-section {
+            padding: 45px 0 60px 0;
+            background-color: #ffffff;
+        }
+
+        .info-text {
+            font-size: 16px;
+            color: #444444;
+            line-height: 1.7;
+            max-width: 900px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid, .form-grid {
+                flex-direction: column;
+                text-align: left;
+            }
+
+            .hero-image, .form-right {
+                text-align: center;
+            }
+
+            .input-box-wrapper {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO HEADER SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>We're here to help you set up your printer</h1>
+                    <p>Let's connect your printer to a Wi-Fi or wired network or to a computer using a USB cable, but first, we need to know your printer model.</p>
+                </div>
+                <div class="hero-image">
+                    <img src="/image/Printer_Setup_Landing.webp" alt="Printer Setup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM SECTION -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-grid">
+                <div class="form-left">
+                    <form id="findPrinterForm" autocomplete="off">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="setup_option" value="unpack">
+                                Unpack, Setup New Printer
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="setup_option" value="troubleshoot" checked>
+                                Troubleshoot printer issues
+                            </label>
+                        </div>
+
+                        <div class="input-box-wrapper">
+                            <label class="input-label" for="printer-search">Enter your serial number, product number or product name</label>
+                            <input type="text" id="printer-search" class="search-input" placeholder="Example: Wireless InkJet 2632 All-in-One printer" required>
+                            
+                            <!-- Dropdown Box -->
+                            <div id="suggestionsBox" class="suggestions-dropdown"></div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </form>
+                </div>
+
+                <div class="form-right">
+                    <img src="/image/NSLaser.avif" alt="Laser Printer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section class="info-section">
+        <div class="container">
+            <p class="info-text">
+                We've made it easy to download setup software for your printer. Enter your product name to find the recommended setup software and drivers. Compatible with all major desktop and mobile operating systems, including Windows, macOS, iOS, and Android.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECURE API JAVASCRIPT -->
+    <script>
+        const searchInput = document.getElementById('printer-search');
+        const suggestionsBox = document.getElementById('suggestionsBox');
+        let currentFocus = -1;
+
+        // Debounce timer to optimize API calls
+        let debounceTimer;
+
+        searchInput.addEventListener('input', function() {
+            const val = this.value.trim();
+            currentFocus = -1;
+
+            clearTimeout(debounceTimer);
+
+            // Hide if less than 2 characters typed
+            if (val.length < 2) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+
+            // Fetch results securely from API after 200ms delay
+            debounceTimer = setTimeout(async () => {
+                try {
+                    const res = await fetch(`/api/printers?q=${encodeURIComponent(val)}`);
+                    if (res.ok) {
+                        const matches = await res.json();
+                        renderSuggestions(matches);
+                    }
+                } catch (e) {
+                    suggestionsBox.style.display = 'none';
+                }
+            }, 200);
+        });
+
+        function renderSuggestions(list) {
+            suggestionsBox.innerHTML = '';
+
+            if (!list || list.length === 0) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+
+            list.forEach(model => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.innerHTML = `🖨️ <span>${highlightMatch(model, searchInput.value)}</span>`;
+                
+                item.addEventListener('click', function() {
+                    searchInput.value = model;
+                    suggestionsBox.style.display = 'none';
+                });
+
+                suggestionsBox.appendChild(item);
+            });
+
+            suggestionsBox.style.display = 'block';
+        }
+
+        function highlightMatch(text, query) {
+            if (!query) return text;
+            const reg = new RegExp(`(${query})`, 'gi');
+            return text.replace(reg, '<strong style="color: #2563eb;">$1</strong>');
+        }
+
+        // Keyboard navigation (Arrow Up/Down/Enter)
+        searchInput.addEventListener('keydown', function(e) {
+            let items = suggestionsBox.getElementsByClassName('suggestion-item');
+            if (!items.length) return;
+
+            if (e.keyCode === 40) { // DOWN
+                currentFocus++;
+                addActive(items);
+            } else if (e.keyCode === 38) { // UP
+                currentFocus--;
+                addActive(items);
+            } else if (e.keyCode === 13) { // ENTER
+                if (currentFocus > -1 && items[currentFocus]) {
+                    e.preventDefault();
+                    items[currentFocus].click();
+                }
+            } else if (e.keyCode === 27) { // ESC
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        function addActive(items) {
+            for (let i = 0; i < items.length; i++) items[i].classList.remove('active');
+            if (currentFocus >= items.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = items.length - 1;
+            items[currentFocus].classList.add('active');
+            items[currentFocus].scrollIntoView({ block: 'nearest' });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target !== searchInput && e.target !== suggestionsBox) {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        // FORM SUBMIT REDIRECT TO NEW PAGE
+        document.getElementById('findPrinterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query !== '') {
+                // Redirects to new page passing the printer model parameter
+                window.location.href = 'app-configuration.html?model=' + encodeURIComponent(query);
+            }
+        });
+    </script>
+</body>
+</html>
