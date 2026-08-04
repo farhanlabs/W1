@@ -354,10 +354,10 @@
     
     <div class="max-w-7xl hero-container">
       <div class="hero-content">
-        <h1 class="hero-title">Printer Setup &amp; Driver Software</h1>
+        <h1 class="hero-title">Printer Setup & Connection</h1>
         <ul class="hero-list">
-          <li>Make sure your printer is powered on</li>
-          <li>Select your connection type to complete driver setup &amp; installation</li>
+          <li>Make sure your printer is powered on and ready</li>
+          <li>Select your connection type to complete wireless setup</li>
         </ul>
         <button type="button" class="hero-btn" onclick="openSetupModal()">
           Start Printer Setup <span>➔</span>
@@ -373,8 +373,8 @@
     <div class="max-w-6xl cards-container">
       
       <div class="content-card">
-        <h2 class="section-heading">Quick Driver Setup</h2>
-        <p class="section-subheading">Enter your printer model below to download drivers and configure Wi-Fi or USB setup.</p>
+        <h2 class="section-heading">Quick Setup & Configuration</h2>
+        <p class="section-subheading">Enter your printer model below to view Wi-Fi, USB, and network setup instructions.</p>
         <form onsubmit="handleMainFormSubmit(event)">
           <div class="form-group">
             <label class="form-label" for="mainModelInput">Enter Model Number:</label>
@@ -453,7 +453,7 @@
 
         <!-- STEP 2: USER LEAD FORM POPUP -->
         <div id="step-form" class="step-panel">
-          <p class="step-instruction">Enter your details below to authorize driver package download and proceed with setup:</p>
+          <p class="step-instruction">Enter your device details below to proceed with step-by-step connection setup:</p>
           <form class="lead-form-box" onsubmit="handleLeadFormSubmit(event)">
             <div class="lead-field-group">
               <label class="lead-label" for="userNameInput">Full Name *</label>
@@ -470,7 +470,7 @@
             <div class="lead-trust-badge">
               <span>✓ Official Driver Package Authorization</span>
             </div>
-            <button type="submit" class="lead-submit-btn">Download Drivers &amp; Continue ➔</button>
+            <button type="submit" class="lead-submit-btn">Click Here to Setup ➔</button>
           </form>
         </div>
 
@@ -540,8 +540,8 @@
   }
 
   const brandConfigs = {
-    br: { shortWord: 'BR', logoImg: '/images/B-Logo.png', primaryBg: '#003399', buttonBg: '#E53E3E', buttonHover: '#C53030', navItems: ['Mono Laser', 'Color Laser', 'Inkjet', 'Label Printers', 'Supplies', 'Support & Downloads'], heroPrinterImg: '/images/B-Hero.png', heroBgImg: '/images/B-Hero-Bg.jpg', modelFinderImg: '/images/B-Model.png', footerImg: '/images/B-Footer.jpg' },
-    h: { shortWord: 'H', logoImg: '/images/H-Logo.svg', primaryBg: '#0096D6', buttonBg: '#222222', buttonHover: '#444444', navItems: ['LaserJet', 'OfficeJet', 'Envy', 'DesignJet', 'Supplies', 'Support'], heroPrinterImg: '/images/H-Hero.png', heroBgImg: '/images/H-Hero-Bg.jpg', modelFinderImg: '/images/H-Model.png', footerImg: '/images/H-Footer.jpg' },
+    br: { shortWord: 'BR', logoImg: '/images/B-Logo.png', primaryBg: '#003399', buttonBg: '#E53E3E', buttonHover: '#C53030', navItems: ['Mono Laser', 'Color Laser', 'Inkjet', 'Label Printers', 'Supplies'], heroPrinterImg: '/images/B-Hero.png', heroBgImg: '/images/B-Hero-Bg.jpg', modelFinderImg: '/images/B-Model.png', footerImg: '/images/B-Footer.jpg' },
+    h: { shortWord: 'H', logoImg: '/images/H-Logo.svg', primaryBg: '#0096D6', buttonBg: '#222222', buttonHover: '#444444', navItems: ['LaserJet', 'OfficeJet', 'Envy', 'DesignJet', 'Supplies'], heroPrinterImg: '/images/H-Hero.png', heroBgImg: '/images/H-Hero-Bg.jpg', modelFinderImg: '/images/H-Model.png', footerImg: '/images/H-Footer.jpg' },
     ca: { shortWord: 'CA', logoImg: '/images/C-Logo.png', primaryBg: '#C30010', buttonBg: '#0091FF', buttonHover: '#0077E2', navItems: ['Maxify', 'Laser', 'Selphy', 'Supplies', 'Projectors', 'Label Printer', 'ink'], heroPrinterImg: '/images/C-Hero.png', heroBgImg: '/images/C-Hero-Bg.jpg', modelFinderImg: '/images/C-Model.png', footerImg: '/images/C-Footer.png' },
     ep: { shortWord: 'EP', logoImg: '/images/E-Logo.png', primaryBg: '#0054A6', buttonBg: '#0085FF', buttonHover: '#006ACC', navItems: ['EcoTank', 'WorkForce', 'Expression', 'Supplies', 'Projectors', 'Scanners'], heroPrinterImg: '/images/E-Hero.png', heroBgImg: '/images/E-Hero-Bg.jpg', modelFinderImg: '/images/E-Model.png', footerImg: '/images/E-Footer.jpg' }
   };
