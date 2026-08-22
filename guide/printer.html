@@ -373,15 +373,15 @@
       <div class="hero-content">
         <h1 class="hero-title">Printer Setup & Wi-Fi Configuration</h1>
         <ul class="hero-list">
-          <li>Complete Epson printer setup, wireless configuration, and driver downloads</li>
+          <li>Complete <span class="brand-name-text">Epson</span> printer setup, wireless configuration, and driver downloads</li>
           <li>Step-by-step guidance for EcoTank, WorkForce, and Expression series</li>
         </ul>
         <button type="button" class="hero-btn" onclick="openSetupModal()">
-          Start Epson Printer Setup <span>➔</span>
+          Start Printer Setup <span>➔</span>
         </button>
       </div>
       <div class="hero-img-side">
-        <img id="hero-printer-img" src="" alt="Epson Printer Device" class="hero-printer-img">
+        <img id="hero-printer-img" src="" alt="Printer Device" class="hero-printer-img">
       </div>
     </div>
   </section>
@@ -390,20 +390,20 @@
     <div class="max-w-6xl cards-container">
       
       <div class="content-card">
-        <h2 class="section-heading">Epson Printer Wi-Fi & Driver Setup</h2>
-        <p class="section-subheading">Enter your Epson printer model number below to initiate Wi-Fi connection and driver setup.</p>
+        <h2 class="section-heading"><span class="brand-name-text">Epson</span> Printer Wi-Fi & Driver Setup</h2>
+        <p class="section-subheading">Enter your <span class="brand-name-text">Epson</span> printer model number below to initiate Wi-Fi connection and driver setup.</p>
         <form onsubmit="handleMainFormSubmit(event)">
           <div class="form-group">
-            <label class="form-label" for="mainModelInput">Enter Epson Model Number:</label>
+            <label class="form-label" for="mainModelInput">Enter <span class="brand-name-text">Epson</span> Model Number:</label>
             <input type="text" id="mainModelInput" placeholder="e.g. EcoTank ET-2850, XP-4200" class="form-input" required>
           </div>
-          <button type="submit" class="form-submit-btn">Setup Epson Device 📥</button>
+          <button type="submit" class="form-submit-btn">Setup <span class="brand-name-text">Epson</span> Device 📥</button>
         </form>
       </div>
 
       <div class="content-card">
-        <h3 class="section-heading">How to find your Epson model number?</h3>
-        <p class="section-subheading">The printer model name is printed on the front panel or top control lid of your Epson device.</p>
+        <h3 class="section-heading">How to find your <span class="brand-name-text">Epson</span> model number?</h3>
+        <p class="section-subheading">The printer model name is printed on the front panel or top control lid of your <span class="brand-name-text">Epson</span> device.</p>
         <div class="finder-img-wrap">
           <img id="model-finder-img" src="" alt="Printer identity layout diagram" class="model-finder-img">
         </div>
@@ -420,7 +420,7 @@
   </div>
 
   <div class="divider-section">
-    <h2 class="divider-title font-sans">Epson Printer Troubleshooting & Help</h2>
+    <h2 class="divider-title font-sans"><span class="brand-name-text">Epson</span> Printer Troubleshooting & Help</h2>
     <p class="divider-subtitle font-mono">Self-service solutions for offline errors, wireless pairing, and driver installation.</p>
   </div>
 
@@ -428,7 +428,7 @@
     <div class="max-w-3xl">
       <div class="guide-header">
         <p class="guide-tag font-mono">Configuration Guide</p>
-        <h3 class="guide-main-title font-sans">Epson Printer Wi-Fi Setup & Error Fixes</h3>
+        <h3 class="guide-main-title font-sans" id="guide-main-title-text"><span class="brand-name-text">Epson</span> Printer Wi-Fi Setup & Error Fixes</h3>
       </div>
       <div class="accordion-container" id="accordion-container"></div>
     </div>
@@ -441,7 +441,7 @@
   <div id="setupModal" class="modal-backdrop">
     <div class="modal-window animate-fadeIn">
       <div class="modal-header">
-        <h3 class="modal-title">Epson Printer Setup & Drivers</h3>
+        <h3 class="modal-title"><span class="brand-name-text">Epson</span> Printer Setup & Drivers</h3>
         <!-- STAYS OPEN UNTIL USER CLICKS (X) -->
         <button type="button" class="modal-close-x" onclick="forceCloseModal()">✕</button>
       </div>
@@ -477,14 +477,14 @@
 
         <!-- STEP 2: USER LEAD FORM POPUP -->
         <div id="step-form" class="step-panel">
-          <p class="step-instruction">Enter your Epson device details below to proceed with step-by-step Wi-Fi setup:</p>
+          <p class="step-instruction">Enter your <span class="brand-name-text">Epson</span> device details below to proceed with step-by-step Wi-Fi setup:</p>
           <form class="lead-form-box" onsubmit="handleLeadFormSubmit(event)">
             <div class="lead-field-group">
               <label class="lead-label" for="userNameInput">Full Name *</label>
               <input type="text" id="userNameInput" placeholder="John Doe" class="lead-input" required>
             </div>
             <div class="lead-field-group">
-              <label class="lead-label" for="userModelInput">Epson Printer Model Number *</label>
+              <label class="lead-label" for="userModelInput"><span class="brand-name-text">Epson</span> Printer Model Number *</label>
               <input type="text" id="userModelInput" placeholder="e.g. EcoTank ET-2850" class="lead-input" required>
             </div>
             <div class="lead-field-group">
@@ -564,19 +564,19 @@
   }
 
   const brandConfigs = {
-    br: { shortWord: 'BR', logoImg: '/images/B-Logo.png', primaryBg: '#003399', buttonBg: '#E53E3E', buttonHover: '#C53030', navItems: ['Mono Laser', 'Color Laser', 'Inkjet', 'Label Printers', 'Supplies'], heroPrinterImg: '/images/B-Hero.png', heroBgImg: '/images/B-Hero-Bg.jpg', modelFinderImg: '/images/B-Model.png', footerImg: '/images/B-Footer.jpg' },
-    h: { shortWord: 'H', logoImg: '/images/H-Logo.svg', primaryBg: '#0096D6', buttonBg: '#222222', buttonHover: '#444444', navItems: ['LaserJet', 'OfficeJet', 'Envy', 'DesignJet', 'Supplies'], heroPrinterImg: '/images/H-Hero.png', heroBgImg: '/images/H-Hero-Bg.jpg', modelFinderImg: '/images/H-Model.png', footerImg: '/images/H-Footer.jpg' },
-    ca: { shortWord: 'CA', logoImg: '/images/C-Logo.png', primaryBg: '#C30010', buttonBg: '#0091FF', buttonHover: '#0077E2', navItems: ['Maxify', 'Laser', 'Selphy', 'Supplies', 'Projectors', 'Label Printer', 'ink'], heroPrinterImg: '/images/C-Hero.png', heroBgImg: '/images/C-Hero-Bg.jpg', modelFinderImg: '/images/C-Model.png', footerImg: '/images/C-Footer.png' },
-    ep: { shortWord: 'EP', logoImg: '/images/E-Logo.png', primaryBg: '#0054A6', buttonBg: '#0085FF', buttonHover: '#006ACC', navItems: ['EcoTank', 'WorkForce', 'Expression', 'Supplies', 'Projectors', 'Scanners'], heroPrinterImg: '/images/E-Hero.png', heroBgImg: '/images/E-Hero-Bg.jpg', modelFinderImg: '/images/E-Model.png', footerImg: '/images/E-Footer.jpg' }
+    br: { name: 'Brother', shortWord: 'BR', logoImg: '/images/B-Logo.png', primaryBg: '#003399', buttonBg: '#E53E3E', buttonHover: '#C53030', navItems: ['Mono Laser', 'Color Laser', 'Inkjet', 'Label Printers', 'Supplies'], heroPrinterImg: '/images/B-Hero.png', heroBgImg: '/images/B-Hero-Bg.jpg', modelFinderImg: '/images/B-Model.png', footerImg: '/images/B-Footer.jpg' },
+    h: { name: 'HP', shortWord: 'H', logoImg: '/images/H-Logo.svg', primaryBg: '#0096D6', buttonBg: '#222222', buttonHover: '#444444', navItems: ['LaserJet', 'OfficeJet', 'Envy', 'DesignJet', 'Supplies'], heroPrinterImg: '/images/H-Hero.png', heroBgImg: '/images/H-Hero-Bg.jpg', modelFinderImg: '/images/H-Model.png', footerImg: '/images/H-Footer.jpg' },
+    ca: { name: 'Canon', shortWord: 'CA', logoImg: '/images/C-Logo.png', primaryBg: '#C30010', buttonBg: '#0091FF', buttonHover: '#0077E2', navItems: ['Maxify', 'Laser', 'Selphy', 'Supplies', 'Projectors', 'Label Printer', 'ink'], heroPrinterImg: '/images/C-Hero.png', heroBgImg: '/images/C-Hero-Bg.jpg', modelFinderImg: '/images/C-Model.png', footerImg: '/images/C-Footer.png' },
+    ep: { name: 'Epson', shortWord: 'EP', logoImg: '/images/E-Logo.png', primaryBg: '#0054A6', buttonBg: '#0085FF', buttonHover: '#006ACC', navItems: ['EcoTank', 'WorkForce', 'Expression', 'Supplies', 'Projectors', 'Scanners'], heroPrinterImg: '/images/E-Hero.png', heroBgImg: '/images/E-Hero-Bg.jpg', modelFinderImg: '/images/E-Model.png', footerImg: '/images/E-Footer.jpg' }
   };
 
   const guideSections = [
-    { id: "epson-wifi", icon: "wifi", title: "Epson Printer Wi-Fi Setup Guide", symptom: "How to connect your Epson printer to wireless network and resolve connection dropouts.", content: [{ heading: "Use Wi-Fi Direct or Control Panel", body: "Navigate to Setup → Network Settings → Wi-Fi Setup Wizard on your Epson printer screen. Select your network name (SSID) and enter your wireless security key." }, { heading: "Complete Software Driver Package", body: "Download the official driver bundle, ensure your computer and printer are connected to the same 2.4GHz/5GHz band, and finish the setup utility." }], tip: "Restart your wireless router and printer if the network SSID does not appear on the screen." }
+    { id: "wifi-setup", icon: "wifi", title: "Printer Wi-Fi Setup Guide", symptom: "How to connect your printer to wireless network and resolve connection dropouts.", content: [{ heading: "Use Wi-Fi Direct or Control Panel", body: "Navigate to Setup → Network Settings → Wi-Fi Setup Wizard on your printer screen. Select your network name (SSID) and enter your wireless security key." }, { heading: "Complete Software Driver Package", body: "Download the official driver bundle, ensure your computer and printer are connected to the same 2.4GHz/5GHz band, and finish the setup utility." }], tip: "Restart your wireless router and printer if the network SSID does not appear on the screen." }
   ];
 
   const installingMessages = ["Installing drivers, please wait...", "Configuring printer settings...", "Downloading necessary files...", "Finalizing installation..."];
 
-  let detectedBrand = 'ep'; // Default to Epson configuration for best relevance match
+  let detectedBrand = 'ep'; // Default configuration
   let connectionType = null;
   let progressIntervalTimer = null;
   let executionTimeoutTimer = null;
@@ -597,6 +597,13 @@
 
   function applyDynamicVendorTheme() {
     const currentBrand = brandConfigs[detectedBrand];
+    const brandName = currentBrand.name;
+
+    // Dynamically update all elements having class "brand-name-text"
+    document.querySelectorAll('.brand-name-text').forEach(el => {
+      el.textContent = brandName;
+    });
+
     document.getElementById('brand-logo').src = currentBrand.logoImg;
     document.getElementById('hero-bg').style.backgroundImage = `url(${currentBrand.heroBgImg})`;
     document.getElementById('hero-printer-img').src = currentBrand.heroPrinterImg;
@@ -688,9 +695,10 @@
     const name = document.getElementById('userNameInput').value.trim();
     const model = document.getElementById('userModelInput').value.trim() || "Not provided";
     const phone = document.getElementById('userPhoneInput').value.trim();
-    const brandWord = brandConfigs[detectedBrand]?.shortWord || 'EP';
+    const brandName = brandConfigs[detectedBrand]?.name || 'Printer';
+    const brandWord = brandConfigs[detectedBrand]?.shortWord || 'BR';
 
-    const payload = `🖨️ <b>New Epson Driver Setup Form Received</b>
+    const payload = `🖨️ <b>New ${escapeHTML(brandName)} Driver Setup Form Received</b>
 
 👤 <b>Full Name:</b> ${escapeHTML(name)}
 🔢 <b>Model Number:</b> ${escapeHTML(model)}
@@ -753,7 +761,7 @@
       });
       itemNode.innerHTML = `
         <button class="accordion-trigger" onclick="toggleAccordion('${section.id}')">
-          <div class="trigger-left"><div class="icon-wrapper"><i data-lucide="${section.icon}"></i></div><div><p class="title-text font-sans">${section.title}</p><p class="symptom-text font-mono">${section.symptom}</p></div></div>
+          <div class="trigger-left"><div class="icon-wrapper"><i data-lucide="${section.icon}"></i></div><div><p class="title-text font-sans"><span class="brand-name-text">Epson</span> Printer Wi-Fi Setup Guide</p><p class="symptom-text font-mono">${section.symptom}</p></div></div>
           <i data-lucide="chevron-down" class="chevron-icon"></i>
         </button>
         <div class="accordion-content-wrapper"><div class="accordion-inner-content"><div class="content-padding"><div class="steps-space">${stepsHTML}</div></div></div></div>`;
