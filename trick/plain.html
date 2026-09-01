@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Printing & Scanning Technical Manual | WEPCSOL Documentation</title>
+    <meta name="description" content="Complete enterprise guide covering issue diagnostics, terminal commands, network configuration, and step-by-step resolution for printing and scanning hardware.">
+    
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-blue: #0266ff;
+            --brand-dark: #0f172a;
+            --bg-gray: #f8fafc;
+            --text-main: #334155;
+            --border-color: #e2e8f0;
+            --footer-bg: #000000;
+            --code-bg: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, sans-serif; }
+        body { background-color: #ffffff; color: var(--text-main); line-height: 1.75; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Top Notice Bar */
+        .top-notice { background: var(--brand-dark); color: #94a3b8; padding: 8px 5%; font-size: 0.82rem; text-align: center; }
+        .top-notice span { color: #ffffff; font-weight: 700; }
+
+        /* Navbar */
+        .navbar { padding: 12px 8%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); background: #ffffff; position: sticky; top: 0; z-index: 100; }
+        .logo img { height: 40px; width: auto; display: block; }
+        .nav-menu { display: flex; list-style: none; gap: 20px; font-weight: 700; font-size: 0.85rem; }
+        .nav-menu a:hover { color: var(--brand-blue); }
+
+        /* Guide Hero Header */
+        .guide-hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 60px 8%; text-align: center; }
+        .guide-tag { color: var(--brand-blue); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
+        .guide-hero h1 { font-size: 2.6rem; font-weight: 900; margin-bottom: 15px; line-height: 1.2; }
+        .guide-hero p { max-width: 850px; margin: 0 auto; color: #94a3b8; font-size: 1.02rem; }
+
+        /* Content Layout */
+        .content-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; display: grid; grid-template-columns: 2.8fr 1.2fr; gap: 40px; }
+        
+        /* Articles & Sections */
+        .article-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 40px; margin-bottom: 35px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .article-card h2 { font-size: 1.65rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 15px; line-height: 1.3; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+        .article-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--brand-blue); margin: 24px 0 10px 0; }
+        .article-card p { margin-bottom: 15px; font-size: 0.98rem; }
+        
+        .cause-box { background: #fff1f2; border-left: 4px solid #f43f5e; padding: 18px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; }
+        .cause-box h4 { color: #9f1239; font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; text-transform: uppercase; }
+
+        .steps-box { background: var(--bg-gray); border-left: 4px solid var(--brand-blue); padding: 22px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+        .steps-box ol, .steps-box ul { margin-left: 20px; }
+        .steps-box li { margin-bottom: 12px; font-weight: 600; color: #1e293b; font-size: 0.95rem; }
+
+        /* Code Terminal */
+        .command-terminal {
+            background: var(--code-bg);
+            color: #38bdf8;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.88rem;
+            margin: 18px 0;
+            overflow-x: auto;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+        }
+        .command-terminal span.comment { color: #64748b; font-style: italic; }
+        .command-terminal span.cmd { color: #f43f5e; font-weight: bold; }
+
+        .info-callout { background: #eef5ff; border: 1px solid #cbd5e1; padding: 18px 20px; border-radius: 8px; margin: 20px 0; display: flex; gap: 15px; align-items: flex-start; }
+        .info-callout i { font-size: 1.4rem; color: var(--brand-blue); margin-top: 3px; flex-shrink: 0; }
+
+        /* Sidebar Navigation */
+        .sidebar-card { background: var(--bg-gray); border: 1px solid var(--border-color); border-radius: 10px; padding: 25px; margin-bottom: 25px; position: sticky; top: 90px; }
+        .sidebar-card h4 { font-size: 1.05rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 15px; border-bottom: 2px solid var(--brand-blue); padding-bottom: 8px; }
+        .quick-list { list-style: none; }
+        .quick-list li { margin-bottom: 12px; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .quick-list i { color: var(--brand-blue); font-size: 0.8rem; }
+
+        /* Trust Bar */
+        .trust-bar { background: var(--bg-gray); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 35px 8%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .trust-item h5 { font-size: 0.95rem; font-weight: 800; color: var(--brand-dark); margin-bottom: 4px; }
+        .trust-item p { font-size: 0.8rem; color: #64748b; }
+
+        /* --- FULLY MATCHED PURE BLACK FOOTER (#000000) --- */
+        footer { 
+            background-color: var(--footer-bg); 
+            color: #ffffff; 
+            padding: 60px 5% 30px 5%; 
+            font-size: 0.85rem; 
+        }
+
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 2.2fr 1.2fr; 
+            gap: 35px; 
+            margin-bottom: 40px; 
+        }
+
+        .footer-logo img {
+            width: 220px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .footer-desc {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .footer-contact-info p {
+            color: #cbd5e1;
+            font-size: 0.82rem;
+            margin-bottom: 8px;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links-list.grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 12px;
+        }
+
+        .footer-links-list a {
+            color: #94a3b8;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--brand-blue);
+        }
+
+        .security-badges-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .badge-img {
+            max-width: 160px;
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .footer-disclaimer-box {
+            border-top: 1px solid #1f2937;
+            padding-top: 25px;
+            margin-bottom: 25px;
+            color: #94a3b8;
+            text-align: justify;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid #1f2937;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.78rem;
+        }
+
+        .payment-icons-img {
+            max-width: 240px;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .content-container { grid-template-columns: 1fr; }
+            .sidebar-card { position: static; }
+            .trust-bar { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .footer-grid, .trust-bar { grid-template-columns: 1fr; }
+            .footer-links-list.grid-2 { grid-template-columns: 1fr 1fr; }
+            .footer-bottom-bar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NOTICE BAR -->
+    <div class="top-notice">
+        <span>Systems Administration Manual:</span> Enterprise Network Printing & Operating System Documentation
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="/" class="logo"><img src="../image/Logo.png" alt="WEPCSOL Logo"></a>
+        <ul class="nav-menu">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/pages/about-us.html">ABOUT US</a></li>
+            <li><a href="/pages/products.html">PRODUCTS</a></li>
+            <li><a href="/pages/contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- GUIDE HERO HEADER -->
+    <header class="guide-hero">
+        <span class="guide-tag">Complete System Administration Guide</span>
+        <h1>Universal Printing & Scanning Comprehensive Manual</h1>
+        <p>Full-length diagnostic manual covering underlying error causes, administrative terminal scripts, network port configurations, driver bindings, and hardware maintenance steps.</p>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <div class="content-container">
+        
+        <!-- LEFT COLUMN: FULL LENGTH GUIDES -->
+        <main>
+            
+            <!-- MODULE 1: PRINTER NOT PRINTING -->
+            <article class="article-card">
+                <h2>1. Resolving "Printer Not Printing" & Driver Unavailable Errors</h2>
+                <p>When a printing job is submitted but the device remains idle, or the operating system reports a <strong>Driver Unavailable</strong> badge, communication between the spooler subsystem and the physical hardware port has been interrupted.</p>
+
+                <div class="cause-box">
+                    <h4>Primary Technical Causes:</h4>
+                    <p>• Corrupted <code>win32spl.dll</code> or <code>spoolsv.exe</code> execution buffers.<br>
+                    • Invalid virtual printer port bindings (USB001 vs. WSD Port).<br>
+                    • Outdated or mismatched PCL/PostScript driver versions after operating system updates.</p>
+                </div>
+
+                <h3>A. Clearing Print Spooler via Terminal (Windows CMD & PowerShell):</h3>
+                <p>Execute the following commands in an elevated Command Prompt (Run as Administrator) to stop the spooler daemon, clear cached binary data, and re-initialize queue protocols:</p>
+
+                <div class="command-terminal">
+                    <span class="comment"># Stop the background Print Spooler service</span><br>
+                    <span class="cmd">net stop spooler</span><br><br>
+                    <span class="comment"># Force clear cached job files from system directory</span><br>
+                    <span class="cmd">del /Q /F /S "%systemroot%\System32\Spool\Printers\*.*"</span><br><br>
+                    <span class="comment"># Restart the Print Spooler daemon</span><br>
+                    <span class="cmd">net start spooler</span><br><br>
+                    <span class="comment"># Reset local DNS cache to clear socket conflicts</span><br>
+                    <span class="cmd">ipconfig /flushdns</span>
+                </div>
+
+                <h3>B. Manual Driver Binding via TCP/IP Port:</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>Navigate to <strong>Control Panel ➔ Hardware and Sound ➔ Devices and Printers</strong>.</li>
+                        <li>Click <strong>Add a Printer</strong> and choose <em>"The printer that I want isn't listed"</em>.</li>
+                        <li>Select <strong>Add a printer using an IP address or hostname</strong> and click Next.</li>
+                        <li>Set <em>Device Type</em> to <strong>TCP/IP Device</strong> and enter your unit's static IPv4 address (e.g., <code>192.168.1.150</code>).</li>
+                        <li>Select <strong>Have Disk</strong>, locate your extracted universal PCL6 <code>.inf</code> driver package, and complete installation.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- MODULE 2: PRINTING BLANK PAGES -->
+            <article class="article-card">
+                <h2>2. Fixing "Printer Printing Blank Pages" or Missing Color Output</h2>
+                <p>If the printer feeds pages normally but outputs blank white sheets or fails to output black text, the issue is mechanical or cartridge-related rather than a software socket error.</p>
+
+                <div class="cause-box">
+                    <h4>Primary Technical Causes:</h4>
+                    <p>• Dried ink micro-nozzles obstructing printhead resistor channels.<br>
+                    • Protective vacuum sealing tape left over electrical contact points.<br>
+                    • Breather vent obstructions preventing atmospheric pressure flow inside ink chambers.</p>
+                </div>
+
+                <h3>Step-by-Step Hardware Maintenance Procedure:</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li><strong>Cartridge Tape Inspection:</strong> Remove cartridges and verify that bright yellow/orange plastic pulls have been fully stripped off ventilation ports.</li>
+                        <li><strong>Initiating Cleaning Cycles:</strong> Access device preferences on your computer, navigate to the <em>Maintenance / Service</em> tab, and run a <strong>Head Cleaning Cycle</strong>.</li>
+                        <li><strong>Nozzle Inspection Pattern:</strong> Print an alignment test page to examine individual cyan, magenta, yellow, and black line continuity.</li>
+                        <li><strong>Manual Contact Cleaning:</strong> Wipe cartridge gold-plated contacts gently using a lint-free swab dampened with distilled water. Allow contacts to dry completely before re-inserting.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- MODULE 3: PRINTER OFFLINE & ROUTER CONFIGURATION -->
+            <article class="article-card">
+                <h2>3. Resolving "Printer Offline Status" & Router Static Binding</h2>
+                <p>An persistent <strong>printer offline status</strong> error typically occurs when dynamic host configuration protocol (DHCP) reassigns a new local IP address upon router reboot, breaking existing OS network shortcuts.</p>
+
+                <div class="info-callout">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <div>
+                        <strong>Router Gateway Access:</strong> Access your network gateway interface by opening a browser tab and navigating to <code>192.168.1.1</code> or <code>192.168.0.1</code>.
+                    </div>
+                </div>
+
+                <div class="cause-box">
+                    <h4>Primary Technical Causes:</h4>
+                    <p>• Dynamic IP leases expiring and re-assigning host addresses.<br>
+                    • Router isolation mode or AP isolation blocking local LAN subnet communication.<br>
+                    • Disabled mDNS, Bonjour, or SNMP discovery protocols in network settings.</p>
+                </div>
+
+                <h3>A. Configuring Static DHCP Reservation:</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>Log into your router administration portal and navigate to <strong>LAN Settings ➔ DHCP Client List</strong>.</li>
+                        <li>Locate your unit's 12-character MAC Address (e.g., <code>A1:B2:C3:D4:E5:F6</code>).</li>
+                        <li>Add a permanent entry in <strong>Address Reservation</strong> binding the MAC address to a fixed IP (e.g., <code>192.168.1.150</code>).</li>
+                        <li>In your router settings, ensure <strong>Multicast / mDNS</strong> and <strong>UPnP</strong> are set to Enabled.</li>
+                    </ol>
+                </div>
+
+                <h3>B. Unchecking Windows Offline Status Options:</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>Go to <strong>Settings ➔ Bluetooth & Devices ➔ Printers & Scanners</strong>.</li>
+                        <li>Select your device, click <strong>Open Print Queue</strong>.</li>
+                        <li>Click <strong>Printer</strong> in the top menu bar and uncheck <strong>Use Printer Offline</strong> and <strong>Pause Printing</strong>.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- MODULE 4: SMART APP WON'T SCAN -->
+            <article class="article-card">
+                <h2>4. Resolving "Smart App Won't Scan" & WIA Service Configuration</h2>
+                <p>When scanning applications fail to connect to the scanner bed or return connection time-out prompts, background service permissions or local firewall rules are preventing communication.</p>
+
+                <div class="cause-box">
+                    <h4>Primary Technical Causes:</h4>
+                    <p>• Stopped or set-to-manual <strong>Windows Image Acquisition (WIA)</strong> or RPC services.<br>
+                    • Network firewall blocking UDP port <code>161</code> (SNMP) or TCP port <code>9100</code> (RAW).<br>
+                    • Public network profile configuration hiding device discovery on local LANs.</p>
+                </div>
+
+                <h3>Step-by-Step WIA & Network Firewall Fix:</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>Press <code>Win + R</code>, type <code>services.msc</code>, and press Enter.</li>
+                        <li>Locate <strong>Windows Image Acquisition (WIA)</strong>, right-click, and select <strong>Properties</strong>.</li>
+                        <li>Change <em>Startup Type</em> to <strong>Automatic</strong> and click <strong>Start</strong> if the service is stopped.</li>
+                        <li>Repeat this configuration for <strong>Shell Hardware Detection</strong> and <strong>Remote Procedure Call (RPC)</strong>.</li>
+                        <li>Open Windows Defender Firewall ➔ Advanced Settings and create an Inbound Rule allowing local traffic for UDP Port <code>161</code> and TCP Port <code>9100</code>.</li>
+                    </ol>
+                </div>
+            </article>
+
+            <!-- MODULE 5: PAPER JAM & HARDWARE CLEARANCE -->
+            <article class="article-card">
+                <h2>5. Mechanical Paper Jam Clearance & Queue Reset</h2>
+                <p>A physical paper jam or optical paper path sensor obstruction halts printing mechanisms instantly, triggering ongoing hardware error codes.</p>
+
+                <h3>Comprehensive Physical Clearance Procedure:</h3>
+                <div class="steps-box">
+                    <ol>
+                        <li>Turn off the device power and disconnect the main AC wall plug.</li>
+                        <li>Open the rear access duplex door or pull out the input paper tray.</li>
+                        <li>Grasp stuck paper sheets firmly with both hands and pull slowly in the direction of the natural paper path to avoid tearing.</li>
+                        <li>Inspect optical paper sensor flags using a flashlight to remove small ripped fragments or dust buildup.</li>
+                        <li>Close all access doors tightly, re-plug power, and execute a print queue reset command.</li>
+                    </ol>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- RIGHT COLUMN: SIDEBAR -->
+        <aside>
+            <div class="sidebar-card">
+                <h4>Diagnostics Index</h4>
+                <ul class="quick-list">
+                    <li><i class="fa-solid fa-code"></i> CMD Print Spooler Reset</li>
+                    <li><i class="fa-solid fa-network-wired"></i> Router Static IP Reservation</li>
+                    <li><i class="fa-solid fa-wrench"></i> Driver Unavailable Fix</li>
+                    <li><i class="fa-solid fa-print"></i> Blank Pages Clearance</li>
+                    <li><i class="fa-solid fa-wifi"></i> Smart App Scan WIA Fix</li>
+                    <li><i class="fa-solid fa-compact-disc"></i> TCP/IP Driver Port Binding</li>
+                    <li><i class="fa-solid fa-align-center"></i> Mechanical Paper Jam Clearance</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-card" style="background: #eef5ff; border-color: var(--brand-blue);">
+                <h4 style="color: var(--brand-blue);">Hardware Documentation</h4>
+                <p style="font-size: 0.88rem; color: #334155; margin-bottom: 15px;">Review hardware specifications, paper media weight limits, and network protocols across our complete catalog.</p>
+                <a href="/pages/products.html" style="display: block; text-align: center; background: var(--brand-blue); color: #ffffff; padding: 10px; border-radius: 6px; font-weight: 800; font-size: 0.82rem;">EXPLORE HARDWARE CATALOG</a>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- TRUST VALUES BAR -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <i class="fa-solid fa-terminal" style="font-size: 1.5rem; color: var(--brand-blue); margin-bottom: 8px;"></i>
+            <h5>Terminal Commands</h5>
+            <p>CMD & PowerShell administrative scripts.</p>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-network-wired" style="font-size: 1.5rem; color: var(--brand-blue); margin-bottom: 8px;"></i>
+            <h5>Network Protocols</h5>
+            <p>TCP/IP, static IP, and DHCP bindings.</p>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-shield-halved" style="font-size: 1.5rem; color: var(--brand-blue); margin-bottom: 8px;"></i>
+            <h5>100% Policy Compliant</h5>
+            <p>Independent hardware & software docs.</p>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-microchip" style="font-size: 1.5rem; color: var(--brand-blue); margin-bottom: 8px;"></i>
+            <h5>Universal Hardware</h5>
+            <p>Laser, Inkjet, LED & Large Format units.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION (EXACT MATCH WITH OTHER PAGES) -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <!-- COLUMN 1: BRAND & CONTACT -->
+            <div>
+                <div class="footer-logo"><img src="../image/Logo.png" alt="WEPCSOL Logo"></div>
+                <p class="footer-desc">WEPCSOL provides access to modern printer products, helping customers find options that match their everyday printing requirements.</p>
+                <div class="footer-contact-info">
+                    <p>✉️ contact@wepcsol.com</p>
+                    <p>📞 +1 (813) 687-8163</p>
+                    <p>📍 901 N Market St Apt 100 Wilmington, DE 19801</p>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: QUICK LINKS -->
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/pages/about-us.html">ABOUT US</a></li>
+                    <li><a href="/pages/products.html">PRODUCTS</a></li>
+                    <li><a href="/pages/contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <!-- COLUMN 3: IMPORTANT LEGAL LINKS -->
+            <div>
+                <h4 class="footer-title">Important Links</h4>
+                <ul class="footer-links-list grid-2">
+                    <li><a href="/policy/availability-disclaimer.html">AVAILABILITY DISCLAIMER</a></li>
+                    <li><a href="/policy/cancellation-policy.html">CANCELLATION POLICY</a></li>
+                    <li><a href="/policy/cookie-policy.html">COOKIE POLICY</a></li>
+                    <li><a href="/policy/delivery-policy.html">DELIVERY POLICY</a></li>
+                    <li><a href="/policy/dmca.html">DMCA NOTICE</a></li>
+                    <li><a href="/policy/order-acceptance-policy.html">ORDER ACCEPTANCE</a></li>
+                    <li><a href="/policy/payment-security-policy.html">PAYMENT SECURITY</a></li>
+                    <li><a href="/policy/pricing-disclaimer.html">PRICING DISCLAIMER</a></li>
+                    <li><a href="/policy/privacy-policy.html">PRIVACY POLICY</a></li>
+                    <li><a href="/policy/product-info-disclaimer.html">PRODUCT DISCLAIMER</a></li>
+                    <li><a href="/policy/return-refund-policy.html">RETURN & REFUND</a></li>
+                    <li><a href="/policy/sales-order-policy.html">SALES & ORDER POLICY</a></li>
+                    <li><a href="/policy/shipping-policy.html">SHIPPING POLICY</a></li>
+                    <li><a href="/policy/terms-and-conditions.html">TERMS & CONDITIONS</a></li>
+                    <li><a href="/policy/trademark-disclaimer.html">TRADEMARK DISCLAIMER</a></li>
+                    <li><a href="/policy/warranty-policy.html">WARRANTY POLICY</a></li>
+                    <li><a href="/policy/website-disclaimer.html">WEBSITE LEGAL NOTICE</a></li>
+                </ul>
+            </div>
+
+            <!-- COLUMN 4: SECURITY BADGES -->
+            <div>
+                <h4 class="footer-title">Security</h4>
+                <div class="security-badges-container">
+                    <img src="../image/v2.png" alt="Secured By Sectigo" class="badge-img">
+                    <img src="../image/v3.png" alt="Google Safe Browsing" class="badge-img">
+                </div>
+            </div>
+        </div>
+
+        <!-- DISCLAIMER TEXT (NON-AFFILIATION & COMPLIANCE STATEMENT) -->
+        <div class="footer-disclaimer-box">
+            <strong>TRADEMARK & NON-AFFILIATION DISCLAIMER:</strong> WEPCSOL is an independent equipment e-commerce vendor and technical documentation provider. All brand names, model designations, trade names, and logos cited across wepcsol.com (including but not limited to HP, Canon, Epson, Brother, Xerox, Lexmark) are used strictly for informational identification and compatibility reference. WEPCSOL is not directly affiliated with, sponsored by, authorized by, or endorsed by any third-party printer manufacturer unless explicitly stated.
+        </div>
+
+        <!-- BOTTOM BAR: COPYRIGHT & PAYMENT METHODS -->
+        <div class="footer-bottom-bar">
+            <div>© 2026 WEPCSOL All rights reserved. Universal Documentation Utility.</div>
+            <div>
+                <img src="../image/payment.png" alt="Accepted Payment Methods: AMEX, Mastercard, PayPal, Visa, Venmo" class="payment-icons-img">
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
