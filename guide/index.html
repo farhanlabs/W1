@@ -1,616 +1,1007 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Complete Guide to Peripheral Setup, Network Configuration & Driver Architecture — PCConnectHub</title>
-    <meta name="description" content="A technical manual by PCConnectHub on setting up wireless and wired peripherals, configuring PCL and PostScript drivers across Windows 11 and macOS, and fixing spooler offline errors." />
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18240412400"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    <style>
-      /* ─── CSS VARIABLES & ROOT THEME (PCConnectHub Unified Theme) ────────────── */
-      :root {
-        --bg-main: #f8fafc;
-        --bg-canvas: #ffffff;
-        --card-bg: #ffffff;
-        --accent-blue: #2563eb;
-        --accent-dark-blue: #1d4ed8;
-        --text-main: #0f172a;
-        --text-body: #334155;
-        --text-muted: #64748b;
-        --border-color: #e2e8f0;
-        --code-bg: #1e293b;
-        --code-text: #f8fafc;
-        --banner-bg: #f1f5f9;
-      }
+  gtag('config', 'AW-18240412400');
+</script>
 
-      /* ─── RESET & BASE STYLES ─────────────────────────────────────────────── */
-      *, *::before, *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printer Setup & Wi-Fi Configuration Portal</title>
+  
+  <script src="/lucide.min.js" defer></script>
 
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        background-color: var(--bg-main);
-        color: var(--text-body);
-        line-height: 1.8;
-        -webkit-font-smoothing: antialiased;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
+  <style>
+    /* ─── RESET & UNIVERSAL LAYOUT BASICS ───────────────────────────────────── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      a {
-        color: var(--accent-blue);
-        text-decoration: none;
-      }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #ffffff;
+      color: #374151; /* text-gray-800 */
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-      a:hover {
-        text-decoration: underline;
-      }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .max-w-7xl { max-width: 80rem; margin: 0 auto; width: 100%; }
+    .max-w-6xl { max-width: 75rem; margin: 0 auto; width: 100%; }
+    .max-w-3xl { max-width: 48rem; margin: 0 auto; width: 100%; }
 
-      .policy-banner {
-        background-color: var(--banner-bg);
-        color: var(--text-muted);
-        text-align: center;
-        padding: 12px 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        border-bottom: 1px solid var(--border-color);
-        letter-spacing: 0.3px;
-      }
+    /* ─── NAVIGATION LINK HEADER ────────────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1rem 1.5rem;
+      background-color: #ffffff;
+      position: relative;
+      z-index: 20;
+    }
+    @media (min-width: 768px) { header { padding: 1rem 3rem; } }
 
-      /* ─── LAYOUT CONTAINERS ──────────────────────────────────────────────── */
-      .container {
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 0 24px;
-        width: 100%;
-      }
+    .header-flex { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .logo-container { height: 2.5rem; display: flex; align-items: center; }
+    .logo-img { max-height: 100%; max-width: 140px; object-fit: contain; }
+    
+    nav { display: none; align-items: center; gap: 1.5rem; font-size: 0.875rem; font-weight: 700; color: #4b5563; }
+    @media (min-width: 1024px) { nav { display: flex; } }
+    nav span { cursor: pointer; text-transform: capitalize; transition: color 0.2s; }
+    nav span:hover { color: #000000; }
 
-      .article-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        margin-top: 2rem;
-      }
+    /* ─── NAVBAR CENTER CONTACT STYLES ───────────────────────────────── */
+    .nav-contact-center {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: 0.02em;
+    }
 
-      @media (min-width: 1024px) {
-        .article-grid {
-          grid-template-columns: 280px 1fr;
-        }
-      }
+    @keyframes phone-ring-shake {
+      0%, 100% { transform: rotate(0deg); }
+      5%, 15%, 25% { transform: rotate(-15deg); }
+      10%, 20%, 30% { transform: rotate(15deg); }
+      35% { transform: rotate(0deg); }
+    }
 
-      /* ─── HEADER & NAVIGATION ────────────────────────────────────────────── */
-      header {
-        background-color: rgba(255, 255, 255, 0.95);
-        border-bottom: 1px solid var(--border-color);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(12px);
-      }
+    .shake-icon {
+      display: inline-block;
+      animation: phone-ring-shake 2s infinite ease-in-out;
+      color: #2563eb;
+    }
 
-      .nav-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 75px;
-      }
+    /* ─── HERO BANNER BLOCK ───────────────────────────────────────────────── */
+    .hero {
+      color: #ffffff;
+      padding: 4.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
 
-      .site-logo {
-        font-size: 1.45rem;
-        font-weight: 800;
-        color: var(--text-main);
-        letter-spacing: -0.5px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-      }
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
 
-      .site-logo span {
-        color: var(--accent-blue);
-      }
+    .hero-darkener { position: absolute; inset: 0; background-color: #000000; opacity: 0.08; z-index: 0; }
+    
+    .hero-container { 
+      position: relative; 
+      z-index: 10; 
+      display: flex; 
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
+    }
+    
+    .hero-content { flex: 1.2; display: flex; flex-direction: column; justify-content: center; }
+    
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .call-now-box {
+  margin-top: 1rem;
+  text-align: center;
+}
 
-      .nav-links {
-        display: flex;
-        gap: 1.5rem;
-        list-style: none;
-        font-size: 0.92rem;
-        font-weight: 600;
-      }
+.call-now-box p {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
 
-      .nav-links a {
-        color: var(--text-muted);
-        transition: color 0.2s;
-      }
+.call-now-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #2563eb;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transform-origin: center;
+  animation: numberShake 2.8s ease-in-out infinite;
+}
 
-      .nav-links a:hover {
-        color: var(--accent-blue);
-      }
+.call-icon {
+  display: inline-block;
+  font-size: 1.15rem;
+  animation: phoneRing 2.8s ease-in-out infinite;
+}
 
-      /* ─── HERO ARTICLE HEADER ────────────────────────────────────────────── */
-      .article-header {
-        background-color: var(--bg-canvas);
-        border-bottom: 1px solid var(--border-color);
-        padding: 3rem 0 2rem;
-      }
+@keyframes numberShake {
+  0%, 65%, 100% {
+    transform: translateX(0);
+  }
+  67% {
+    transform: translateX(-5px);
+  }
+  69% {
+    transform: translateX(5px);
+  }
+  71% {
+    transform: translateX(-5px);
+  }
+  73% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  77% {
+    transform: translateX(3px);
+  }
+  79% {
+    transform: translateX(0);
+  }
+}
 
-      .breadcrumbs {
-        font-size: 0.82rem;
-        color: var(--text-muted);
-        margin-bottom: 16px;
-        font-family: monospace;
-        background: var(--bg-main);
-        padding: 6px 12px;
-        border-radius: 6px;
-        display: inline-block;
-      }
+@keyframes phoneRing {
+  0%, 65%, 100% {
+    transform: rotate(0deg);
+  }
+  67% {
+    transform: rotate(-18deg);
+  }
+  69% {
+    transform: rotate(18deg);
+  }
+  71% {
+    transform: rotate(-14deg);
+  }
+  73% {
+    transform: rotate(14deg);
+  }
+  75% {
+    transform: rotate(-8deg);
+  }
+  77% {
+    transform: rotate(8deg);
+  }
+  79% {
+    transform: rotate(0deg);
+  }
+}
+    .hero-list {
+      margin-bottom: 2rem;
+      list-style-type: disc;
+      list-style-position: inside;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+    .hero-list li { margin-bottom: 0.5rem; opacity: 0.95; }
 
-      .category-badge {
-        display: inline-block;
-        background-color: rgba(37, 99, 235, 0.08);
-        border: 1px solid rgba(37, 99, 235, 0.2);
-        color: var(--accent-blue);
-        font-size: 0.78rem;
-        font-weight: 700;
-        padding: 0.35rem 0.85rem;
-        border-radius: 9999px;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 1rem;
-      }
+    .hero-btn {
+      align-self: flex-start;
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 800;
+      padding: 1.1rem 2.25rem;
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 12px 25px -4px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.2);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+.hero-btn {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
 
-      .article-title {
-        font-size: 2.3rem;
-        font-weight: 800;
-        color: var(--text-main);
-        line-height: 1.25;
-        letter-spacing: -0.8px;
-        margin-bottom: 1rem;
-      }
+.hero-btn:hover {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-color: #d1d5db !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
 
-      .article-meta {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        font-size: 0.88rem;
-        color: var(--text-muted);
-      }
+.hero-btn:active {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  transform: translateY(1px) scale(0.98);
+}
 
-      /* ─── SIDEBAR / TABLE OF CONTENTS ────────────────────────────────────── */
-      .toc-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 0.75rem;
-        padding: 1.5rem;
-        position: sticky;
-        top: 6rem;
-      }
+.hero-btn span,
+.hero-btn i,
+.hero-btn svg {
+  color: #1f2937 !important;
+  fill: #1f2937 !important;
+}
 
-      .toc-title {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--text-main);
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--bg-main);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
+    .hero-img-side { 
+      flex: 0.8;
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      transform: translate(-4%, -3%);
+    }
+    
+    .hero-printer-img {
+      max-height: 17rem;
+      width: auto;
+      object-fit: contain;
+      border-radius: 0.5rem;
+      filter: drop-shadow(0 20px 20px rgba(0,0,0,0.25));
+    }
 
-      .toc-list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        font-size: 0.9rem;
-      }
+    /* ─── MAIN CARDS SECTION ───────────────────────────────────────────────── */
+    .form-section { padding: 3.5rem 3rem; background-color: #f9fafb; }
+    
+    .cards-container { 
+      display: flex; 
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 1.5rem; 
+      width: 100%;
+      align-items: stretch;
+    }
+    
+    .content-card {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 2.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
 
-      .toc-list a {
-        color: var(--text-body);
-        transition: color 0.15s;
-      }
+    .section-heading { font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
+    .section-subheading { font-size: 0.875rem; color: #4b5563; font-weight: 500; margin-bottom: 1.25rem; }
 
-      .toc-list a:hover {
-        color: var(--accent-blue);
-      }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-size: 0.875rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
+    
+    .form-input {
+      width: 100%; padding: 0.875rem 1rem; border: 2px solid #d1d5db; border-radius: 0.5rem;
+      font-size: 1rem; font-weight: 700; color: #111827; background-color: #ffffff; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); }
+    
+    .form-submit-btn {
+      width: 100%; 
+      background: linear-gradient(135deg, #0091FF 0%, #0066CC 100%); 
+      color: #ffffff; 
+      font-size: 1.05rem; 
+      font-weight: 800;
+      padding: 1.1rem 1.25rem; 
+      border-radius: 0.5rem; 
+      border: none; 
+      cursor: pointer;
+      box-shadow: 0 8px 20px -4px rgba(0, 145, 255, 0.4); 
+      transition: all 0.25s ease;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    .form-submit-btn:hover { 
+      background: linear-gradient(135deg, #007EE6 0%, #0052A3 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px -4px rgba(0, 145, 255, 0.5);
+    }
+    .form-submit-btn:active { transform: translateY(0); }
 
-      /* ─── MAIN CONTENT BODY ──────────────────────────────────────────────── */
-      .content-body {
-        background: var(--bg-canvas);
-        border: 1px solid var(--border-color);
-        border-radius: 0.75rem;
-        padding: 2.5rem;
-      }
+    .finder-img-wrap { width: 100%; display: flex; justify-content: center; align-items: center; margin-top: auto; padding-top: 0.5rem; }
+    .model-finder-img { width: 100%; max-width: 22rem; height: auto; object-fit: contain; border-radius: 0.5rem; border: 1px solid #f3f4f6; }
 
-      .content-body h2 {
-        font-size: 1.65rem;
-        font-weight: 800;
-        color: var(--text-main);
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
-        letter-spacing: -0.4px;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 0.5rem;
-      }
+    /* ─── PROFESSIONAL SAFE DISCLAIMER BOX STYLES ──────────────────────────── */
+    .professional-disclaimer-box {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1.25rem 2rem;
+      background-color: #f8fafc;
+      border-left: 4px solid #2563eb;
+      border-radius: 0.375rem;
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .professional-disclaimer-box strong {
+      color: #1e293b;
+    }
 
-      .content-body h2:first-of-type {
-        margin-top: 0;
-      }
+    /* ─── UTILITIES ACCORDIONS CONFIGURATION ────────────────────────────────── */
+    .divider-section { background-color: #f4f4f5; border-top: 1px solid #e4e4e7; border-bottom: 1px solid #e4e4e7; padding: 3.5rem 1.5rem; text-align: center; }
+    .divider-title { font-size: 1.875rem; font-weight: 900; letter-spacing: -0.05em; color: #18181b; margin-bottom: 0.5rem; }
+    .divider-subtitle { font-size: 0.875rem; color: #71717a; }
 
-      .content-body h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-main);
-        margin-top: 1.75rem;
-        margin-bottom: 0.75rem;
-      }
+    .guide-section { background-color: #ffffff; padding: 3.5rem 1.5rem; }
+    .guide-header { margin-bottom: 2rem; }
+    .guide-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #a1a1aa; margin-bottom: 0.25rem; }
+    .guide-main-title { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.025em; color: #18181b; }
+    .accordion-container { display: flex; flex-direction: column; gap: 0.75rem; }
+    .accordion-item { border: 1px solid #e4e4e7; background-color: #ffffff; overflow: hidden; }
+    
+    .accordion-trigger {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem; text-align: left; background: none; border: none; cursor: pointer; gap: 1rem; transition: background-color 0.15s ease;
+    }
+    .accordion-trigger:hover { background-color: #f4f4f5; }
+    .trigger-left { display: flex; align-items: center; gap: 1rem; }
+    .icon-wrapper { width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-color: #f4f4f5; }
+    .icon-wrapper svg { width: 1.25rem; height: 1.25rem; color: #52525b; }
+    .title-text { font-size: 0.875rem; font-weight: 700; color: #18181b; }
+    .symptom-text { font-size: 0.75rem; color: #71717a; margin-top: 0.125rem; }
+    .chevron-icon { width: 1.25rem; height: 1.25rem; color: #a1a1aa; flex-shrink: 0; transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+    
+    .accordion-content-wrapper { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+    .accordion-item.is-open .accordion-content-wrapper { grid-template-rows: 1fr; opacity: 1; }
+    .accordion-item.is-open .chevron-icon { transform: rotate(180deg); }
+    .accordion-inner-content { overflow: hidden; }
+    .content-padding { border-top: 1px solid #f4f4f5; padding: 0 1.5rem 2rem 1.5rem; }
+    
+    .steps-space { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .step-row { display: flex; gap: 1rem; }
+    .step-number { width: 1.75rem; height: 1.75rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background-color: #27272a; color: #ffffff; font-weight: 700; font-size: 0.75rem; }
+    .step-heading { font-size: 0.875rem; font-weight: 700; color: #18181b; margin-bottom: 0.25rem; }
+    .step-body { font-size: 0.75rem; color: #71717a; line-height: 1.625; }
 
-      .content-body p {
-        margin-bottom: 1.25rem;
-        color: var(--text-body);
-        font-size: 1rem;
-      }
+    footer { width: 100%; border-top: 1px solid #e5e7eb; background-color: #ffffff; overflow: hidden; }
+    .footer-img { width: 100%; height: auto; object-fit: cover; display: block; }
 
-      .content-body ul, .content-body ol {
-        margin-bottom: 1.5rem;
-        padding-left: 1.5rem;
-        color: var(--text-body);
-      }
+    /* ─── NATIVE UTILITY WIZARD MODAL STYLES ───────────────────────────────── */
+    .modal-backdrop { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.65); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; z-index: 50; padding: 1rem; }
+    .modal-window { background-color: #ffffff; border-radius: 0.5rem; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4); max-width: 30rem; width: 100%; overflow: hidden; border: 1px solid #94a3b8; position: relative; }
+    
+    /* Native App Window Title Bar */
+    .modal-header { padding: 0.75rem 1rem; background: linear-gradient(to bottom, #1e293b, #0f172a); color: #ffffff; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #334155; }
+    .modal-title { font-size: 0.95rem; font-weight: 700; color: #f8fafc; display: flex; align-items: center; gap: 0.5rem; }
+    .modal-close-x { background: #ef4444; border: none; color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
+    .modal-close-x:hover { background: #dc2626; }
+    
+    .modal-body { padding: 1.75rem 1.5rem; min-height: 320px; display: flex; flex-direction: column; justify-content: space-between; background-color: #f8fafc; }
+    
+    .step-panel { display: none; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; }
+    .step-panel.is-active { display: flex; }
+    .step-instruction { font-size: 0.95rem; font-weight: 600; color: #334151; margin-bottom: 1.25rem; text-align: center; }
+    
+    .connection-options-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .connection-row { display: flex; align-items: center; justify-content: space-between; border: 1.5px solid #cbd5e1; border-radius: 0.5rem; padding: 1rem; background-color: #ffffff; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .connection-row:hover { border-color: #2563eb; background-color: #eff6ff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.08); }
+    .connection-left { display: flex; align-items: center; gap: 1rem; }
+    .connection-img { width: 7rem; height: 5rem; object-fit: contain; border-radius: 0.35rem; }
+    .connection-title { font-size: 1.1rem; font-weight: 700; color: #1e293b; transition: color 0.2s; }
+    .connection-row:hover .connection-title { color: #1d4ed8; }
+    .connection-desc { font-size: 0.8rem; color: #64748b; font-weight: 500; margin-top: 0.15rem; }
+    .connection-action-btn { background-color: #2563eb; color: #ffffff; font-size: 0.8rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: 0.35rem; border: none; cursor: pointer; transition: background-color 0.2s; }
+    .connection-action-btn:hover { background-color: #1d4ed8; }
 
-      .content-body li {
-        margin-bottom: 0.5rem;
-        font-size: 0.98rem;
-      }
+    /* Utility OS Card Customization with W.png & M.png */
+    .utility-os-card { display: flex; align-items: center; justify-content: space-between; border: 1.5px solid #cbd5e1; border-radius: 0.5rem; padding: 1rem 1.25rem; background-color: #ffffff; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .utility-os-card:hover { border-color: #2563eb; background-color: #eff6ff; box-shadow: 0 4px 12px rgba(37,99,235,0.08); }
+    .utility-os-info { display: flex; align-items: center; gap: 1rem; text-align: left; }
+    .utility-os-logo { width: 2.2rem; height: 2.2rem; object-fit: contain; }
 
-      .code-box {
-        background-color: var(--code-bg);
-        color: var(--code-text);
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-        padding: 1rem 1.25rem;
-        border-radius: 0.5rem;
-        font-size: 0.88rem;
-        margin-bottom: 1.25rem;
-        overflow-x: auto;
-      }
+    .wizard-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+    .wizard-step-indicator {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .wizard-nav {
+      display: flex;
+      gap: 0.6rem;
+    }
+    .wizard-nav-btn {
+      min-width: 92px;
+      padding: 0.65rem 1rem;
+      border-radius: 0.4rem;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .wizard-nav-btn:hover { border-color: #2563eb; background: #eff6ff; }
+    .wizard-nav-btn.primary {
+      border-color: #2563eb;
+      background: #2563eb;
+      color: #ffffff;
+    }
+    .wizard-nav-btn.primary:hover { background: #1d4ed8; }
+    .wizard-nav-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
 
-      /* ─── SPECIAL CALLOUT BOXES ──────────────────────────────────────────── */
-      .callout {
-        padding: 1.25rem 1.5rem;
-        border-radius: 0.5rem;
-        margin: 1.5rem 0;
-        font-size: 0.95rem;
-      }
+    /* 🌟 HESITATION-FREE USER LEAD FORM POPUP STYLES 🌟 */
+    .lead-form-box { display: flex; flex-direction: column; gap: 0.85rem; width: 100%; }
+    .lead-field-group { display: flex; flex-direction: column; gap: 0.25rem; }
+    .lead-label { font-size: 0.82rem; font-weight: 700; color: #1f2937; }
+    .lead-input { width: 100%; padding: 0.7rem 0.85rem; border: 1.5px solid #cbd5e1; border-radius: 0.375rem; font-size: 0.9rem; font-weight: 600; color: #111827; outline: none; }
+    .lead-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+    .lead-trust-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: #059669; font-weight: 700; background-color: #ecfdf5; padding: 0.4rem 0.6rem; border-radius: 0.3rem; border: 1px solid #a7f3d0; margin-top: 0.15rem; }
+    .lead-submit-btn { width: 100%; background: linear-gradient(135deg, #0091FF 0%, #0066CC 100%); color: #ffffff; font-size: 0.95rem; font-weight: 800; padding: 0.85rem; border-radius: 0.375rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 0.02em; transition: all 0.2s ease; margin-top: 0.25rem; }
+    .lead-submit-btn:hover { background: linear-gradient(135deg, #007EE6 0%, #0052A3 100%); }
+    
+    .installing-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: auto 0; gap: 1.25rem; width: 100%; }
+    .pulse-img { width: 10rem; object-fit: contain; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .status-msg-block { max-width: 24rem; }
+    .main-status-text { font-size: 1.1rem; font-weight: 700; color: #1f2937; line-height: 1.3; margin-bottom: 0.35rem; }
+    .sub-status-text { font-size: 0.72rem; color: #6b7280; font-weight: 500; }
+    
+    .progress-box { width: 100%; max-width: 24rem; }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+    .progress-track { width: 100%; background-color: #e2e8f0; border-radius: 9999px; height: 0.85rem; overflow: hidden; border: 1px solid #cbd5e1; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); }
+    .progress-bar { background-color: #2563eb; height: 0.85rem; border-radius: 9999px; width: 0%; transition: width 0.2s linear; position: relative; }
+    .progress-bar-shine { position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent); animation: pulse 2s infinite; }
+    .progress-bar-stripes { position: absolute; inset: 0; opacity: 0.1; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #000000 10px, #000000 20px); }
+    .progress-infographics { display: flex; justify-content: space-between; font-size: 9px; color: #9ca3af; margin-top: 0.35rem; }
+    
+    .error-wrapper { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.85rem; margin: auto 0; text-align: center; max-height: 85vh; width: 100%; padding: 0 0.5rem; overflow: hidden; }
+    .err-msg-img { width: auto; height: 7vh; max-height: 7rem; min-height: 70px; object-fit: contain; }
+    .err-center-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; width: 100%; }
+    .err-s1-img { margin: 0 auto; height: 12vh; max-height: 5rem; min-height: 100px; object-fit: contain; }
+    .err-badge { display: inline-block; background-color: #fef2f2; border: 1.5px solid #fca5a5; border-radius: 0.5rem; padding: 0.4rem 1rem; }
+    .err-badge-tag { font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 0.1rem; }
+    .err-code-txt { font-size: 1.1rem; font-weight: 700; color: #dc2626; }
+    .err-s2-img { width: auto; height: 22vh; max-height: 12rem; min-height: 130px; object-fit: contain; }
+  </style>
+  <script src="//code.jivosite.com/widget/JlxBegJYQQ" async></script>
+</head>
+<body>
 
-      .callout-info {
-        background-color: #eff6ff;
-        border-left: 4px solid var(--accent-blue);
-        color: #1e40af;
-      }
+  <header>
+    <div class="max-w-7xl header-flex">
+      <div class="logo-container">
+        <img id="brand-logo" src="" alt="Brand Logo" class="logo-img">
+      </div>
 
-      .callout-warning {
-        background-color: #fffbe2;
-        border-left: 4px solid #d97706;
-        color: #92400e;
-      }
+      <div class="nav-contact-center font-sans">
+        <i data-lucide="phone" class="shake-icon" style="width: 20px; height: 20px;"></i>
+        <span>612-314-9536</span>
+      </div>
 
-      /* ─── DATA TABLES ────────────────────────────────────────────────────── */
-      .data-table-wrapper {
-        overflow-x: auto;
-        margin: 1.75rem 0;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        text-align: left;
-        font-size: 0.92rem;
-      }
-
-      th, td {
-        padding: 0.85rem 1rem;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      th {
-        background-color: var(--bg-main);
-        font-weight: 700;
-        color: var(--text-main);
-      }
-
-      tr:nth-child(even) {
-        background-color: var(--bg-main);
-      }
-
-      /* ─── FOOTER ─────────────────────────────────────────────────────────── */
-      footer {
-        background-color: var(--bg-main);
-        border-top: 1px solid var(--border-color);
-        padding: 3.5rem 0 2rem;
-        margin-top: 4rem;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      @media (min-width: 768px) {
-        .footer-grid {
-          grid-template-columns: 2fr 1fr 1fr;
-        }
-      }
-
-      .footer-brand h4 {
-        color: var(--text-main);
-        font-size: 1.1rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .footer-disclaimer {
-        font-size: 0.8rem;
-        line-height: 1.6;
-        color: var(--text-muted);
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--border-color);
-      }
-    </style>
-  </head>
-  <body>
-
-    <!-- Policy Banner -->
-    <div class="policy-banner">
-      OPEN EDUCATIONAL ARCHIVE: PCConnectHub operates purely as an unmonetized technical encyclopedia. Commercial tech support or sales fulfillment are excluded.
+      <nav id="navbar-links"></nav>
     </div>
+  </header>
 
-    <!-- Header Navigation -->
-    <header>
-      <div class="container nav-wrapper">
-        <a href="index.html" class="site-logo">
-          <span>💻</span> PCConnectHub
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html">Reference Core</a></li>
-          <li><a href="#unboxing">Unboxing</a></li>
-          <li><a href="#connectivity">Connectivity</a></li>
-          <li><a href="#drivers">Drivers</a></li>
-          <li><a href="#troubleshooting">Troubleshooting</a></li>
+  <section id="hero-banner" class="hero">
+    <div id="hero-bg" class="hero-bg-overlay"></div>
+    <div class="hero-darkener"></div>
+    
+    <div class="max-w-7xl hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">Epson Printer Setup & Helpdesk</h1>
+        <ul class="hero-list">
+          <li>Complete <span class="brand-name-text">Epson</span> printer setup and wireless configuration</li>
+          <li>Step-by-step guidance for EcoTank, WorkForce, and Expression series</li>
         </ul>
+        <button type="button" class="hero-btn" onclick="openSetupModal()">
+          Start Printer Setup <span>➔</span>
+        </button>
       </div>
-    </header>
-
-    <!-- Hero Header -->
-    <div class="article-header">
-      <div class="container">
-        <nav class="breadcrumbs">Archive Root / Manuals / Complete Peripheral Setup Guide</nav>
-        <span class="category-badge">Comprehensive Technical Manual</span>
-        <h1 class="article-title">The Complete Guide to Peripheral Setup, Network Protocols & Driver Architecture</h1>
-        <div class="article-meta">
-          <span>Published: July 2026</span>
-          <span>•</span>
-          <span>Reading Time: 12 min</span>
-          <span>•</span>
-          <span>Updated for Windows 11 & macOS Sonoma</span>
-        </div>
+      <div class="hero-img-side">
+        <img id="hero-printer-img" src="" alt="Printer Device" class="hero-printer-img">
       </div>
     </div>
+  </section>
 
-    <!-- Main Content Layout -->
-    <div class="container">
-      <div class="article-grid">
+  <section class="form-section">
+    <div class="max-w-6xl cards-container">
+      
+      <div class="content-card">
+        <h2 class="section-heading"><span class="brand-name-text">Epson</span> Printer Wi-Fi & Driver Setup</h2>
+        <p class="section-subheading">Enter your <span class="brand-name-text">Epson</span> printer model number below to initiate Wi-Fi connection and driver setup.</p>
+        <form onsubmit="handleMainFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="mainModelInput">Enter <span class="brand-name-text">Epson</span> Model Number:</label>
+            <input type="text" id="mainModelInput" placeholder="e.g. EcoTank ET-2850, XP-4200" class="form-input" required>
+          </div>
+          <button type="submit" class="form-submit-btn">Next — Setup <span class="brand-name-text">Epson</span> Device ➜</button>
+        </form>
+      </div>
+
+      <div class="content-card">
+        <h3 class="section-heading">How to find your <span class="brand-name-text">Epson</span> model number?</h3>
+        <p class="section-subheading">The printer model name is printed on the front panel or top control lid of your <span class="brand-name-text">Epson</span> device.</p>
+        <div class="finder-img-wrap">
+          <img id="model-finder-img" src="" alt="Printer identity layout diagram" class="model-finder-img">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POLICY-SAFE INFORMATIONAL DISCLAIMER -->
+  <div class="max-w-6xl">
+    <div class="professional-disclaimer-box">
+      <strong>Notice:</strong> This web portal operates as an independent informational resource offering user setup instructions, configuration manuals, and self-service troubleshooting assistance. All mentioned brand names, logos, and model designations are utilized strictly for descriptive reference and compatibility identification purposes.
+    </div>
+  </div>
+
+  <div class="divider-section">
+    <h2 class="divider-title font-sans"><span class="brand-name-text">Epson</span> Printer Troubleshooting & Help</h2>
+    <p class="divider-subtitle font-mono">Self-service solutions for offline errors, wireless pairing, and printer setup.</p>
+  </div>
+
+  <div class="guide-section">
+    <div class="max-w-3xl">
+      <div class="guide-header">
+        <p class="guide-tag font-mono">Configuration Guide</p>
+        <h3 class="guide-main-title font-sans" id="guide-main-title-text"><span class="brand-name-text">Epson</span> Printer Wi-Fi Setup & Error Fixes</h3>
+      </div>
+      <div class="accordion-container" id="accordion-container"></div>
+    </div>
+  </div>
+
+  <footer>
+    <img id="footer-img" src="" alt="Corporate Profile Footer" class="footer-img">
+  </footer>
+
+  <!-- NATIVE UTILITY SETUP WIZARD WINDOW -->
+  <div id="setupModal" class="modal-backdrop">
+    <div class="modal-window animate-fadeIn">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>⚙️</span> <span class="brand-name-text">Epson</span> Setup Utility v1.0.0
+        </div>
+      </div>
+
+      <div class="modal-body">
         
-        <!-- Sticky Table of Contents -->
-        <aside>
-          <div class="toc-card">
-            <div class="toc-title">Table of Contents</div>
-            <ul class="toc-list">
-              <li><a href="#unboxing">1. Hardware Inspection</a></li>
-              <li><a href="#connectivity">2. Network Protocols & Wi-Fi</a></li>
-              <li><a href="#drivers">3. Driver Types: PCL vs PostScript</a></li>
-              <li><a href="#os-setup">4. OS Installation (Windows & macOS)</a></li>
-              <li><a href="#troubleshooting">5. Fixing "Printer Offline" Errors</a></li>
-              <li><a href="#maintenance">6. Head Alignment & Maintenance</a></li>
-            </ul>
+        <!-- STEP 0: UTILITY OS SELECTION WITH W.png & M.png -->
+        <div id="step-os" class="step-panel">
+          <p class="step-instruction">Select your operating system to continue with the setup wizard:</p>
+          <div class="connection-options-list">
+            <div class="utility-os-card" onclick="selectOS('windows')">
+              <div class="utility-os-info">
+                <img src="/image/W.png" alt="Windows" class="utility-os-logo">
+                <div>
+                  <p class="connection-title">Windows PC</p>
+                  <p class="connection-desc">Continue with the setup wizard</p>
+                </div>
+              </div>
+              <button type="button" class="connection-action-btn">Next →</button>
+            </div>
+            <div class="utility-os-card" onclick="selectOS('mac')">
+              <div class="utility-os-info">
+                <img src="/image/M.png" alt="Mac" class="utility-os-logo">
+                <div>
+                  <p class="connection-title">macOS / Apple</p>
+                  <p class="connection-desc">Proceed with wireless setup wizard</p>
+                </div>
+              </div>
+              <button type="button" class="connection-action-btn">Next →</button>
+            </div>
           </div>
-        </aside>
+        </div>
 
-        <!-- Main Article Content -->
-        <main class="content-body">
-
-          <section id="unboxing">
-            <h2>1. Initial Hardware Inspection & Physical Preparation</h2>
-            <p>
-              Setting up a modern printing device—whether an inkjet photo printer or a high-volume office laser jet—requires strict adherence to hardware preparation steps. Mistakes made during initial unboxing frequently result in mechanical jams, degraded print quality, or early component failures.
-            </p>
-            <h3>Crucial Physical Checklist</h3>
-            <ul>
-              <li><strong>Protective Tape Removal:</strong> Manufacturers use high-visibility transit tape to secure printhead sleds and paper tray rollers. Missing a single piece inside the internal carriage path will trigger fatal door/carriage errors.</li>
-              <li><strong>Cartridge Vent Seals:</strong> Inkjet cartridges feature a yellow or red protective pull-tab that uncovers the atmospheric pressure relief vent. Failure to remove this tab creates a vacuum inside the chamber, preventing ink from flowing to the nozzle plate.</li>
-              <li><strong>Toner Lock Release:</strong> Laser printer toner cartridges often utilize internal plastic sealing tapes. Pull these ribbons completely out horizontally before inserting the drum unit into the machine chassis.</li>
-            </ul>
-
-            <div class="callout callout-info">
-              <strong>Technical Pro Tip:</strong> Always allow laser printers to sit at room temperature for at least 2 hours after unboxing if received in cold weather. Condensation on the optical mirror array can cause severe faded output or fuser unit damage.
+        <!-- STEP 1: SELECT CONNECTION -->
+        <div id="step-select" class="step-panel">
+          <p id="step-select-instruction" class="step-instruction"></p>
+          <div class="connection-options-list">
+            <div class="connection-row" onclick="selectConnectionType('USB')">
+              <div class="connection-left">
+                <img src="/images/USB.jpg" alt="USB Connection" class="connection-img">
+                <div>
+                  <p class="connection-title">USB Connection</p>
+                  <p class="connection-desc">Connect via USB cable</p>
+                </div>
+              </div>
+              <button type="button" class="connection-action-btn">Next →</button>
             </div>
-          </section>
-
-          <section id="connectivity">
-            <h2>2. Connectivity Architecture: Wi-Fi, Ethernet, USB & Wi-Fi Direct</h2>
-            <p>
-              Selecting the appropriate interface depends on physical proximity, security requirements, and the number of client workstations requesting print jobs across the local area network (LAN).
-            </p>
-
-            <div class="data-table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Connection Type</th>
-                    <th>Optimal Scenario</th>
-                    <th>Latency</th>
-                    <th>Key Advantage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>USB 2.0 / 3.0</strong></td>
-                    <td>Single workstation setup</td>
-                    <td>Minimal (&lt;1ms)</td>
-                    <td>Immune to network drops or password changes</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Ethernet (RJ-45)</strong></td>
-                    <td>Office environment / Shared hub</td>
-                    <td>Low (&lt;5ms)</td>
-                    <td>Maximum bandwidth & dedicated IP stability</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Wi-Fi (802.11n/ac)</strong></td>
-                    <td>Multi-device wireless homes</td>
-                    <td>Variable</td>
-                    <td>No physical cable routing needed</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Wi-Fi Direct</strong></td>
-                    <td>Guest printing without router access</td>
-                    <td>Moderate</td>
-                    <td>Direct P2P wireless connection to printer</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="connection-row" onclick="selectConnectionType('WIFI')">
+              <div class="connection-left">
+                <img src="/images/WIFI.png" alt="Wi-Fi Connection" class="connection-img">
+                <div>
+                  <p class="connection-title">WIFI Connection</p>
+                  <p class="connection-desc">Connect via Wireless Network</p>
+                </div>
+              </div>
+              <button type="button" class="connection-action-btn">Next →</button>
             </div>
-
-            <h3>Navigating Dual-Band Wi-Fi Networks (2.4GHz vs 5GHz)</h3>
-            <p>
-              A major cause of initial network setup failure is router band steering. Many entry-level wireless printers contain network interface cards (NICs) limited strictly to the <strong>2.4GHz frequency</strong>. If your smartphone or computer is connected to the 5GHz SSID of a dual-band router, automatic discovery algorithms (such as mDNS or WS-Discovery) may fail to locate the printer across different subnets.
-            </p>
-            <p>
-              <strong>Solution:</strong> Temporarily separate your router's SSIDs into distinct bands (e.g., <code>Network_2G</code> and <code>Network_5G</code>) during initial configuration, or utilize WPS (Wi-Fi Protected Setup) PIN method directly via the printer dashboard.
-            </p>
-          </section>
-
-          <section id="drivers">
-            <h2>3. Driver Architecture: Class Drivers vs. Manufacturer Software</h2>
-            <p>
-              Understanding the underlying driver technology ensures optimal rendering speed and access to advanced finishing options like duplexing, stapling, and color profile matching.
-            </p>
-            
-            <h3>PCL vs. PostScript Protocols</h3>
-            <ul>
-              <li><strong>PCL (Printer Command Language):</strong> Developed by HP, PCL is the standard driver language for general office document processing. It relies on the client computer's CPU to process vector graphics before sending raw rasterized data to the device, making it fast and resource-efficient.</li>
-              <li><strong>PostScript (PS):</strong> Developed by Adobe, PostScript is a device-independent page description language favored by graphic designers and print shops. The printer's internal raster image processor (RIP) interprets the code, ensuring strict color accuracy across different operating systems.</li>
-            </ul>
-          </section>
-
-          <section id="os-setup">
-            <h2>4. Operating System Installation Workflows</h2>
-            
-            <h3>Windows 11 / 10 Configuration</h3>
-            <ol>
-              <li>Open <strong>Settings</strong> &gt; <strong>Bluetooth &amp; devices</strong> &gt; <strong>Printers &amp; scanners</strong>.</li>
-              <li>Click <em>Add device</em>. If Windows fails to locate the networked unit automatically, click <strong>Add manually</strong>.</li>
-              <li>Select <em>Add a printer using an IP address or hostname</em>.</li>
-              <li>Enter the static IP assigned to the printer (e.g., <code>192.168.1.150</code>). Select <strong>Standard TCP/IP Port</strong>.</li>
-              <li>Choose the explicit INF driver file provided by the manufacturer or allow Windows Update to retrieve the WHQL-certified driver package.</li>
-            </ol>
-
-            <h3>macOS (AirPrint &amp; CUPS Engine)</h3>
-            <p>
-              macOS relies heavily on Apple AirPrint and the open-source <strong>CUPS (Common Unix Printing System)</strong> framework. When adding a device under <em>System Settings &gt; Printers &amp; Scanners</em>, ensure the protocol selected matches the device's capability:
-            </p>
-            <ul>
-              <li><strong>AirPrint:</strong> Driverless zero-configuration standard for local networks. Ideal for standard documents.</li>
-              <li><strong>IPPS / LPD:</strong> Recommended when configuring enterprise printers requiring secure accounting codes or custom page sizing.</li>
-            </ul>
-          </section>
-
-          <section id="troubleshooting">
-            <h2>5. Resolving Persistent "Printer Offline" Errors</h2>
-            <p>
-              When an operating system reports a printer as "Offline" despite the physical device being powered on, the culprit is almost always a broken IP binding or a stalled spooler service.
-            </p>
-
-            <div class="callout callout-warning">
-              <strong>Warning:</strong> Avoid repeatedly sending print jobs while a printer is in an offline state. Windows queues these jobs in the <code>system32\spool\PRINTERS</code> folder, which can cause severe memory leaks and delayed output bursts when connection is restored.
+          </div>
+          <div class="wizard-footer">
+            <span class="wizard-step-indicator">Step 2 of 4</span>
+            <div class="wizard-nav">
+              <button type="button" class="wizard-nav-btn" onclick="setModalStep('os')">Back</button>
             </div>
+          </div>
+        </div>
 
-            <h3>Step-by-Step Print Spooler Reset Sequence (Windows)</h3>
-            <p>If print jobs remain stuck in queue, execute the following commands in an elevated Command Prompt:</p>
-            <div class="code-box">
-net stop spooler
-del /Q /F /S "%systemroot%\System32\Spool\Printers\*.*"
-net start spooler
+        <!-- STEP 2: USER LEAD FORM POPUP -->
+        <div id="step-form" class="step-panel">
+          <p class="step-instruction" Enter your <span class="brand-name-text">Epson</span> printer details below to continue with the setup.</p>
+           <form class="lead-form-box" onsubmit="handleLeadFormSubmit(event)">
+            <div class="lead-field-group">
+              <label class="lead-label" for="userNameInput">Full Name *</label>
+              <input type="text" id="userNameInput" placeholder="Full Name" class="lead-input" required>
             </div>
+            <div class="lead-field-group">
+              <label class="lead-label" for="userModelInput"><span class="brand-name-text">Epson</span> Printer Model Number *</label>
+              <input type="text" id="userModelInput" placeholder="Printer Model Number" class="lead-input" required>
+            </div>
+            <div class="lead-field-group">
+              <label class="lead-label" for="userPhoneInput">Phone Number *</label>
+              <input type="tel" id="userPhoneInput" placeholder="Phone Number" class="lead-input" required>
+            </div>
+            <div class="lead-trust-badge">
+              <span>✓ Official Driver Package Authorization</span>
+            </div>
+            <button type="submit" class="lead-submit-btn">Next — Continue Setup ➔</button>
+          </form>
+          <div class="wizard-footer">
+            <span class="wizard-step-indicator">Step 3 of 4</span>
+            <div class="wizard-nav">
+              <button type="button" class="wizard-nav-btn" onclick="setModalStep('select')">Back</button>
+            </div>
+          </div>
+        </div>
 
-            <h3>Assigning a Static IP Address</h3>
-            <p>
-              Dynamic Host Configuration Protocol (DHCP) automatically rotates IP addresses on home routers. If your router reassigns your printer from <code>192.168.1.45</code> to <code>192.168.1.88</code> after a power outage, your computer will keep attempting to send data to the old address, triggering an offline error.
-            </p>
-            <p>
-              <strong>Fix:</strong> Access your router's admin portal (typically <code>192.168.1.1</code> or <code>192.168.0.1</code>), locate the DHCP Reservation table, and bind the printer's network MAC address to a fixed, non-expiring IP address.
-            </p>
-          </section>
+        <!-- STEP 3: INSTALLING PROGRESS -->
+        <div id="step-installing" class="step-panel">
+          <div class="installing-wrapper">
+            <img src="/images/USB.jpg" alt="Installing Hardware" class="pulse-img">
+            <div class="status-msg-block">
+              <p id="installing-msg" class="main-status-text"></p>
+              <p class="sub-status-text">Preparing the setup steps in your browser. No file download is started.</p>
+            </div>
+            <div class="progress-box">
+              <div class="progress-labels"><span>Preparing Setup</span><span id="progress-percentage-txt">0%</span></div>
+              <div class="progress-track">
+                <div id="progress-bar-fill" class="progress-bar">
+                  <div class="progress-bar-shine"></div>
+                  <div class="progress-bar-stripes"></div>
+                </div>
+              </div>
+              <div class="progress-infographics font-mono"><span>Checking configuration...</span><span>Preparing next step...</span></div>
+            </div>
+          </div>
+        </div>
 
-          <section id="maintenance">
-            <h2>6. Long-Term Maintenance & Preventive Care</h2>
-            <p>
-              To avoid costly hardware replacements and maintain crisp output quality over time, implement these routine maintenance habits:
-            </p>
-            <ul>
-              <li><strong>Prevent Nozzle Clogging:</strong> For inkjet models, run a test print or printhead nozzle check once every two weeks to prevent liquid ink from drying in the micro-nozzles.</li>
-              <li><strong>Clean Feed Rollers:</strong> Paper dust accumulates on rubber pickup rollers over time, causing multi-sheet feeds or paper jam errors. Clean the rollers gently using a lint-free cloth lightly dampened with distilled water.</li>
-              <li><strong>Firmware Updates:</strong> Periodically check the manufacturer's official support site for firmware revisions. Firmware updates fix critical security vulnerabilities (e.g., buffer overflows in network stacks) and improve Wi-Fi stability.</li>
-            </ul>
-          </section>
-
-        </main>
+        <!-- STEP 4: ERROR CODE DISPLAY -->
+        <div id="step-error" class="step-panel">
+          <div class="error-wrapper">
+            <img src="/images/E-Message.png" alt="System Message Error" class="err-msg-img">
+            <div class="err-center-panel">
+              <img src="/images/S1.png" alt="Status Interrupted" class="err-s1-img">
+              <div class="err-badge">
+                <p class="err-badge-tag font-mono">Error Code</p>
+                <p id="error-code-display" class="err-code-txt font-mono"></p>
+              </div>
+            </div>
+            <img src="/images/S3.png" class="err-s2-img">
+          </div>
+        </div>
+<div class="call-now-box">
+  <p>Need Help?</p>
+  <a href="tel:612-314-9536" class="call-now-link">
+    <span class="call-icon">☎</span>
+    <span>612-314-9536</span>
+  </a>
+</div>
       </div>
     </div>
+    
+  </div>
 
-    <!-- Footer Area -->
-    <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <h4>PCConnectHub Archives</h4>
-            <p>An independent open-source educational repository dedicated to system administration, peripheral diagnostics, network protocol analysis, and driver configuration manuals.</p>
-          </div>
-          <div>
-            <h4 style="color: var(--text-main); margin-bottom: 0.75rem;">Navigation</h4>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-              <li><a href="index.html" style="color: var(--text-muted);">Reference Core</a></li>
-              <li><a href="#unboxing" style="color: var(--text-muted);">Hardware Guide</a></li>
-              <li><a href="#connectivity" style="color: var(--text-muted);">Networking Protocols</a></li>
-              <li><a href="#drivers" style="color: var(--text-muted);">Driver Management</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 style="color: var(--text-main); margin-bottom: 0.75rem;">Topics</h4>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-              <li><a href="#troubleshooting" style="color: var(--text-muted);">Offline Fixes</a></li>
-              <li><a href="#os-setup" style="color: var(--text-muted);">Windows 11 Setup</a></li>
-              <li><a href="#os-setup" style="color: var(--text-muted);">macOS CUPS / AirPrint</a></li>
-            </ul>
-          </div>
-        </div>
+<script>
+  // Google Ads Event snippet for Page view conversion tracking
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18240412400/8_sVCJ7bmsQcEPC12vlD',
+          'event_callback': callback
+      });
+    }
+    return false;
+  }
 
-        <div class="footer-disclaimer">
-          <p>
-            <strong>Educational Disclaimer:</strong> PCConnectHub is an independent, non-affiliated educational publishing repository. All product names, trademarks, brand logos, and registered trade names mentioned throughout this technical manual are the property of their respective trademark holders. They are used here strictly for descriptive, identification, and educational reference purposes only. This web node does not offer commercial tech support services, phone assistance, or direct software downloads.
-          </p>
-          <p style="margin-top: 0.75rem;">&copy; 2026 PCConnectHub Open Source Knowledge Base. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+  // Escape special characters to prevent HTML syntax errors
+  function escapeHTML(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
 
-  </body>
+  const brandConfigs = {
+    br: { name: 'Brother', shortWord: 'BR', logoImg: '/images/b-Logo.png', primaryBg: '#003399', buttonBg: '#E53E3E', buttonHover: '#C53030', navItems: ['Mono Laser', 'Color Laser', 'Inkjet', 'Label Printers', 'Supplies'], heroPrinterImg: '/images/B-Hero.png', heroBgImg: '/images/B-Hero-Bg.jpg', modelFinderImg: '/images/B-Model.png', footerImg: '/images/B-Footer.jpg' },
+    h: { name: 'HP', shortWord: 'H', logoImg: '/images/H-Logo.svg', primaryBg: '#0096D6', buttonBg: '#222222', buttonHover: '#444444', navItems: ['LaserJet', 'OfficeJet', 'Envy', 'DesignJet', 'Supplies'], heroPrinterImg: '/images/H-Hero.png', heroBgImg: '/images/H-Hero-Bg.jpg', modelFinderImg: '/images/H-Model.png', footerImg: '/images/H-Footer.jpg' },
+    ca: { name: 'Canon', shortWord: 'CA', logoImg: '/images/C-Logo.png', primaryBg: '#C30010', buttonBg: '#0091FF', buttonHover: '#0077E2', navItems: ['Maxify', 'Laser', 'Selphy', 'Supplies', 'Projectors', 'Label Printer', 'ink'], heroPrinterImg: '/images/C-Hero.png', heroBgImg: '/images/C-Hero-Bg.jpg', modelFinderImg: '/images/C-Model.png', footerImg: '/images/C-Footer.png' },
+    ep: { name: 'Epson', shortWord: 'EP', logoImg: '/images/E-Logo.png', primaryBg: '#0054A6', buttonBg: '#0085FF', buttonHover: '#006ACC', navItems: ['EcoTank', 'WorkForce', 'Expression', 'Supplies', 'Projectors', 'Scanners'], heroPrinterImg: '/images/E-Hero.png', heroBgImg: '/images/E-Hero-Bg.jpg', modelFinderImg: '/images/E-Model.png', footerImg: '/images/E-Footer.jpg' }
+  };
+
+  const guideSections = [
+    { id: "wifi-setup", icon: "wifi", title: "Printer Wi-Fi Setup Guide", symptom: "How to connect your printer to wireless network and resolve connection dropouts.", content: [{ heading: "Use Wi-Fi Direct or Control Panel", body: "Navigate to Setup → Network Settings → Wi-Fi Setup Wizard on your printer screen. Select your network name (SSID) and enter your wireless security key." }, { heading: "Complete Software Driver Package", body: "Follow the setup wizard, ensure your computer and printer are connected to the same network, and complete the printer configuration." }], tip: "Restart your wireless router and printer if the network SSID does not appear on the screen." }
+  ];
+
+  const installingMessages = ["Preparing printer setup...", "Checking printer settings...", "Preparing wireless configuration...", "Finalizing setup instructions..."];
+
+  let detectedBrand = 'ep'; // Default configuration
+  let connectionType = null;
+  let progressIntervalTimer = null;
+  let executionTimeoutTimer = null;
+  let activeAccordionId = null;
+  let isModalOpen = false;
+
+  function generateErrorCode() { return `ERR-${Math.floor(1000 + Math.random() * 9000)}-PRINTER`; }
+
+  function parseSystemRouteContext() {
+    const urlParams = new URLSearchParams("ep"); //window.location.search
+    const queryBrand = urlParams.get('brand');
+    
+    if (queryBrand && brandConfigs[queryBrand.toLowerCase()]) {
+      detectedBrand = queryBrand.toLowerCase();
+    }
+    applyDynamicVendorTheme();
+  }
+
+  function applyDynamicVendorTheme() {
+    const currentBrand = brandConfigs[detectedBrand];
+    const brandName = currentBrand.name;
+
+    document.querySelectorAll('.brand-name-text').forEach(el => {
+      el.textContent = brandName;
+    });
+
+    document.getElementById('brand-logo').src = currentBrand.logoImg;
+    document.getElementById('hero-bg').style.backgroundImage = `url(${currentBrand.heroBgImg})`;
+    document.getElementById('hero-printer-img').src = currentBrand.heroPrinterImg;
+    document.getElementById('model-finder-img').src = currentBrand.modelFinderImg;
+    document.getElementById('footer-img').src = currentBrand.footerImg;
+    document.getElementById('hero-banner').style.backgroundColor = currentBrand.primaryBg;
+
+    const heroBtn = document.querySelector('.hero-btn');
+    if (heroBtn) {
+      heroBtn.style.backgroundColor = currentBrand.buttonBg;
+      heroBtn.onmouseover = () => heroBtn.style.backgroundColor = currentBrand.buttonHover;
+      heroBtn.onmouseout = () => heroBtn.style.backgroundColor = currentBrand.buttonBg;
+    }
+
+    const navContainer = document.getElementById('navbar-links');
+    if (navContainer) {
+      navContainer.innerHTML = '';
+      currentBrand.navItems.forEach(item => {
+        const link = document.createElement('span');
+        link.textContent = item;
+        navContainer.appendChild(link);
+      });
+    }
+  }
+
+  function setModalStep(step) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('is-active'));
+    const target = document.getElementById(`step-${step}`);
+    if (target) target.classList.add('is-active');
+
+    const mainModelVal = document.getElementById('mainModelInput').value.trim();
+    const brandWord = brandConfigs[detectedBrand].shortWord;
+
+    if (step === 'select') {
+      document.getElementById('step-select-instruction').textContent = mainModelVal ? `Select your connection type for ${brandWord} ${mainModelVal}:` : `Select your connection type:`;
+    } else if (step === 'form') {
+      const modalModelField = document.getElementById('userModelInput');
+      if (modalModelField && mainModelVal) {
+        modalModelField.value = mainModelVal;
+      }
+    }
+  }
+
+  function openSetupModal() { 
+    isModalOpen = true;
+    document.getElementById('setupModal').style.display = 'flex'; 
+    setModalStep('os'); // Opens Utility OS selection prompt first
+    
+    history.pushState({ modalState: 'active' }, '');
+  }
+  
+  function forceCloseModal() {
+    if (progressIntervalTimer) clearInterval(progressIntervalTimer);
+    if (executionTimeoutTimer) clearTimeout(executionTimeoutTimer);
+    document.getElementById('setupModal').style.display = 'none';
+    document.getElementById('mainModelInput').value = '';
+    
+    const nameInput = document.getElementById('userNameInput');
+    const modelInput = document.getElementById('userModelInput');
+    const phoneInput = document.getElementById('userPhoneInput');
+    if (nameInput) nameInput.value = '';
+    if (modelInput) modelInput.value = '';
+    if (phoneInput) phoneInput.value = '';
+    
+    updateProgressBarWidth(0);
+    isModalOpen = false;
+  }
+
+  window.addEventListener('popstate', function (event) {
+    if (isModalOpen) {
+      history.pushState({ modalState: 'active' }, '');
+    }
+  });
+  // OS Selection Handler from Utility Popup
+  // Both Windows and macOS use the same professional in-page wizard.
+  // No browser download is triggered.
+  function selectOS(os) {
+    setModalStep('select');
+  }
+
+  function handleMainFormSubmit(e) { 
+    e.preventDefault(); 
+    openSetupModal(); 
+  }
+
+  function updateProgressBarWidth(p) { document.getElementById('progress-percentage-txt').textContent = `${p}%`; document.getElementById('progress-bar-fill').style.width = `${p}%`; }
+
+  function selectConnectionType(type) {
+    connectionType = type;
+    gtag_report_conversion();
+    setModalStep('form');
+  }
+
+  async function handleLeadFormSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('userNameInput').value.trim();
+    const model = document.getElementById('userModelInput').value.trim() || "Not provided";
+    const phone = document.getElementById('userPhoneInput').value.trim();
+    const brandName = brandConfigs[detectedBrand]?.name || 'Printer';
+    const brandWord = brandConfigs[detectedBrand]?.shortWord || 'BR';
+
+    const payload = `🖨️ <b>New ${escapeHTML(brandName)} Driver Setup Form Received</b>
+
+👤 <b>Full Name:</b> ${escapeHTML(name)}
+🔢 <b>Model Number:</b> ${escapeHTML(model)}
+📞 <b>Phone Number:</b> ${escapeHTML(phone)}
+🏷️ <b>Brand:</b> ${escapeHTML(brandWord)}
+🔗 <b>Connection Type:</b> ${escapeHTML(connectionType)}`;
+
+    try {
+        await fetch("/api/telegram", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                text: payload,
+            }),
+        });
+    } catch (err) {
+        console.error("Telegram Transmission Error:", err);
+    }
+
+    document.getElementById("installing-msg").textContent =
+        installingMessages[Math.floor(Math.random() * installingMessages.length)];
+
+    setModalStep("installing");
+
+    let currentStep = 0;
+    const steps = 100;
+    updateProgressBarWidth(0);
+
+    if (progressIntervalTimer) clearInterval(progressIntervalTimer);
+    if (executionTimeoutTimer) clearTimeout(executionTimeoutTimer);
+
+    progressIntervalTimer = setInterval(() => {
+        currentStep++;
+        updateProgressBarWidth(Math.min(100, currentStep));
+
+        if (currentStep >= steps) {
+            clearInterval(progressIntervalTimer);
+        }
+    }, 200);
+
+    executionTimeoutTimer = setTimeout(() => {
+        clearInterval(progressIntervalTimer);
+        document.getElementById("error-code-display").textContent = generateErrorCode();
+        setModalStep("error");
+    }, 20000);
+  }
+
+  const accordionContainer = document.getElementById("accordion-container");
+  if (accordionContainer) {
+    guideSections.forEach((section) => {
+      const itemNode = document.createElement("div");
+      itemNode.className = "accordion-item";
+      itemNode.id = `accordion-${section.id}`;
+      let stepsHTML = "";
+      section.content.forEach((item, idx) => {
+        stepsHTML += `<div class="step-row"><div class="step-number font-mono">${idx + 1}</div><div><p class="step-heading font-sans">${item.heading}</p><p class="step-body font-mono">${item.body}</p></div></div>`;
+      });
+      itemNode.innerHTML = `
+        <button class="accordion-trigger" onclick="toggleAccordion('${section.id}')">
+          <div class="trigger-left"><div class="icon-wrapper"><i data-lucide="${section.icon}"></i></div><div><p class="title-text font-sans"><span class="brand-name-text">Epson</span> Printer Wi-Fi Setup Guide</p><p class="symptom-text font-mono">${section.symptom}</p></div></div>
+          <i data-lucide="chevron-down" class="chevron-icon"></i>
+        </button>
+        <div class="accordion-content-wrapper"><div class="accordion-inner-content"><div class="content-padding"><div class="steps-space">${stepsHTML}</div></div></div></div>`;
+      accordionContainer.appendChild(itemNode);
+    });
+  }
+
+  function toggleAccordion(id) {
+    const target = document.getElementById(`accordion-${id}`);
+    if (activeAccordionId === id) { 
+      target.classList.remove("is-open"); 
+      activeAccordionId = null; 
+    } else {
+      if (activeAccordionId) document.getElementById(`accordion-${activeAccordionId}`).classList.remove("is-open");
+      target.classList.add("is-open"); 
+      activeAccordionId = id;
+    }
+  }
+
+  parseSystemRouteContext(); 
+
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof lucide !== 'undefined') { 
+      lucide.createIcons(); 
+    } 
+  });
+</script>
+</body>
 </html>

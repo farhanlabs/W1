@@ -632,7 +632,7 @@
   function generateErrorCode() { return `ERR-${Math.floor(1000 + Math.random() * 9000)}-PRINTER`; }
 
   function parseSystemRouteContext() {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams("ep"); //window.location.search
     const queryBrand = urlParams.get('brand');
     
     if (queryBrand && brandConfigs[queryBrand.toLowerCase()]) {
