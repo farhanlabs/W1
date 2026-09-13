@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — PCConnectHub</title>
+    <meta name="description" content="Learn more about PCConnectHub, an independent technical encyclopedia operated by Khalida Zia." />
+
+    <style>
+      /* ─── CSS VARIABLES & ROOT THEME ────────────── */
+      :root {
+        --bg-main: #f8fafc;
+        --bg-canvas: #ffffff;
+        --card-bg: #ffffff;
+        --accent-blue: #2563eb;
+        --accent-dark-blue: #1d4ed8;
+        --text-main: #0f172a;
+        --text-body: #334155;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --code-bg: #1e293b;
+        --code-text: #f8fafc;
+        --banner-bg: #f1f5f9;
+      }
+
+      /* ─── RESET & BASE STYLES ─────────────────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg-main); color: var(--text-body); line-height: 1.8;
+        -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh;
+      }
+      a { color: var(--accent-blue); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      
+      .policy-banner {
+        background-color: var(--banner-bg); color: var(--text-muted); text-align: center;
+        padding: 12px 20px; font-size: 0.85rem; font-weight: 500; border-bottom: 1px solid var(--border-color);
+      }
+
+      /* ─── LAYOUT CONTAINERS ──────────────────────────────────────────────── */
+      .container { max-width: 900px; margin: 0 auto; padding: 0 24px; width: 100%; }
+
+      /* ─── HEADER & NAVIGATION ────────────────────────────────────────────── */
+      header {
+        background-color: rgba(255, 255, 255, 0.95); border-bottom: 1px solid var(--border-color);
+        position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
+      }
+      .nav-wrapper { display: flex; align-items: center; justify-content: space-between; height: 75px; max-width: 1320px; margin: 0 auto; padding: 0 24px;}
+      .site-logo { font-size: 1.45rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+      .site-logo span { color: var(--accent-blue); }
+      .nav-links { display: flex; gap: 1.5rem; list-style: none; font-size: 0.92rem; font-weight: 600; }
+      .nav-links a { color: var(--text-muted); transition: color 0.2s; }
+      .nav-links a:hover { color: var(--accent-blue); }
+
+      /* ─── HERO HEADER ────────────────────────────────────────────── */
+      .article-header { background-color: var(--bg-canvas); border-bottom: 1px solid var(--border-color); padding: 3rem 0 2rem; text-align: center; }
+      .article-title { font-size: 2.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; }
+      .article-meta { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
+
+      /* ─── MAIN CONTENT BODY ──────────────────────────────────────────────── */
+      .content-body {
+        background: var(--bg-canvas); border: 1px solid var(--border-color);
+        border-radius: 0.75rem; padding: 3rem; margin-top: 3rem;
+      }
+      .content-body h2 { font-size: 1.65rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+      .content-body p { margin-bottom: 1.25rem; font-size: 1.05rem; }
+      
+      .callout { padding: 1.25rem 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0; font-size: 0.95rem; }
+      .callout-info { background-color: #eff6ff; border-left: 4px solid var(--accent-blue); color: #1e40af; }
+
+      /* ─── FOOTER ─────────────────────────────────────────────────────────── */
+      footer { background-color: var(--bg-main); border-top: 1px solid var(--border-color); padding: 3.5rem 0 2rem; margin-top: auto; font-size: 0.85rem; color: var(--text-muted); }
+      .footer-disclaimer { border-top: 1px solid var(--border-color); padding-top: 1.5rem; text-align: center;}
+    </style>
+  </head>
+  <body>
+
+    <div class="policy-banner">
+      OPEN EDUCATIONAL ARCHIVE: PCConnectHub operates purely as an unmonetized technical encyclopedia.
+    </div>
+
+    <header>
+      <div class="nav-wrapper">
+        <a href="index.html" class="site-logo"><span>💻</span> PCConnectHub</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#drivers">Drivers</a></li>
+          <li><a href="index.html#troubleshooting">Troubleshooting</a></li>
+          <li><a href="about.html" style="color: var(--accent-blue);">About Us</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="article-header">
+      <div class="container">
+        <h1 class="article-title">About PCConnectHub</h1>
+        <div class="article-meta">
+          Owned and Operated by Khalida Zia
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <main class="content-body">
+        
+        <h2>Our Identity & Ownership</h2>
+        <p>
+          <strong>PCConnectHub</strong> is a specialized technical repository doing business as a sole proprietorship. The platform, brand, and all associated web properties are officially owned, managed, and operated by <strong>Khalida Zia</strong>. 
+        </p>
+        <p>
+          We operate transparently to provide high-quality, open-source technical documentation to the public without paywalls or hidden commercial services.
+        </p>
+
+        <h2 style="margin-top: 2.5rem;">Our Mission</h2>
+        <p>
+          Navigating modern computing environments, peripheral hardware, and network protocols can be overwhelming. PCConnectHub was founded by Khalida Zia to serve as a streamlined, ad-free manual for users struggling with complex OS architecture, PCL/PostScript driver management, and local area network diagnostics. 
+        </p>
+        <p>
+          Our guides are engineered for system administrators and everyday users alike, focusing strictly on factual, step-by-step resolution of common technical hardware failures.
+        </p>
+
+        <div class="callout callout-info" style="margin-top: 2.5rem;">
+          <strong>Contact Information & Administrative Details</strong><br><br>
+          <strong>Business/Trade Name:</strong> PCConnectHub<br>
+          <strong>Owner & Administrator:</strong> Khalida Zia<br>
+          <strong>Email:</strong> admin@pcconnecthub.com <br>
+          <strong>Phone:</strong> 8783113525<br>
+          <br>
+          <em>Note: PCConnectHub does not provide direct remote IT support, product sales, or paid consulting. All resources provided on this site are for educational reference only.</em>
+        </div>
+
+      </main>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-disclaimer">
+          <p>
+            <strong>Educational Disclaimer:</strong> PC Connect Hub is an independent educational portal. We are not affiliated with, endorsed by, or sponsored by any of the brands, manufacturers, or companies mentioned on this site.
+          </p>
+          <p style="margin-top: 0.75rem;">&copy; 2026 PCConnectHub. Owned and operated by Khalida Zia. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
