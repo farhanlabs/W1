@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Disclaimer | PCConnectHub</title>
+  <meta name="description" content="Read the PCConnectHub Disclaimer covering educational content, technical troubleshooting, third-party trademarks, non-affiliation and limitations of liability.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --ink: #111827;
+      --muted: #64748b;
+      --border: #e5eaf2;
+      --bg: #f8faff;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .announcement {
+      padding: 9px 16px;
+      background: #eff6ff;
+      color: #1e40af;
+      text-align: center;
+      border-bottom: 1px solid #dbeafe;
+      font-size: 11px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1100px;
+      width: calc(100% - 40px);
+      min-height: 74px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 11px;
+      font-size: 20px;
+    }
+
+    .logo-blue {
+      color: var(--primary);
+    }
+
+    .back-link {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 65px 20px 60px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 20% 0%, #eff6ff, transparent 55%),
+        #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid #dbeafe;
+      border-radius: 30px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      letter-spacing: -1.8px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 630px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .page {
+      max-width: 1050px;
+      width: calc(100% - 40px);
+      margin: 42px auto 75px;
+      display: grid;
+      grid-template-columns: 225px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 18px;
+    }
+
+    .sidebar h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 13px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 7px 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .sidebar a:hover {
+      color: var(--primary);
+    }
+
+    .content {
+      min-width: 0;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(23px, 4vw, 42px);
+      box-shadow: 0 10px 35px rgba(15,23,42,.035);
+    }
+
+    .updated {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      color: #475569;
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
+
+    .content > p {
+      color: #475569;
+      font-size: 13px;
+      margin-bottom: 17px;
+    }
+
+    .content h2 {
+      font-size: 19px;
+      line-height: 1.45;
+      letter-spacing: -.4px;
+      margin: 34px 0 12px;
+      scroll-margin-top: 100px;
+    }
+
+    .content h2:first-of-type {
+      margin-top: 27px;
+    }
+
+    .content ul {
+      padding-left: 21px;
+      margin: 10px 0 19px;
+    }
+
+    .content li {
+      padding-left: 3px;
+      color: #475569;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 11px;
+      padding: 18px;
+      margin: 23px 0;
+    }
+
+    .notice h3 {
+      color: #1e40af;
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .notice p {
+      font-size: 12px;
+      color: #334155;
+      margin: 0;
+    }
+
+    .contact-card {
+      margin-top: 35px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .contact-card h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .email-link {
+      font-size: 13px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a,
+    .copyright {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .copyright {
+      max-width: 1050px;
+      margin: 20px auto 0;
+      padding-top: 17px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        min-height: 66px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .logo-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .hero {
+        padding: 48px 18px;
+      }
+
+      .page {
+        grid-template-columns: 1fr;
+        width: calc(100% - 28px);
+        margin-top: 22px;
+        gap: 18px;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 12px;
+      }
+
+      .content {
+        padding: 23px 19px;
+      }
+
+      .content h2 {
+        font-size: 18px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    <strong>PCCONNECTHUB</strong>
+    &nbsp; Independent Educational Technology Resource
+  </div>
+
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="/" class="logo" aria-label="PCConnectHub home">
+        <span class="logo-icon" aria-hidden="true">⌨</span>
+        <span>PCConnect<span class="logo-blue">Hub</span></span>
+      </a>
+
+      <a href="/" class="back-link">← Back to Home</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">Legal Information</span>
+    <h1>Disclaimer</h1>
+    <p>
+      Important information about our educational content,
+      technical guides, third-party trademarks and the scope
+      of services provided by PCConnectHub.
+    </p>
+  </section>
+
+  <main class="page">
+
+    <aside class="sidebar">
+      <h2>On this page</h2>
+      <nav aria-label="Disclaimer contents">
+        <a href="#general">General Disclaimer</a>
+        <a href="#educational">Educational Purpose</a>
+        <a href="#technical">Technical Risks</a>
+        <a href="#affiliation">Non-Affiliation</a>
+        <a href="#support">Support Services</a>
+        <a href="#trademarks">Trademarks</a>
+        <a href="#external">External Links</a>
+        <a href="#liability">Limitation of Liability</a>
+        <a href="#changes">Changes</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+
+      <div class="updated">
+        <strong>Last updated:</strong>
+        <time datetime="2026-10-24">October 24, 2026</time>
+      </div>
+
+      <p id="general">
+        Welcome to PCConnectHub, accessible at
+        <a href="https://pcconnecthub.com/">pcconnecthub.com</a>.
+        This Disclaimer applies to your use of our website and its
+        content. By accessing the website, you acknowledge that you
+        have read this Disclaimer.
+      </p>
+
+      <div class="notice">
+        <h3>Important notice</h3>
+        <p>
+          PCConnectHub is an independent educational technology
+          publication. It does not represent a computer manufacturer,
+          software developer, internet service provider or authorized
+          repair centre. Our content is intended to provide general
+          information, not personalized technical support.
+        </p>
+      </div>
+
+      <h2 id="educational">1. Educational Purpose Only</h2>
+
+      <p>
+        All information published on PCConnectHub is provided for
+        general informational, educational and self-help troubleshooting
+        purposes. We aim to make technical concepts easier to understand,
+        but we do not guarantee that every article, instruction or
+        recommendation is complete, accurate, current or suitable for
+        every device or situation.
+      </p>
+
+      <p>
+        Technology, operating systems, software versions and hardware
+        configurations change over time. Always verify important
+        instructions against the relevant manufacturer's documentation
+        and the requirements of your particular device.
+      </p>
+
+      <h2 id="technical">2. Technical Instructions and Risks</h2>
+
+      <p>
+        Some guides may discuss system settings, network configurations,
+        device drivers, print spooler services, storage management,
+        command-line operations or other troubleshooting procedures.
+      </p>
+
+      <ul>
+        <li>
+          Read instructions carefully before making changes to your device.
+        </li>
+        <li>
+          Back up important files before performing repairs, resets,
+          installations or other potentially disruptive operations.
+        </li>
+        <li>
+          Avoid commands or configuration changes you do not understand,
+          particularly those involving system files, disks, security
+          settings or network access.
+        </li>
+        <li>
+          Seek qualified technical assistance when a problem involves
+          electrical hazards, physical damage, data recovery or a
+          potentially unsafe repair.
+        </li>
+      </ul>
+
+      <p>
+        You are responsible for deciding whether a procedure is
+        appropriate for your circumstances. Where permitted by
+        applicable law, PCConnectHub disclaims responsibility for
+        loss or damage arising from the use or misuse of information
+        published on the website.
+      </p>
+
+      <h2 id="affiliation">3. Independent Platform and Non-Affiliation</h2>
+
+      <p>
+        PCConnectHub is independently operated and is not affiliated
+        with, associated with, authorized by, endorsed by or sponsored
+        by Microsoft, HP, Canon, Lenovo, Dell, ASUS, Google or any
+        other third-party company unless expressly stated.
+      </p>
+
+      <p>
+        References to companies, operating systems, software products,
+        devices or services are made for descriptive, identification
+        and educational purposes. Such references do not imply any
+        official partnership, endorsement or authorization.
+      </p>
+
+      <p>
+        The absence of a company's name from this list does not imply
+        an affiliation with that company.
+      </p>
+
+      <h2 id="support">4. No Paid Technical Support or Repair Services</h2>
+
+      <p>
+        PCConnectHub publishes educational technology information.
+        Unless explicitly stated on a relevant page, we do not provide
+        paid technical support, remote computer repair, telephone
+        support, software license sales, warranty services or authorized
+        hardware repairs.
+      </p>
+
+      <p>
+        Instructions are intended to help readers understand technical
+        subjects and explore troubleshooting options independently.
+        They do not create a technician-client relationship, a service
+        contract or a manufacturer's warranty.
+      </p>
+
+      <h2 id="trademarks">5. Trademarks and Intellectual Property</h2>
+
+      <p>
+        All third-party company names, product names, logos, trademarks
+        and registered trademarks belong to their respective owners.
+        Their appearance on PCConnectHub does not transfer ownership
+        or grant permission to use them beyond what applicable law allows.
+      </p>
+
+      <p>
+        Our references to third-party products are intended to identify
+        the products being discussed. If you believe content on this
+        website infringes your intellectual property rights, please
+        contact us with sufficient details to identify the material
+        and explain your concern.
+      </p>
+
+      <h2 id="external">6. External Websites and Third-Party Content</h2>
+
+      <p>
+        Our articles may link to external websites, manufacturer
+        documentation, software resources, video platforms or other
+        third-party content for additional information.
+      </p>
+
+      <p>
+        We do not control and are not responsible for the availability,
+        accuracy, security, content or privacy practices of external
+        websites. Visiting an external website is your decision, and
+        you should review its applicable terms and privacy policy.
+      </p>
+
+      <h2 id="liability">7. Limitation of Liability</h2>
+
+      <p>
+        To the extent permitted by applicable law, PCConnectHub makes
+        no express or implied warranties regarding the website or its
+        content, including warranties of accuracy, availability,
+        suitability or fitness for a particular purpose.
+      </p>
+
+      <p>
+        To the extent permitted by law, we will not be liable for
+        indirect, incidental or consequential loss arising from
+        reliance on website content, including data loss, service
+        interruption or device problems. Nothing in this Disclaimer
+        excludes or limits liability where such exclusion or limitation
+        is prohibited by applicable law.
+      </p>
+
+      <h2 id="changes">8. Changes to This Disclaimer</h2>
+
+      <p>
+        We may update this Disclaimer when our website, content or
+        practices change. Any revised version will be published on
+        this page with an updated revision date. Visitors should
+        review this page periodically.
+      </p>
+
+      <section class="contact-card" id="contact">
+        <h2>9. Contact Us</h2>
+
+        <p>
+          For questions about this Disclaimer, website content,
+          trademark references or possible intellectual property
+          concerns, contact us using the details below.
+        </p>
+
+        <p>
+          <strong>Website:</strong>
+          <a href="https://pcconnecthub.com/">PCConnectHub</a>
+        </p>
+
+        <p>
+          <strong>Email:</strong>
+          <a class="email-link" href="mailto:admin@pcconnecthub.com">
+            admin@pcconnecthub.com
+          </a>
+        </p>
+      </section>
+
+      <p style="margin-top: 25px; font-size: 11px; color: #94a3b8;">
+        This Disclaimer is provided for general informational purposes
+        and is not a substitute for legal advice.
+      </p>
+
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+
+      <a href="/" class="logo">
+        <span class="logo-icon" aria-hidden="true">⌨</span>
+        <span>PCConnect<span class="logo-blue">Hub</span></span>
+      </a>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+    </div>
+
+    <div class="copyright">
+      © <span id="year">2026</span> PCConnectHub. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
