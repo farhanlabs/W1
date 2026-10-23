@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Privacy Policy | PCConnectHub</title>
+  <meta name="description" content="Read the PCConnectHub Privacy Policy to understand how website visitor information, cookies, log files and third-party services may be handled.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --ink: #111827;
+      --muted: #64748b;
+      --border: #e5eaf2;
+      --bg: #f8faff;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .announcement {
+      padding: 9px 16px;
+      background: #eff6ff;
+      color: #1e40af;
+      text-align: center;
+      border-bottom: 1px solid #dbeafe;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1100px;
+      width: calc(100% - 40px);
+      min-height: 74px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 11px;
+      font-size: 20px;
+    }
+
+    .logo-blue {
+      color: var(--primary);
+    }
+
+    .back-link {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 65px 20px 60px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 20% 0%, #eff6ff, transparent 55%),
+        #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid #dbeafe;
+      border-radius: 30px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      letter-spacing: -1.8px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .page {
+      max-width: 1050px;
+      width: calc(100% - 40px);
+      margin: 42px auto 75px;
+      display: grid;
+      grid-template-columns: 225px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 18px;
+    }
+
+    .sidebar h2 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 13px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 7px 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .sidebar a:hover {
+      color: var(--primary);
+    }
+
+    .content {
+      min-width: 0;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(23px, 4vw, 42px);
+      box-shadow: 0 10px 35px rgba(15,23,42,.035);
+    }
+
+    .effective-date {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      color: #475569;
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
+
+    .content > p {
+      color: #475569;
+      font-size: 13px;
+      margin-bottom: 17px;
+    }
+
+    .content h2 {
+      font-size: 19px;
+      line-height: 1.45;
+      letter-spacing: -.4px;
+      margin: 34px 0 12px;
+      padding-top: 4px;
+    }
+
+    .content h2:first-of-type {
+      margin-top: 27px;
+    }
+
+    .content h3 {
+      font-size: 14px;
+      margin: 18px 0 7px;
+    }
+
+    .content ul {
+      padding-left: 21px;
+      margin: 10px 0 19px;
+    }
+
+    .content li {
+      padding-left: 3px;
+      color: #475569;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 11px;
+      padding: 18px;
+      margin: 23px 0;
+    }
+
+    .notice h3 {
+      color: #1e40af;
+      margin-top: 0;
+    }
+
+    .notice p {
+      font-size: 12px;
+      color: #334155;
+      margin: 0;
+    }
+
+    .contact-card {
+      margin-top: 35px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .contact-card h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .email-link {
+      font-size: 13px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 30px 20px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1050px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a,
+    .copyright {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .copyright {
+      max-width: 1050px;
+      margin: 20px auto 0;
+      padding-top: 17px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        min-height: 66px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .logo-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .hero {
+        padding: 48px 18px;
+      }
+
+      .page {
+        grid-template-columns: 1fr;
+        width: calc(100% - 28px);
+        margin-top: 22px;
+        gap: 18px;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 12px;
+      }
+
+      .content {
+        padding: 23px 19px;
+      }
+
+      .content h2 {
+        font-size: 18px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    <strong>PCCONNECTHUB</strong> &nbsp; Independent Educational Technology Resource
+  </div>
+
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="/" class="logo" aria-label="PCConnectHub home">
+        <span class="logo-icon" aria-hidden="true">⌨</span>
+        <span>PCConnect<span class="logo-blue">Hub</span></span>
+      </a>
+
+      <a href="/" class="back-link">← Back to Home</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">Legal & Privacy</span>
+    <h1>Privacy Policy</h1>
+    <p>
+      Your privacy matters. Learn what information may be collected
+      when you visit PCConnectHub and how that information may be used.
+    </p>
+  </section>
+
+  <main class="page">
+
+    <aside class="sidebar">
+      <h2>On this page</h2>
+      <nav aria-label="Privacy policy contents">
+        <a href="#introduction">Introduction</a>
+        <a href="#information">Information We Collect</a>
+        <a href="#logs">Log Files</a>
+        <a href="#cookies">Cookies</a>
+        <a href="#advertising">Advertising</a>
+        <a href="#third-party">Third-Party Services</a>
+        <a href="#security">Data Security</a>
+        <a href="#children">Children's Privacy</a>
+        <a href="#rights">Your Choices</a>
+        <a href="#changes">Policy Updates</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+
+      <div class="effective-date">
+        <strong>Effective date:</strong>
+        <time datetime="2026-10-24">October 24, 2026</time>
+      </div>
+
+      <p id="introduction">
+        Welcome to PCConnectHub, accessible at
+        <a href="https://pcconnecthub.com/">pcconnecthub.com</a>.
+        This Privacy Policy explains how information may be collected,
+        used and disclosed when you visit our website.
+      </p>
+
+      <p>
+        PCConnectHub is an independent educational technology publication
+        providing information about computers, networking, operating
+        systems and device troubleshooting. This policy applies to
+        information processed through our website.
+      </p>
+
+      <div class="notice">
+        <h3>Important information</h3>
+        <p>
+          PCConnectHub does not require visitors to create an account
+          to read its educational content. However, our hosting provider,
+          analytics tools, advertising partners or other third-party
+          services may process certain technical information, depending
+          on the services enabled on the website.
+        </p>
+      </div>
+
+      <h2 id="information">1. Information We Collect</h2>
+
+      <p>
+        The information processed through PCConnectHub depends on how
+        you use the website and which services are enabled.
+      </p>
+
+      <ul>
+        <li>
+          <strong>Technical information:</strong> Your IP address,
+          browser type, operating system, device information and
+          approximate location derived from an IP address may be
+          processed by hosting or security services.
+        </li>
+        <li>
+          <strong>Usage information:</strong> Pages visited, visit
+          timestamps, referring pages and interactions may be recorded
+          by server logs or analytics tools, if enabled.
+        </li>
+        <li>
+          <strong>Information you provide:</strong> If you contact us
+          by email, we may receive your email address, message and
+          any information you choose to include.
+        </li>
+      </ul>
+
+      <p>
+        We do not intentionally request payment card details or
+        government identification numbers through the website.
+        Please do not send sensitive personal information unless
+        it is genuinely necessary for your inquiry.
+      </p>
+
+      <h2 id="logs">2. Log Files</h2>
+
+      <p>
+        Our hosting provider or website security services may maintain
+        server logs for security, troubleshooting, performance monitoring
+        and operational purposes. Depending on the configuration, logs
+        may contain IP addresses, browser details, request timestamps,
+        referring URLs and requested pages.
+      </p>
+
+      <p>
+        Log retention periods depend on the hosting provider, applicable
+        settings and legitimate operational requirements. We do not
+        promise a specific retention period unless one is expressly
+        stated.
+      </p>
+
+      <h2 id="cookies">3. Cookies and Similar Technologies</h2>
+
+      <p>
+        Cookies are small files stored by a website in your browser.
+        Depending on the features enabled, PCConnectHub or third-party
+        services may use cookies or similar technologies to support
+        essential functionality, measure website usage, protect against
+        abuse or deliver advertising.
+      </p>
+
+      <p>
+        You can manage cookies through your browser settings. Blocking
+        certain cookies may affect the functionality of some website
+        features. Where required by applicable law, consent will be
+        requested before using non-essential cookies or similar
+        technologies.
+      </p>
+
+      <h2 id="advertising">4. Advertising and Monetization</h2>
+
+      <p>
+        PCConnectHub may use third-party advertising services, including
+        Google advertising products, if and when these services are
+        enabled.
+      </p>
+
+      <p>
+        Advertising providers may use cookies, device identifiers,
+        IP addresses or other information, subject to their own
+        policies and applicable law, to serve, measure or personalize
+        advertisements and prevent invalid activity.
+      </p>
+
+      <p>
+        The information processed and the advertising choices available
+        depend on the providers and settings in use. We will update
+        this policy if our advertising practices change materially.
+      </p>
+
+      <p>
+        For information about Google's data practices, visit
+        <a href="https://policies.google.com/technologies/partner-sites"
+           target="_blank" rel="noopener noreferrer">
+          How Google uses information from sites or apps that use its services
+        </a>.
+      </p>
+
+      <h2 id="third-party">5. Third-Party Services and External Links</h2>
+
+      <p>
+        Our website may link to third-party websites, documentation,
+        videos or online resources. We may also rely on external
+        providers for hosting, security, analytics or advertising.
+      </p>
+
+      <p>
+        When you visit an external website, that provider's privacy
+        policy and terms may apply. PCConnectHub does not control the
+        privacy practices of independent third parties and encourages
+        you to review their policies before sharing personal information.
+      </p>
+
+      <h2 id="security">6. Data Security and Retention</h2>
+
+      <p>
+        We and our service providers may use reasonable technical and
+        organizational measures to help protect information processed
+        through the website. However, no method of internet transmission
+        or electronic storage can be guaranteed to be completely secure.
+      </p>
+
+      <p>
+        Information may be retained for as long as reasonably necessary
+        for the purpose for which it was collected, including security,
+        legal compliance, dispute resolution and operational needs,
+        subject to applicable law.
+      </p>
+
+      <h2 id="children">7. Children's Privacy</h2>
+
+      <p>
+        PCConnectHub is a general educational technology website and
+        is not intended to knowingly collect personal information
+        from children in violation of applicable privacy laws.
+        If you believe a child has provided personal information
+        to us inappropriately, please contact us so the matter
+        can be reviewed.
+      </p>
+
+      <h2 id="rights">8. Your Privacy Choices and Rights</h2>
+
+      <p>
+        Depending on your location and applicable law, you may have
+        rights to request access to, correction of or deletion of
+        certain personal information, or to object to or restrict
+        certain processing.
+      </p>
+
+      <p>
+        You can also manage browser cookies through your browser
+        settings and use any privacy controls made available by
+        relevant third-party services.
+      </p>
+
+      <p>
+        To submit a privacy-related request, contact us using the
+        details below. We may need to verify your request before
+        taking action, where permitted or required by law.
+      </p>
+
+      <h2 id="changes">9. Changes to This Privacy Policy</h2>
+
+      <p>
+        We may revise this Privacy Policy when our website, services
+        or legal obligations change. The revised version will be
+        published on this page with an updated effective date.
+        Please review this page periodically for changes.
+      </p>
+
+      <section class="contact-card" id="contact">
+        <h2>10. Contact Us</h2>
+
+        <p>
+          If you have questions about this Privacy Policy or wish to
+          make a privacy-related request, contact the website team:
+        </p>
+
+        <p>
+          <strong>Website:</strong>
+          <a href="https://pcconnecthub.com/">PCConnectHub</a>
+        </p>
+
+        <p>
+          <strong>Email:</strong>
+          <a class="email-link" href="mailto:admin@pcconnecthub.com">
+            admin@pcconnecthub.com
+          </a>
+        </p>
+      </section>
+
+      <p style="margin-top: 25px; font-size: 11px; color: #94a3b8;">
+        This policy describes general website privacy practices and
+        is not a substitute for legal advice.
+      </p>
+
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+
+      <a href="/" class="logo">
+        <span class="logo-icon" aria-hidden="true">⌨</span>
+        <span>PCConnect<span class="logo-blue">Hub</span></span>
+      </a>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+    </div>
+
+    <div class="copyright">
+      © <span id="year">2026</span> PCConnectHub. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
