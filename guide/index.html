@@ -1,112 +1,1560 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Printer Setup & Troubleshooting Guide — PCConnectHub</title>
+
+    <title>Printer Setup & Troubleshooting Guide | PCConnectHub</title>
+    <meta name="description" content="Learn how to install printer drivers, set up USB and Wi-Fi printers, fix printer offline errors, clear stuck print jobs, troubleshoot Windows Print Spooler problems, and improve print quality.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pcconnecthub.com/printer-setup-troubleshooting.html">
+
     <style>
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
             --bg: #f8fafc;
             --surface: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
+            --text: #0f172a;
+            --muted: #475569;
+            --subtle: #64748b;
             --border: #e2e8f0;
-            --radius: 8px;
+            --light-blue: #eff6ff;
+            --blue-border: #bfdbfe;
+            --warning-bg: #fff7ed;
+            --warning-border: #fed7aa;
+            --success-bg: #f0fdf4;
+            --success-border: #bbf7d0;
+            --radius: 14px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.6; padding: 20px 10px; }
-        
-        .container { max-width: 850px; margin: 20px auto; background: var(--surface); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border); }
-        
-        /* Banner */
-        .disclaimer-banner { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; font-size: 0.85rem; padding: 12px 16px; border-radius: var(--radius); margin-bottom: 25px; }
-        
-        h1 { font-size: 1.8rem; color: var(--text-main); margin-bottom: 10px; }
-        p.subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 30px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Step Box */
-        .step-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; }
-        .step-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .step-card p, .step-card ul { font-size: 0.95rem; color: var(--text-main); margin-bottom: 10px; }
-        .step-card ul { margin-left: 20px; }
-        .step-card li { margin-bottom: 6px; }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
 
-        /* Video Wrapper */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: var(--radius); margin: 15px 0; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.75;
+        }
 
-        /* Warning / Note Box */
-        .error-code-box { background: #fff1f2; border: 1px solid #fecdd3; color: #9f1239; padding: 15px; border-radius: var(--radius); margin-top: 20px; font-size: 0.9rem; }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
 
-        a.back-btn { display: inline-block; margin-top: 20px; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-        a.back-btn:hover { text-decoration: underline; }
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        code {
+            padding: 3px 6px;
+            background: #eef2f7;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.92em;
+            overflow-wrap: anywhere;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.97);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            max-width: 1160px;
+            margin: auto;
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            white-space: nowrap;
+        }
+
+        .brand:hover {
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            font-size: 13px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+        }
+
+        .hero {
+            padding: 60px 20px 52px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at top, #dbeafe 0%, transparent 68%),
+                linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            max-width: 850px;
+            margin: 18px auto 14px;
+            font-size: clamp(30px, 5vw, 44px);
+            line-height: 1.2;
+            letter-spacing: -1.4px;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .hero-meta {
+            margin-top: 17px;
+            color: var(--subtle);
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 1160px;
+            margin: 36px auto 65px;
+            padding: 0 22px;
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 88px;
+            padding: 21px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .sidebar h2 {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .toc {
+            display: grid;
+            gap: 4px;
+        }
+
+        .toc a {
+            padding: 7px 9px;
+            color: var(--muted);
+            border-radius: 7px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .toc a:hover {
+            background: var(--light-blue);
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .sidebar-note {
+            margin-top: 17px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            color: var(--subtle);
+            font-size: 11px;
+        }
+
+        .article {
+            min-width: 0;
+            padding: 32px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 30px rgba(15,23,42,.025);
+        }
+
+        .disclaimer,
+        .info,
+        .warning,
+        .success {
+            margin-bottom: 23px;
+            padding: 16px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        .disclaimer,
+        .info {
+            background: var(--light-blue);
+            border: 1px solid var(--blue-border);
+            color: #1e40af;
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            color: #9a3412;
+        }
+
+        .success {
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: #166534;
+        }
+
+        .article-section {
+            padding: 27px 0;
+            border-bottom: 1px solid #edf2f7;
+            scroll-margin-top: 95px;
+        }
+
+        .article-section:first-of-type {
+            padding-top: 0;
+        }
+
+        .article-section:last-of-type {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .article-section h2 {
+            margin-bottom: 13px;
+            font-size: clamp(20px, 3vw, 24px);
+            line-height: 1.4;
+            letter-spacing: -.5px;
+        }
+
+        .article-section h3 {
+            margin: 22px 0 9px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .article-section p,
+        .article-section li {
+            color: #334155;
+            font-size: 13.5px;
+        }
+
+        .article-section p {
+            margin-bottom: 13px;
+        }
+
+        .article-section ul,
+        .article-section ol {
+            padding-left: 23px;
+            margin: 11px 0 16px;
+        }
+
+        .article-section li {
+            margin-bottom: 8px;
+            padding-left: 3px;
+        }
+
+        .step-card {
+            margin: 16px 0;
+            padding: 19px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+        }
+
+        .step-title {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .step-number {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 29px;
+            height: 29px;
+            border-radius: 9px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .step-card p,
+        .step-card li {
+            font-size: 13px;
+        }
+
+        .step-card ul,
+        .step-card ol {
+            padding-left: 21px;
+            margin: 9px 0;
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 17px 0;
+        }
+
+        .brand-card {
+            display: block;
+            padding: 17px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            transition: border-color .2s, transform .2s;
+        }
+
+        .brand-card:hover {
+            border-color: #93c5fd;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        .brand-card strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .brand-card span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin: 17px 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 440px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: var(--text);
+        }
+
+        td {
+            color: #334155;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .command-box {
+            margin: 14px 0;
+            padding: 16px;
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .command-box pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .copy-btn {
+            margin-top: 12px;
+            padding: 8px 12px;
+            color: white;
+            background: #334155;
+            border: 1px solid #475569;
+            border-radius: 7px;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #475569;
+        }
+
+        .faq-item {
+            padding: 17px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+
+        .faq-item h3 {
+            margin: 0 0 7px;
+            font-size: 14px;
+        }
+
+        .faq-item p {
+            margin: 0;
+        }
+
+        .related-links {
+            display: grid;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .related-links a {
+            display: block;
+            padding: 13px 15px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .related-links a:hover {
+            background: var(--light-blue);
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .site-footer {
+            padding: 30px 20px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copy {
+            color: var(--subtle);
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 17px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 850px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                margin-top: 25px;
+                padding: 0 14px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .toc {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 4px 8px;
+            }
+
+            .article {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav {
+                padding: 12px 15px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                gap: 11px;
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 42px 17px;
+            }
+
+            .hero h1 {
+                letter-spacing: -.8px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .toc,
+            .brand-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article {
+                padding: 22px 16px;
+            }
+
+            .step-card {
+                padding: 15px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
+
 <body>
 
+<header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="PCConnectHub Home">
+            <span class="brand-icon">PC</span>
+            <span>PCConnectHub</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#topics">Guides</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="eyebrow">Printer Help Center</span>
+        <h1>Printer Setup & Troubleshooting Guide</h1>
+        <p>
+            Learn how to install printer drivers, connect a printer using
+            USB or Wi-Fi, fix offline status, clear stuck print jobs, and
+            troubleshoot common Windows printing problems.
+        </p>
+        <div class="hero-meta">
+            Beginner-Friendly Guide · Windows 10 and Windows 11
+        </div>
+    </section>
+
     <div class="container">
-        
-        <!-- Disclaimer -->
-        <div class="disclaimer-banner">
-            <strong>INDEPENDENT EDUCATIONAL GUIDE:</strong> PCConnectHub is a free troubleshooting resource. We do not sell official drivers, offer phone support, or represent any printer brand.
-        </div>
 
-        <h1>Step-by-Step Printer Setup & Hardware Troubleshooting</h1>
-        <p class="subtitle">Apne printer ki physical status check karein aur niche diye gaye steps ko follow karke setup complete karein.</p>
+        <aside class="sidebar">
+            <h2>On This Page</h2>
 
-        <!-- STEP 1 -->
-        <div class="step-card">
-            <div class="step-title">Step 1: Printer ke paas jayein aur LED Light check karein</div>
-            <p>Sabse pehle apne printer ke paas jayein aur dekhein ki Power ya Warning LED status kya bata raha hai:</p>
-            <ul>
-                <li><strong>Agar LED Light Red/Yellow Blink kar rahi hai:</strong> Printer me paper jam, low ink, ya cartridge door khula hone ka issue ho sakta hai. Paper tray check karein aur door properly close karein.</li>
-                <li><strong>Agar LED Light Solid Green/Blue hai:</strong> Printer physical level par ready hai. Ab apne computer screen par jayein.</li>
-            </ul>
-        </div>
+            <nav class="toc" aria-label="Article contents">
+                <a href="#before-start">Before You Start</a>
+                <a href="#physical-check">1. Physical Checks</a>
+                <a href="#drivers">2. Official Drivers</a>
+                <a href="#usb-setup">3. USB Setup</a>
+                <a href="#wifi-setup">4. Wi-Fi Setup</a>
+                <a href="#test-page">5. Test Page</a>
+                <a href="#offline">6. Printer Offline</a>
+                <a href="#queue">7. Stuck Print Queue</a>
+                <a href="#spooler">8. Print Spooler</a>
+                <a href="#quality">9. Print Quality</a>
+                <a href="#paper-jam">10. Paper Jams</a>
+                <a href="#not-detected">11. Printer Not Detected</a>
+                <a href="#error-codes">12. Error Codes</a>
+                <a href="#maintenance">13. Maintenance</a>
+                <a href="#faq">FAQs</a>
+            </nav>
 
-        <!-- STEP 2 -->
-        <div class="step-card">
-            <div class="step-title">Step 2: Apne Brand ke according Driver Download karein</div>
-            <p>Computer par aane ke baad apne printer brand ki official website se correct software/driver download karein:</p>
-            <ul>
-                <li>Apne printer model number ko note karein (jaise: DeskJet 2300, EcoTank L3150, etc.).</li>
-                <li>Official brand portal par jakar apna Windows/Mac version select karke official driver software download karein.</li>
-            </ul>
-        </div>
-
-        <!-- STEP 3 (VIDEO TUTORIAL) -->
-        <div class="step-card">
-            <div class="step-title">Step 3: Driver Setup ke liye Video Tutorial dekhein</div>
-            <p>Driver kaise download aur install hota hai, use samajhne ke liye niche diya gaya tutorial video follow karein (Yeh ek example guide video hai):</p>
-            
-            <div class="video-container">
-                <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Printer Driver Setup Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="sidebar-note">
+                Instructions may vary by printer model, manufacturer,
+                connection type, and Windows version.
             </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted);"><em>Note: Aapke printer model ke hisab se installation screens thodi alag ho sakti hain.</em></p>
-        </div>
+        </aside>
 
-        <!-- STEP 4 (STUCK / ERROR FIX) -->
-        <div class="step-card">
-            <div class="step-title">Step 4: Driver Download/Install hone ke baad bhi Fix na ho toh kya karein?</div>
-            <p>Agar driver install karne ke baad bhi printer offline dikha raha hai ya setup <strong>BPMC 202</strong> (Print Queue/Spooler Blockage) par stay ho gaya hai, toh apne computer me ye step karein:</p>
-            
-            <ul>
-                <li>Keyboard par <code>Windows + R</code> press karein, <code>services.msc</code> type karke Enter dabayein.</li>
-                <li>List me <strong>Print Spooler</strong> dhundhein, uspar Right-Click karke <strong>Restart</strong> par click karein.</li>
-                <li>Uske baad USB Cable nikal kar dobara lagayein ya Router restart karein.</li>
-            </ul>
+        <article class="article">
 
-            <div class="error-code-box">
-                <strong>Important Note on Code BPMC 202 / Spooler Freeze:</strong> Yeh error tab aata hai jab Windows Queue me purani file stuck ho jati hai. Command Prompt (Admin) khol kar <code>net stop spooler</code> aur <code>net start spooler</code> run karke bhi isse reset kiya ja sakta hai.
+            <div class="disclaimer">
+                <strong>Independent Educational Guide:</strong>
+                PCConnectHub is an independent technology information
+                website. We do not represent printer manufacturers, sell
+                official drivers, or provide guaranteed repair services.
+                Brand names are used only to help readers find relevant
+                support resources.
             </div>
-        </div>
 
-        <a href="/" class="back-btn">← Return to Home Page</a>
+            <section class="article-section" id="before-start">
+                <h2>Before You Start: Identify Your Printer</h2>
 
+                <p>
+                    Before installing software or changing settings,
+                    identify the exact printer model. A manufacturer may
+                    offer many printers that require different drivers
+                    and setup procedures.
+                </p>
+
+                <ul>
+                    <li>Find the model number on the front, back, bottom, or inside label of the printer.</li>
+                    <li>Identify the connection type: USB, Wi-Fi, Ethernet, or another supported method.</li>
+                    <li>Check your operating system and version in Windows Settings.</li>
+                    <li>Note any warning lights, display messages, or error codes.</li>
+                    <li>Keep the printer manual available if you need model-specific instructions.</li>
+                </ul>
+
+                <div class="info">
+                    <strong>Helpful tip:</strong> Record the exact error
+                    message instead of relying only on the colour of a
+                    warning light. Indicator meanings differ between models.
+                </div>
+            </section>
+
+            <section class="article-section" id="physical-check">
+                <h2>1. Check the Printer's Physical Condition</h2>
+
+                <p>
+                    Check the printer itself before troubleshooting
+                    Windows. Software changes cannot fix every problem,
+                    especially if the printer has a paper jam, power
+                    issue, or hardware warning.
+                </p>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        Check the power and status lights
+                    </div>
+                    <ul>
+                        <li>Confirm that the power cable is securely connected.</li>
+                        <li>Turn the printer on and wait for its startup process to finish.</li>
+                        <li>Check the display or status lights for warning messages.</li>
+                        <li>Consult the exact model's manual to understand blinking or coloured indicators.</li>
+                    </ul>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        Check paper, ink, toner, and covers
+                    </div>
+                    <ul>
+                        <li>Load supported paper in the correct orientation.</li>
+                        <li>Adjust the paper guides without bending the paper.</li>
+                        <li>Check ink or toner status, where applicable.</li>
+                        <li>Ensure cartridge doors and access panels are closed.</li>
+                        <li>Look for paper-jam warnings or other displayed errors.</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>Safety warning:</strong> Do not force jammed
+                    paper out of the printer. Follow the manufacturer's
+                    instructions. Laser printer components can remain hot
+                    after use. Never touch electrical components with wet
+                    hands.
+                </div>
+            </section>
+
+            <section class="article-section" id="drivers">
+                <h2>2. Download the Official Printer Driver</h2>
+
+                <p>
+                    A printer driver helps Windows communicate with
+                    the printer. An incompatible, missing, or outdated
+                    driver can cause detection problems, printing errors,
+                    or missing printer features.
+                </p>
+
+                <h3>Official manufacturer support websites</h3>
+
+                <p>
+                    Open the manufacturer's support website and search
+                    for your exact printer model. Review the operating
+                    system and compatibility information before
+                    downloading anything.
+                </p>
+
+                <div class="brand-grid">
+                    <a class="brand-card"
+                       href="https://support.hp.com/drivers"
+                       target="_blank" rel="noopener noreferrer">
+                        <strong>HP Printers</strong>
+                        <span>Official drivers and software ↗</span>
+                    </a>
+
+                    <a class="brand-card"
+                       href="https://www.usa.canon.com/support"
+                       target="_blank" rel="noopener noreferrer">
+                        <strong>Canon Printers</strong>
+                        <span>Official product support ↗</span>
+                    </a>
+
+                    <a class="brand-card"
+                       href="https://epson.com/Support"
+                       target="_blank" rel="noopener noreferrer">
+                        <strong>Epson Printers</strong>
+                        <span>Official downloads and manuals ↗</span>
+                    </a>
+
+                    <a class="brand-card"
+                       href="https://support.brother.com/"
+                       target="_blank" rel="noopener noreferrer">
+                        <strong>Brother Printers</strong>
+                        <span>Official support and downloads ↗</span>
+                    </a>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        Follow the correct download process
+                    </div>
+                    <ol>
+                        <li>Open the manufacturer's official support website.</li>
+                        <li>Enter the exact printer model number.</li>
+                        <li>Select your operating system if prompted.</li>
+                        <li>Review the available driver or setup software.</li>
+                        <li>Download and run the compatible installer.</li>
+                        <li>Follow the on-screen instructions to complete setup.</li>
+                    </ol>
+                </div>
+
+                <div class="warning">
+                    <strong>Security tip:</strong> Avoid unknown driver
+                    download websites and suspicious executable files.
+                    Download software from the printer manufacturer or
+                    a trusted operating-system source.
+                </div>
+
+                <p>
+                    Some printers work with drivers built into Windows.
+                    A separate full-feature software package is not
+                    required for every printer.
+                </p>
+
+                <p>
+                    See Microsoft's guide:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-printer-connection-and-printing-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Fix printer connection and printing problems ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="usb-setup">
+                <h2>3. Set Up a Printer Using a USB Cable</h2>
+
+                <p>
+                    A USB connection allows a compatible printer to
+                    communicate directly with a computer.
+                </p>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        Connect the printer
+                    </div>
+                    <ol>
+                        <li>Turn on the printer and wait for it to become ready.</li>
+                        <li>Inspect the USB cable for visible damage.</li>
+                        <li>If using a manufacturer installer, connect the cable when instructed.</li>
+                        <li>If the printer is not detected, try another USB port on the computer.</li>
+                        <li>If available, test with a compatible replacement cable.</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        Add the printer in Windows 11
+                    </div>
+                    <ol>
+                        <li>Open Start and select Settings.</li>
+                        <li>Go to Bluetooth &amp; devices.</li>
+                        <li>Select Printers &amp; scanners.</li>
+                        <li>Select Add device.</li>
+                        <li>Choose your printer when it appears and complete the setup.</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        Add the printer in Windows 10
+                    </div>
+                    <ol>
+                        <li>Open Settings.</li>
+                        <li>Go to Devices and select Printers &amp; scanners.</li>
+                        <li>Select Add a printer or scanner.</li>
+                        <li>Choose your printer when detected.</li>
+                        <li>Follow the prompts to finish installation.</li>
+                    </ol>
+                </div>
+
+                <p>
+                    If Windows cannot find the printer, check the cable,
+                    try another USB port, and verify whether the exact
+                    model requires a manufacturer driver.
+                </p>
+            </section>
+
+            <section class="article-section" id="wifi-setup">
+                <h2>4. Set Up a Wireless Wi-Fi Printer</h2>
+
+                <p>
+                    A Wi-Fi printer can print from compatible devices
+                    over a local network. The setup procedure depends
+                    on the printer's control panel and wireless features.
+                </p>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        Connect the printer to Wi-Fi
+                    </div>
+                    <ol>
+                        <li>Open the printer's wireless or network settings.</li>
+                        <li>Select the wireless setup option, if available.</li>
+                        <li>Choose your Wi-Fi network from the displayed list.</li>
+                        <li>Enter the network password when requested.</li>
+                        <li>Wait for the printer to confirm its network connection.</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        Add the printer to your computer
+                    </div>
+                    <ol>
+                        <li>Connect your computer to a network that can access the printer.</li>
+                        <li>Open Windows Settings and select Printers &amp; scanners.</li>
+                        <li>Select Add device or Add a printer or scanner.</li>
+                        <li>Select your printer when it appears.</li>
+                        <li>Complete setup and print a test page.</li>
+                    </ol>
+                </div>
+
+                <h3>Wi-Fi versus Wi-Fi Direct</h3>
+
+                <p>
+                    <strong>Wi-Fi through a router:</strong> The printer
+                    and computer communicate over a shared home or office
+                    network.
+                </p>
+
+                <p>
+                    <strong>Wi-Fi Direct:</strong> A supported printer can
+                    create a direct wireless connection with a compatible
+                    device. The connection process and internet availability
+                    depend on the model.
+                </p>
+
+                <div class="warning">
+                    If the printer cannot be discovered, check whether
+                    the computer and printer are on accessible networks.
+                    Guest networks, client isolation, or separate wireless
+                    networks can prevent discovery. A router factory reset
+                    should not be the first troubleshooting step.
+                </div>
+            </section>
+
+            <section class="article-section" id="test-page">
+                <h2>5. Print a Test Page</h2>
+
+                <p>
+                    A test page helps verify that Windows can send a print
+                    job to the selected printer.
+                </p>
+
+                <ol>
+                    <li>Open Settings and select Printers &amp; scanners.</li>
+                    <li>Select the installed printer.</li>
+                    <li>Open its available printer properties or management options.</li>
+                    <li>Select Print test page if that option is available.</li>
+                    <li>Check whether the page prints correctly.</li>
+                </ol>
+
+                <div class="success">
+                    <strong>Successful setup:</strong> Windows detects the
+                    printer, the test page prints, and no active warning
+                    remains.
+                </div>
+
+                <p>
+                    If a test page works but an application cannot print,
+                    check the selected printer, document settings, page
+                    range, and the application's print dialog.
+                </p>
+            </section>
+
+            <section class="article-section" id="offline">
+                <h2>6. Fix a Printer That Shows Offline</h2>
+
+                <p>
+                    An offline status means Windows cannot currently
+                    communicate with the printer as expected. It does
+                    not automatically mean the printer is damaged.
+                </p>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">1</span>
+                        Check the connection
+                    </div>
+                    <ol>
+                        <li>Check the printer's power and ready status.</li>
+                        <li>Reconnect the USB cable if it is a wired printer.</li>
+                        <li>Verify the wireless connection if it is a Wi-Fi printer.</li>
+                        <li>Turn the printer off, wait about 30 seconds, and turn it back on.</li>
+                        <li>Restart the computer if necessary.</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">2</span>
+                        Check the offline setting
+                    </div>
+                    <ol>
+                        <li>Open the printer's queue from Windows Settings.</li>
+                        <li>If the classic queue window is available, open its Printer menu.</li>
+                        <li>Check whether Use Printer Offline is selected.</li>
+                        <li>If selected, clear it when the printer is properly connected and ready.</li>
+                    </ol>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-title">
+                        <span class="step-number">3</span>
+                        Check pending jobs and the selected printer
+                    </div>
+                    <ul>
+                        <li>Cancel jobs that are stuck in the queue.</li>
+                        <li>Confirm that the correct printer is selected in the application.</li>
+                        <li>Check for duplicate printer entries.</li>
+                        <li>If the problem continues, consider removing and reinstalling the printer.</li>
+                    </ul>
+                </div>
+
+                <p>
+                    Official Microsoft instructions:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/troubleshooting-offline-printer-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Troubleshoot offline printer problems ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="queue">
+                <h2>7. Fix Print Jobs Stuck in the Queue</h2>
+
+                <p>
+                    The Windows print queue manages pending documents.
+                    A failed job can sometimes prevent later documents
+                    from printing.
+                </p>
+
+                <h3>Method 1: Cancel pending jobs</h3>
+
+                <ol>
+                    <li>Open Settings and select Printers &amp; scanners.</li>
+                    <li>Select your printer and open its print queue.</li>
+                    <li>Right-click a pending job and select Cancel.</li>
+                    <li>Repeat for other stuck jobs and wait for the queue to clear.</li>
+                </ol>
+
+                <h3>Method 2: Restart Print Spooler</h3>
+
+                <ol>
+                    <li>Press <code>Windows + R</code>.</li>
+                    <li>Type <code>services.msc</code> and press Enter.</li>
+                    <li>Find Print Spooler in the Services list.</li>
+                    <li>Right-click it and select Restart, if available.</li>
+                    <li>Check the queue and try printing again.</li>
+                </ol>
+
+                <div class="info">
+                    Use the manual queue-clearing method in the next
+                    section only if normal cancellation and restarting
+                    the service do not resolve the problem.
+                </div>
+
+                <p>
+                    Official guide:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-print-job-stuck-in-queue-errors-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Fix print jobs stuck in the queue ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="spooler">
+                <h2>8. Troubleshoot Windows Print Spooler Errors</h2>
+
+                <p>
+                    Print Spooler is a Windows service that manages print
+                    jobs. If it stops or crashes, documents may remain
+                    stuck in the queue and printing may stop working.
+                </p>
+
+                <h3>Method A: Restart the service</h3>
+
+                <ol>
+                    <li>Press <code>Windows + R</code>.</li>
+                    <li>Type <code>services.msc</code> and press Enter.</li>
+                    <li>Find Print Spooler.</li>
+                    <li>Right-click it and select Restart.</li>
+                    <li>If the service is stopped, select Start if available.</li>
+                    <li>Try printing a test page.</li>
+                </ol>
+
+                <h3>Method B: Clear the spool folder manually</h3>
+
+                <p>
+                    Use this method only when cancelling jobs and
+                    restarting Print Spooler have not resolved the issue.
+                </p>
+
+                <ol>
+                    <li>Open Services by running <code>services.msc</code>.</li>
+                    <li>Right-click Print Spooler and select Stop.</li>
+                    <li>Open File Explorer.</li>
+                    <li>Navigate to the folder shown below.</li>
+                    <li>Delete the pending files inside the PRINTERS folder. Do not delete the folder itself.</li>
+                    <li>Return to Services and start Print Spooler again.</li>
+                    <li>Print a test page.</li>
+                </ol>
+
+                <div class="command-box">
+                    <pre id="folder-path">C:\Windows\System32\spool\PRINTERS</pre>
+                    <button class="copy-btn" type="button"
+                        data-copy="folder-path">
+                        Copy Folder Path
+                    </button>
+                </div>
+
+                <div class="warning">
+                    Clearing the spool folder removes pending print jobs.
+                    Do not delete unrelated system files. If you cannot
+                    access the folder, verify that the service is stopped
+                    and that you have the necessary permissions.
+                </div>
+
+                <h3>Optional: Restart Print Spooler using commands</h3>
+
+                <p>
+                    If you are comfortable using an administrator
+                    Command Prompt, run these commands one at a time:
+                </p>
+
+                <div class="command-box">
+                    <pre id="spooler-commands">net stop spooler
+net start spooler</pre>
+                    <button class="copy-btn" type="button"
+                        data-copy="spooler-commands">
+                        Copy Commands
+                    </button>
+                </div>
+
+                <p>
+                    To run Command Prompt as administrator, open Start,
+                    search for Command Prompt, and select Run as
+                    administrator. Review any confirmation prompts.
+                </p>
+
+                <p>
+                    If the service repeatedly crashes, outdated or
+                    conflicting printer drivers may need investigation.
+                    Avoid removing drivers unless you have identified
+                    the relevant printer and understand the consequences.
+                </p>
+
+                <p>
+                    Official Microsoft guide:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-print-spooler-service-not-running-errors-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Fix Print Spooler service errors ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="quality">
+                <h2>9. Fix Blank, Faded, Blurry, or Streaked Prints</h2>
+
+                <p>
+                    Poor print quality may result from ink or toner
+                    problems, paper settings, a clogged printhead,
+                    or a hardware issue.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Problem</th>
+                                <th>What to Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Blank pages</td>
+                                <td>Ink or toner status, cartridge installation, document content, and driver settings.</td>
+                            </tr>
+                            <tr>
+                                <td>Faded text</td>
+                                <td>Ink or toner levels, supported paper, and print-quality settings.</td>
+                            </tr>
+                            <tr>
+                                <td>Lines or streaks</td>
+                                <td>Manufacturer-recommended printhead cleaning or maintenance.</td>
+                            </tr>
+                            <tr>
+                                <td>Smudged output</td>
+                                <td>Paper compatibility, paper-type settings, and handling instructions.</td>
+                            </tr>
+                            <tr>
+                                <td>Incorrect layout</td>
+                                <td>Paper size, orientation, scaling, and application settings.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning">
+                    Repeated printhead-cleaning cycles can consume
+                    additional ink. Follow the manufacturer's recommended
+                    maintenance procedure for your exact model.
+                </div>
+
+                <p>
+                    Official Microsoft resource:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-printer-connection-and-printing-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Windows printer troubleshooting ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="paper-jam">
+                <h2>10. Fix Paper Jams and Paper-Feed Problems</h2>
+
+                <ol>
+                    <li>Check the printer display for the reported jam location.</li>
+                    <li>Turn off the printer if the manufacturer's instructions recommend it.</li>
+                    <li>Carefully remove accessible jammed paper according to the manual.</li>
+                    <li>Check for torn paper fragments and overloaded paper trays.</li>
+                    <li>Load supported paper and adjust the paper guides.</li>
+                    <li>Close all access panels and restart the printer if appropriate.</li>
+                </ol>
+
+                <div class="warning">
+                    Never force paper out or disassemble internal
+                    components without the correct instructions.
+                    If paper is inaccessible or the printer remains
+                    jammed, contact the manufacturer or a qualified
+                    technician.
+                </div>
+
+                <p>
+                    Official Microsoft resource:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-printer-connection-and-printing-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Printer troubleshooting in Windows ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="not-detected">
+                <h2>11. Fix a Printer That Windows Cannot Detect</h2>
+
+                <h3>For USB printers</h3>
+                <ul>
+                    <li>Confirm that the printer is powered on.</li>
+                    <li>Reconnect the USB cable and try another port.</li>
+                    <li>Test a compatible replacement cable if available.</li>
+                    <li>Check Device Manager for the printer or an unknown device.</li>
+                    <li>Install the compatible driver if the model requires one.</li>
+                </ul>
+
+                <h3>For Wi-Fi printers</h3>
+                <ul>
+                    <li>Confirm that the printer is connected to Wi-Fi.</li>
+                    <li>Check that the computer can access the printer's network.</li>
+                    <li>Restart the printer and router if necessary.</li>
+                    <li>Check whether a guest network or network isolation is blocking discovery.</li>
+                    <li>Verify network settings if the printer's IP address has changed.</li>
+                </ul>
+
+                <h3>Run Windows printer troubleshooting</h3>
+
+                <p>
+                    On Windows 11, the Get Help app may provide an
+                    automated printer troubleshooter. Available
+                    troubleshooting options vary by Windows version.
+                </p>
+
+                <p>
+                    Official Microsoft guide:
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-printer-connection-and-printing-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Fix printer connection problems ↗
+                    </a>
+                </p>
+            </section>
+
+            <section class="article-section" id="error-codes">
+                <h2>12. Understand Printer Error Messages and Codes</h2>
+
+                <p>
+                    Error messages can vary by printer brand, model,
+                    operating system, and connection type. A code should
+                    not be assigned a specific meaning without checking
+                    the relevant documentation.
+                </p>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Message or Symptom</th>
+                                <th>Initial Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Printer Offline</td>
+                                <td>Check power, connection, queue, and offline settings.</td>
+                            </tr>
+                            <tr>
+                                <td>Print Spooler Not Running</td>
+                                <td>Check the Print Spooler service in Windows Services.</td>
+                            </tr>
+                            <tr>
+                                <td>Printer Not Found</td>
+                                <td>Check USB or network connectivity and device discovery.</td>
+                            </tr>
+                            <tr>
+                                <td>Paper Jam</td>
+                                <td>Follow the manufacturer's instructions for the reported jam location.</td>
+                            </tr>
+                            <tr>
+                                <td>Driver Unavailable</td>
+                                <td>Verify the printer model, operating system, and compatible driver.</td>
+                            </tr>
+                            <tr>
+                                <td>Unknown Numeric Code</td>
+                                <td>Search the exact code on the manufacturer's official support website.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info">
+                    <strong>About BPMC 202:</strong> Do not automatically
+                    identify this code as a Print Spooler error. Verify
+                    the exact code, printer model, full message, and
+                    where the error appears before choosing a fix.
+                    General spooler troubleshooting is appropriate
+                    only when the symptoms indicate a Windows printing
+                    queue or service problem.
+                </div>
+            </section>
+
+            <section class="article-section" id="maintenance">
+                <h2>13. Printer Maintenance and Prevention</h2>
+
+                <ul>
+                    <li>Use supported paper types and sizes.</li>
+                    <li>Store paper in a clean, dry place.</li>
+                    <li>Protect the printer from excessive dust and moisture.</li>
+                    <li>Follow the manufacturer's recommended maintenance procedures.</li>
+                    <li>Download drivers and firmware only from trusted sources.</li>
+                    <li>Avoid factory resets unless simpler troubleshooting has failed and you understand what settings may be lost.</li>
+                    <li>Check the selected printer, paper size, and page range before printing important documents.</li>
+                </ul>
+
+                <div class="success">
+                    <strong>Good practice:</strong> Keep a note of the
+                    printer model, connection type, and official support
+                    page. This information can make future troubleshooting
+                    easier.
+                </div>
+            </section>
+
+            <section class="article-section" id="faq">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>Can a printer work without a separate driver?</h3>
+                    <p>
+                        Some printers work with drivers built into Windows
+                        or supported standard printing protocols. Advanced
+                        features may require manufacturer software.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Why does my printer show Offline when it is powered on?</h3>
+                    <p>
+                        Check the cable or network connection, offline
+                        settings, print queue, and Print Spooler service.
+                        For wireless printers, verify network connectivity.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What happens when I restart Print Spooler?</h3>
+                    <p>
+                        Restarting the service refreshes Windows print-job
+                        management and may resolve temporary printing
+                        problems. It does not fix every printer issue.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Must my printer and computer use the same Wi-Fi?</h3>
+                    <p>
+                        For typical local-network printing, both devices
+                        need to be on networks that can communicate.
+                        Wi-Fi Direct and some managed network setups work
+                        differently.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Should I use third-party driver-updater software?</h3>
+                    <p>
+                        Start with the printer manufacturer's official
+                        support website or Windows Update. Avoid
+                        unverified driver tools.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Should I reset the printer to factory settings?</h3>
+                    <p>
+                        Not as a first step. Check the connection,
+                        paper, print queue, and driver first. A factory
+                        reset may erase saved network and configuration
+                        settings.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What should I do if none of these steps work?</h3>
+                    <p>
+                        Record the printer model, operating system,
+                        exact error message, and steps already tried.
+                        Then consult the manufacturer's official support
+                        documentation or a qualified technician.
+                    </p>
+                </div>
+            </section>
+
+            <section class="article-section" id="related">
+                <h2>Official Support and Related Resources</h2>
+
+                <p>
+                    Use these official references for additional
+                    troubleshooting instructions.
+                </p>
+
+                <div class="related-links">
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-printer-connection-and-printing-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Microsoft: Printer Connection and Printing Problems ↗
+                    </a>
+
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-print-job-stuck-in-queue-errors-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Microsoft: Fix Print Jobs Stuck in the Queue ↗
+                    </a>
+
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/fix-print-spooler-service-not-running-errors-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Microsoft: Print Spooler Troubleshooting ↗
+                    </a>
+
+                    <a href="https://support.microsoft.com/en-us/windows/hardware/printer/troubleshooting-offline-printer-problems-in-windows"
+                       target="_blank" rel="noopener noreferrer">
+                        Microsoft: Troubleshoot Offline Printers ↗
+                    </a>
+
+                    <a href="/disclaimer.html">
+                        PCConnectHub: Disclaimer
+                    </a>
+
+                    <a href="/privacy-policy.html">
+                        PCConnectHub: Privacy Policy
+                    </a>
+
+                    <a href="/terms.html">
+                        PCConnectHub: Terms of Service
+                    </a>
+
+                    <a href="/contact.html">
+                        Contact PCConnectHub
+                    </a>
+                </div>
+            </section>
+
+            <div class="disclaimer" style="margin-top:28px; margin-bottom:0;">
+                <strong>Important:</strong> This guide provides general
+                educational information. Exact procedures depend on the
+                printer model, operating system, and symptoms. Follow
+                official manufacturer instructions and seek qualified
+                assistance when necessary.
+            </div>
+
+            <a href="/" class="back-link">← Return to Home Page</a>
+
+        </article>
     </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-copy">
+            © 2026 PCConnectHub. All rights reserved.
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="/">Home</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/disclaimer.html">Disclaimer</a>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll("[data-copy]").forEach(function (button) {
+        button.addEventListener("click", async function () {
+            const element = document.getElementById(
+                button.getAttribute("data-copy")
+            );
+
+            if (!element) return;
+
+            const text = element.textContent.trim();
+            const originalText = button.textContent;
+
+            try {
+                await navigator.clipboard.writeText(text);
+                button.textContent = "Copied!";
+            } catch (error) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.opacity = "0";
+
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    const copied = document.execCommand("copy");
+                    button.textContent = copied
+                        ? "Copied!"
+                        : "Copy manually";
+                } catch (copyError) {
+                    button.textContent = "Copy manually";
+                }
+
+                textArea.remove();
+            }
+
+            setTimeout(function () {
+                button.textContent = originalText;
+            }, 1800);
+        });
+    });
+</script>
 
 </body>
 </html>
