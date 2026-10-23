@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Terms of Service | PCConnectHub</title>
+    <meta name="description" content="Read the Terms of Service for PCConnectHub, including website usage, intellectual property, technical guidance, third-party links, and liability limitations.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://pcconnecthub.com/terms.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --background: #f8fafc;
+            --white: #ffffff;
+            --light-blue: #eff6ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, sans-serif;
+            line-height: 1.75;
+            color: var(--text);
+            background: var(--background);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav {
+            max-width: 1120px;
+            margin: auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            color: white;
+            background: var(--primary);
+            border-radius: 11px;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            color: #475569;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 64px 20px 58px;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at top, #dbeafe 0%, transparent 65%),
+                linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 12px;
+            color: var(--primary-dark);
+            background: #dbeafe;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 18px 0 12px;
+            font-size: clamp(30px, 5vw, 44px);
+            line-height: 1.2;
+            letter-spacing: -1.8px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .updated {
+            display: block;
+            margin-top: 18px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .page-layout {
+            max-width: 1050px;
+            margin: 42px auto 70px;
+            padding: 0 22px;
+            display: grid;
+            grid-template-columns: 245px minmax(0, 1fr);
+            align-items: start;
+            gap: 28px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            padding: 22px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .sidebar h2 {
+            margin: 0 0 14px;
+            font-size: 13px;
+            letter-spacing: 0.2px;
+        }
+
+        .toc {
+            display: grid;
+            gap: 4px;
+        }
+
+        .toc a {
+            padding: 8px 10px;
+            color: #475569;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .toc a:hover {
+            color: var(--primary-dark);
+            background: var(--light-blue);
+        }
+
+        .content {
+            min-width: 0;
+            padding: 34px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.025);
+        }
+
+        .intro {
+            margin: 0 0 28px;
+            padding: 18px 20px;
+            color: #334155;
+            background: var(--light-blue);
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .policy-section {
+            padding: 24px 0;
+            border-bottom: 1px solid #edf2f7;
+            scroll-margin-top: 100px;
+        }
+
+        .policy-section:first-of-type {
+            padding-top: 0;
+        }
+
+        .policy-section:last-of-type {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .policy-section h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            line-height: 1.45;
+            letter-spacing: -0.35px;
+        }
+
+        .policy-section p,
+        .policy-section li {
+            color: #475569;
+            font-size: 13.5px;
+        }
+
+        .policy-section p {
+            margin: 0 0 12px;
+        }
+
+        .policy-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-section ul {
+            padding-left: 21px;
+            margin: 10px 0;
+        }
+
+        .policy-section li {
+            margin: 7px 0;
+            padding-left: 3px;
+        }
+
+        .contact-card {
+            margin-top: 28px;
+            padding: 22px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .contact-card h2 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .contact-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .site-footer {
+            padding: 32px 20px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1050px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copy {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #475569;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 760px) {
+            .nav {
+                padding: 13px 17px;
+            }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .nav-links .optional {
+                display: none;
+            }
+
+            .hero {
+                padding: 48px 18px 42px;
+            }
+
+            .page-layout {
+                grid-template-columns: 1fr;
+                margin-top: 24px;
+                gap: 18px;
+                padding: 0 14px;
+            }
+
+            .sidebar {
+                position: static;
+                padding: 17px;
+            }
+
+            .toc {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 3px 8px;
+            }
+
+            .content {
+                padding: 23px 19px;
+            }
+
+            .policy-section h2 {
+                font-size: 17px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .nav-links {
+                gap: 9px;
+            }
+
+            .toc {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="PCConnectHub homepage">
+            <span class="brand-icon">PC</span>
+            <span>PCConnectHub</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a class="optional" href="/#topics">Guides</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <span class="eyebrow">Website Policies</span>
+        <h1>Terms of Service</h1>
+        <p>
+            Please read these terms carefully before using PCConnectHub.
+            They explain the conditions that apply when you access our
+            website, articles, and technical guides.
+        </p>
+        <span class="updated">Effective date: October 24, 2026</span>
+    </section>
+
+    <div class="page-layout">
+
+        <aside class="sidebar">
+            <h2>On this page</h2>
+            <nav class="toc" aria-label="Terms of Service sections">
+                <a href="#acceptance">1. Acceptance of Terms</a>
+                <a href="#website-use">2. Website Use</a>
+                <a href="#content">3. Content and Copyright</a>
+                <a href="#technical-guidance">4. Technical Guidance</a>
+                <a href="#third-party">5. Third-Party Links</a>
+                <a href="#availability">6. Website Availability</a>
+                <a href="#liability">7. Limitation of Liability</a>
+                <a href="#independence">8. Independent Website</a>
+                <a href="#privacy">9. Privacy</a>
+                <a href="#changes">10. Changes to Terms</a>
+                <a href="#law">11. Applicable Law</a>
+                <a href="#contact">12. Contact Us</a>
+            </nav>
+        </aside>
+
+        <article class="content">
+
+            <div class="intro">
+                By accessing or using PCConnectHub, you acknowledge that
+                you have read and understood these Terms of Service.
+                If you do not agree with these terms, please discontinue
+                use of the website.
+            </div>
+
+            <section class="policy-section" id="acceptance">
+                <h2>1. Acceptance of Terms</h2>
+                <p>
+                    These Terms of Service govern your access to and use
+                    of <a href="https://pcconnecthub.com/">PCConnectHub</a>
+                    (pcconnecthub.com), including its articles, tutorials,
+                    troubleshooting guides, and other website content.
+                </p>
+                <p>
+                    In these terms, “we,” “us,” and “our” refer to
+                    PCConnectHub. “You” refers to any visitor or user
+                    of the website.
+                </p>
+            </section>
+
+            <section class="policy-section" id="website-use">
+                <h2>2. Acceptable Website Use</h2>
+                <p>
+                    You agree to use this website lawfully and in a way
+                    that does not interfere with its operation or the
+                    experience of other visitors.
+                </p>
+                <p>You must not:</p>
+                <ul>
+                    <li>Use the website for unlawful, fraudulent, or harmful activities.</li>
+                    <li>Attempt to disrupt, damage, or gain unauthorized access to the website or its systems.</li>
+                    <li>Use automated methods to copy or collect website content in a manner that violates applicable law or our rights.</li>
+                    <li>Misrepresent our content as your own original work.</li>
+                </ul>
+            </section>
+
+            <section class="policy-section" id="content">
+                <h2>3. Content, Copyright, and Permitted Use</h2>
+                <p>
+                    Unless otherwise stated, the original text, layout,
+                    branding, and other materials published on PCConnectHub
+                    belong to their respective rights holders and may be
+                    protected by intellectual property laws.
+                </p>
+                <p>
+                    You may read, bookmark, and share links to our publicly
+                    available articles for personal and informational use.
+                    You must not republish, reproduce, redistribute, or sell
+                    substantial portions of our original content for
+                    commercial purposes without prior written permission,
+                    except where permitted by applicable law.
+                </p>
+                <p>
+                    Product names, company names, logos, and trademarks
+                    mentioned on this website belong to their respective
+                    owners.
+                </p>
+            </section>
+
+            <section class="policy-section" id="technical-guidance">
+                <h2>4. Technical Information and Troubleshooting</h2>
+                <p>
+                    PCConnectHub publishes general educational information
+                    about computers, Windows, networking, printers,
+                    peripherals, software, and technical troubleshooting.
+                </p>
+                <p>
+                    Our articles are provided for general informational
+                    purposes. They may not address your particular device,
+                    operating system version, configuration, or situation.
+                    We do not guarantee that every guide will resolve a
+                    specific issue.
+                </p>
+                <p>
+                    Before changing system settings, running commands,
+                    editing configuration files, updating drivers, or
+                    resetting a device, you should:
+                </p>
+                <ul>
+                    <li>Read the instructions carefully and verify that they apply to your device.</li>
+                    <li>Back up important files and create a restore point when appropriate.</li>
+                    <li>Understand the possible effects of the steps before proceeding.</li>
+                    <li>Consult a qualified technician when you are unsure or when the device contains critical data.</li>
+                </ul>
+                <p>
+                    You are responsible for deciding whether a suggested
+                    procedure is suitable for your situation.
+                </p>
+            </section>
+
+            <section class="policy-section" id="third-party">
+                <h2>5. Third-Party Websites and Services</h2>
+                <p>
+                    Our website may contain links to third-party websites,
+                    software, tools, products, or services for additional
+                    information and convenience.
+                </p>
+                <p>
+                    We do not control or guarantee the accuracy, availability,
+                    security, or policies of external websites. Visiting
+                    third-party websites or using their products and
+                    services is your decision and may be subject to their
+                    own terms and privacy policies.
+                </p>
+            </section>
+
+            <section class="policy-section" id="availability">
+                <h2>6. Website Availability and Accuracy</h2>
+                <p>
+                    We aim to keep PCConnectHub useful, accurate, and
+                    accessible. However, we do not guarantee that the
+                    website will always be available, uninterrupted,
+                    error-free, or free of harmful components.
+                </p>
+                <p>
+                    Technical information can become outdated as software,
+                    operating systems, hardware, and manufacturer
+                    recommendations change. We may update, correct,
+                    remove, or reorganize content at any time.
+                </p>
+            </section>
+
+            <section class="policy-section" id="liability">
+                <h2>7. Limitation of Liability</h2>
+                <p>
+                    To the extent permitted by applicable law, PCConnectHub
+                    is not responsible for losses or damages arising from
+                    your use of, or inability to use, this website or your
+                    reliance on its content. This includes, where legally
+                    permitted, device problems, data loss, configuration
+                    errors, service interruptions, or indirect losses.
+                </p>
+                <p>
+                    Nothing in these terms excludes or limits liability
+                    where such exclusion or limitation is prohibited by
+                    applicable law. Your statutory rights, where applicable,
+                    remain unaffected.
+                </p>
+            </section>
+
+            <section class="policy-section" id="independence">
+                <h2>8. Independent Website and Trademarks</h2>
+                <p>
+                    PCConnectHub is an independent educational website.
+                    Unless explicitly stated otherwise, it is not affiliated
+                    with, endorsed by, or officially connected to Microsoft,
+                    Google, HP, Canon, Lenovo, Dell, ASUS, or any other
+                    manufacturer or service provider mentioned on the site.
+                </p>
+                <p>
+                    References to third-party products, companies, and
+                    trademarks are made for identification and educational
+                    purposes only. Such references do not imply endorsement.
+                </p>
+            </section>
+
+            <section class="policy-section" id="privacy">
+                <h2>9. Privacy and Cookies</h2>
+                <p>
+                    Your use of this website may also be governed by our
+                    <a href="/privacy-policy.html">Privacy Policy</a>,
+                    which explains how information may be collected,
+                    used, and handled.
+                </p>
+                <p>
+                    Please review that policy to understand our practices
+                    regarding cookies, analytics, advertising, and other
+                    applicable data-processing activities.
+                </p>
+            </section>
+
+            <section class="policy-section" id="changes">
+                <h2>10. Changes to These Terms</h2>
+                <p>
+                    We may revise these Terms of Service from time to time
+                    to reflect changes to our website, practices, or
+                    applicable requirements.
+                </p>
+                <p>
+                    The updated version will be published on this page
+                    with a revised effective date where appropriate.
+                    Your continued use of the website after changes are
+                    published indicates acceptance of the revised terms
+                    to the extent permitted by applicable law.
+                </p>
+            </section>
+
+            <section class="policy-section" id="law">
+                <h2>11. Applicable Law</h2>
+                <p>
+                    These terms are subject to applicable laws and
+                    regulations. Any disputes will be handled by the
+                    competent courts or authorities having jurisdiction
+                    under applicable law.
+                </p>
+            </section>
+
+            <section class="policy-section" id="contact">
+                <h2>12. Contact Us</h2>
+                <p>
+                    If you have questions about these Terms of Service,
+                    you can contact us using the details below.
+                </p>
+
+                <div class="contact-card">
+                    <h2>PCConnectHub</h2>
+                    <p>
+                        Website:
+                        <a href="https://pcconnecthub.com/">
+                            pcconnecthub.com
+                        </a>
+                    </p>
+                    <p>
+                        Email:
+                        <a href="mailto:admin@pcconnecthub.com">
+                            admin@pcconnecthub.com
+                        </a>
+                    </p>
+                </div>
+            </section>
+
+        </article>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-copy">
+            © 2026 PCConnectHub. All rights reserved.
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="/">Home</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/disclaimer.html">Disclaimer</a>
+            <a href="/terms.html" aria-current="page">Terms of Service</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+  </html>
